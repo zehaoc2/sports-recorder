@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/guillotine_background"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        style="@style/Toolbar"
+        app:contentInsetStart="0dp">
+
+        <ImageView
+            android:id="@+id/side_image_btn_vertical"
+            style="@style/ImageView.Hamburger"
+            android:src="@drawable/ic_menu" />
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/profile_group"
+        style="@style/LinearLayout.GuillotineItem"
+        android:layout_marginTop="@dimen/guillotine_medium_margin">
+
+        <ImageView
+            android:id = "@+id/profile_imageview_btn"
+            style="@style/ImageView.GuillotineItem"
+            android:src="@drawable/ic_profile" />
+
+        <com.cs498MD.SportsRecorder.widget.CanaroTextView
+            android:id = "@+id/profile_text_btn"
+            style="@style/TextView.GuillotineItem"
+            android:text="@string/profile" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/stats_group"
+        style="@style/LinearLayout.GuillotineItem">
+
+        <ImageView
+            android:id = "@+id/stats_imageview_btn"
+            style="@style/ImageView.GuillotineItem"
+            android:src="@drawable/ic_stats_colorful" />
+
+        <com.cs498MD.SportsRecorder.widget.CanaroTextView
+            android:id = "@+id/stats_text_btn"
+            style="@style/TextView.GuillotineItem"
+            android:text="@string/stats" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/opponents_group"
+        style="@style/LinearLayout.GuillotineItem">
+
+        <ImageView
+            android:id = "@+id/opponents_imageview_btn"
+            style="@style/ImageView.GuillotineItem"
+            android:src="@drawable/ic_opponents" />
+
+        <com.cs498MD.SportsRecorder.widget.CanaroTextView
+            android:id = "@+id/opponents_text_btn"
+            style="@style/TextView.GuillotineItem"
+            android:text="@string/opponents" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/guillotine_divider_height" />
+
+    <LinearLayout
+
+        android:id="@+id/settings_group"
+        style="@style/LinearLayout.GuillotineItem">
+
+        <ImageView
+            android:id = "@+id/settings_imageview_btn"
+            style="@style/ImageView.GuillotineItem"
+            android:src="@drawable/ic_settings" />
+
+        <com.cs498MD.SportsRecorder.widget.CanaroTextView
+            android:id = "@+id/settings_text_btn"
+            style="@style/TextView.GuillotineItem"
+            android:text="@string/settings" />
+    </LinearLayout>
+</LinearLayout>
