@@ -28,4 +28,5 @@ dependencies {
     //button style
     implementation  'com.github.jd-alexander:android-flat-button:v1.1'
     implementation 'com.github.Yalantis:GuillotineMenu-Android:1.2'
+    implementation 'com.github.TerryJung:SwipeAnimationButton:0.1.0'
 }
