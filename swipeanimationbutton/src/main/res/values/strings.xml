@@ -1,8 +1,7 @@
 <resources>
 
     <string name="app_name">Sports Recorder</string>
-
-
+    <string name="sports_recorder">Sports Recorder</string>
     <string name="profile">PROFILE</string>
     <string name="stats">STATS</string>
     <string name="opponents">OPPONENTS</string>

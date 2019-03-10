@@ -5,7 +5,7 @@
 
     <application
         android:allowBackup="true"
-        android:label="@string/app_name"
+        android:label="@string/sports_recorder"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
