@@ -31,4 +31,5 @@ dependencies {
     implementation 'com.github.Yalantis:GuillotineMenu-Android:1.2'
     implementation project(path: ':swipeanimationbutton')
     //    implementation 'com.github.TerryJung:SwipeAnimationButton:0.1.0'
+    implementation 'com.android.support:design:28.0.0'
 }

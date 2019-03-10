@@ -14,138 +14,26 @@
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="0dp">
 
-    <View
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/guillotine_actionbar_background_view_height"
-        android:layout_gravity="top"
-        android:background="@color/guillotine_background" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            style="@style/Toolbar"
-            app:contentInsetStart="0dp">
-
-            <ImageView
-                android:id="@+id/side_image_btn"
-                style="@style/ImageView.Hamburger"
-                android:src="@drawable/ic_menu_90"
-                android:clickable="true"/>
-
-            <com.cs498MD.SportsRecorder.widget.CanaroTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/app_name"
-                android:textColor="@color/fbutton_color_green_sea"
-                android:textSize="@dimen/guillotine_item_text_size" />
-        </android.support.v7.widget.Toolbar>
-
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            fbutton:srcCompat="@android:drawable/ic_input_add" />
     </LinearLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraint_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <info.hoang8f.widget.FButton
-            android:id="@+id/manageBtn"
-
-            android:layout_width="220dp"
-            android:layout_height="70dp"
-
-
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="160dp"
-            android:minWidth="@dimen/button_min_width"
-            android:minHeight="@dimen/button_min_height"
-            android:text="Manage My Team"
-
-            android:textColor="@android:color/white"
-            fbutton:layout_constraintBottom_toBottomOf="parent"
-            fbutton:layout_constraintEnd_toEndOf="parent"
-            fbutton:layout_constraintHorizontal_bias="0.554"
-            fbutton:layout_constraintStart_toStartOf="parent"
-            fbutton:layout_constraintTop_toTopOf="parent"
-            fbutton:layout_constraintVertical_bias="1.0"
-            fbutton:fButtonColor="@color/fbutton_color_wet_asphalt"
-            fbutton:shadowEnabled="true" />
-
-        <info.hoang8f.widget.FButton
-            android:id="@+id/newMatchBtn"
-
-            android:layout_width="220dp"
-            android:layout_height="70dp"
-
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-
-
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="112dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:minWidth="@dimen/button_min_width"
-            android:minHeight="@dimen/button_min_height"
-            android:text="New Match"
-            android:textColor="@android:color/white"
-            fbutton:fButtonColor="@color/fbutton_color_wet_asphalt"
-            fbutton:layout_constraintBottom_toTopOf="@+id/manageBtn"
-            fbutton:layout_constraintEnd_toEndOf="parent"
-            fbutton:layout_constraintHorizontal_bias="0.554"
-            fbutton:layout_constraintStart_toStartOf="parent"
-            fbutton:layout_constraintTop_toTopOf="parent"
-            fbutton:layout_constraintVertical_bias="0.096"
-            fbutton:shadowEnabled="true" />
-
-        <info.hoang8f.widget.FButton
-            android:id="@+id/preMatchBtn"
-
-            android:layout_width="220dp"
-            android:layout_height="70dp"
-
-
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-
-
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:minWidth="@dimen/button_min_width"
-            android:minHeight="@dimen/button_min_height"
-            android:text="Previous Match"
-            android:textColor="@android:color/white"
-            fbutton:fButtonColor="@color/fbutton_color_wet_asphalt"
-            fbutton:layout_constraintBottom_toTopOf="@+id/manageBtn"
-            fbutton:layout_constraintEnd_toEndOf="parent"
-            fbutton:layout_constraintHorizontal_bias="0.554"
-            fbutton:layout_constraintStart_toStartOf="parent"
-            fbutton:layout_constraintTop_toBottomOf="@+id/newMatchBtn"
-            fbutton:layout_constraintVertical_bias="0.521"
-            fbutton:shadowEnabled="true" />
-
-
-    </android.support.constraint.ConstraintLayout>
-
-
-
-
-
 </FrameLayout>

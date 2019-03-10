@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MatchList">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/newMatch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:src="@android:drawable/ic_input_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/matchLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="379dp"
+        tools:layout_editor_absoluteY="16dp">
+
+        <TextView
+            android:id="@+id/Matches"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Matches"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/noMatches"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NO MATCHES YET"
+            android:textAlignment="center" />
+
+        <ListView
+        android:id="@+id/matchList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+        tools:layout_editor_absoluteX="338dp"
+        tools:layout_editor_absoluteY="658dp" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
