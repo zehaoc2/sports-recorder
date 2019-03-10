@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.settings_text_btn:
                 //click side menu settings btn
                 Log.e(TEST, "settings clicked");
-                startActivity(new Intent(this, SettingActivity.class));
+                startActivity(new Intent(this, InputActivity.class));
 
                 break;
             case R.id.newMatchBtn:
