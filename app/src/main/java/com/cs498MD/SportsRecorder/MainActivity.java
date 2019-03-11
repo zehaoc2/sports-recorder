@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             matchCount++;
             matchArray.add(matchName);
             adapter.notifyDataSetChanged();
+            startActivity(new Intent(this, InputActivity.class));
 //            Toast.makeText(this, matchName, Toast.LENGTH_SHORT).show();
         }
 //        switch (v.getId()) {
