@@ -19,7 +19,6 @@ public class GameStats extends AppCompatActivity {
         TableLayout table = findViewById(R.id.overallStats);
 
 //        Toast.makeText(this, "You got here", Toast.LENGTH_SHORT);
-//        TableRow header = new TableRow(GameStats.this);
 
 //        <TextView
 //        android:id="@+id/gameText"
@@ -28,12 +27,25 @@ public class GameStats extends AppCompatActivity {
 //        android:text="TextView"
 //        android:background="@drawable/cell_shape"/>
 
-        GradientDrawable gd = new GradientDrawable();
-        gd.setColor(0x000);
-        gd.setCornerRadius(5);
-        gd.setStroke(2, 0x000);
+//        GradientDrawable gd = new GradientDrawable();
+//        gd.setColor(0x000);
+//        gd.setCornerRadius(5);
+//        gd.setStroke(2, 0x000);
 
-        for (int i=0; i < 3; i++) {
+        TableRow header = new TableRow(GameStats.this);
+        header.setBackgroundResource(R.drawable.cell_shape);
+        String[] h = {"", "Total Score", "Period 1", "Period 2", "Period 3", "Period 4", "Period 4+"};
+        String[] teams = {"My Team", "Opponent"};
+
+        for (int i = 0; i < 7; i++) {
+            TextView tv = new TextView(GameStats.this);
+            tv.setText(h[i]);
+            header.addView(tv);
+        }
+        table.addView(header);
+
+
+        for (int i=0; i < 2; i++) {
             TableRow row = new TableRow(GameStats.this);
             row.setBackgroundResource(R.drawable.cell_shape);
             for (int j = 0; j < 7; j++) {
