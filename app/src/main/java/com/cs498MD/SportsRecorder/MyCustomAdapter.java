@@ -1,6 +1,7 @@
 package com.cs498MD.SportsRecorder;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.recyclerview.extensions.ListAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.EditText;
+
 
 import java.util.ArrayList;
 
@@ -40,7 +44,7 @@ public class MyCustomAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
         View view = convertView;
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -52,24 +56,24 @@ public class MyCustomAdapter extends BaseAdapter {
         listItemText.setText(list.get(position));
 
         //Handle buttons and add onClickListeners
-        Button deleteBtn = (Button)view.findViewById(R.id.delete_btn);
-        Button addBtn = (Button)view.findViewById(R.id.add_btn);
+        Button shareBtn = (Button)view.findViewById(R.id.share_btn);
+        Button viewBtn = (Button)view.findViewById(R.id.view_btn);
 
-//        deleteBtn.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                //do something
-////                list.remove(position); //or some other task
-////                notifyDataSetChanged();
-//            }
-//        });
-//        addBtn.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                //do something
-////                notifyDataSetChanged();
-//            }
-//        });
+        shareBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //do something
+//                list.remove(position); //or some other task
+//                notifyDataSetChanged();
+            }
+        });
+        viewBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), GameStats.class);
+                v.getContext().startActivity(intent);
+            }
+        });
 
         return view;
     }
