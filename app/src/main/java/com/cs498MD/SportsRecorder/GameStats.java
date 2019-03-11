@@ -49,9 +49,13 @@ public class GameStats extends AppCompatActivity {
             TableRow row = new TableRow(GameStats.this);
             row.setBackgroundResource(R.drawable.cell_shape);
             for (int j = 0; j < 7; j++) {
-                int value = 0;
                 TextView tv = new TextView(GameStats.this);
-                tv.setText("Something");
+
+                if (j == 0) {
+                    tv.setText(teams[i]);
+                } else {
+                    tv.setText("Something");
+                }
                 row.addView(tv);
             }
 
