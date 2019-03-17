@@ -14,8 +14,7 @@ import com.terry.view.swipeanimationbutton.SwipeAnimationListener;
 public class InputActivity extends Activity {
 
     private TextView opponentScoreView;
-    private TextView myScoreView;
-    private Button opponentAddBtn;
+    private Button opponentAdd;
     private int opponentScore;
 
     public static final String OPPONENT = "opponent";
@@ -38,6 +37,7 @@ public class InputActivity extends Activity {
                 }
             }
         });
+
 
         SwipeAnimationButton swipeAnimationButton2 = (SwipeAnimationButton) findViewById(R.id.swipe_btn2);
         swipeAnimationButton2.setOnSwipeAnimationListener(new SwipeAnimationListener() {
@@ -68,8 +68,10 @@ public class InputActivity extends Activity {
         opponentScoreView = (TextView) findViewById(R.id.opponent_score);
         opponentAddBtn = (Button) findViewById(R.id.opponent_add);
 
-        loadMatchInfo();
-        updateMatchInfo();
+
+
+        loadOpponentScore();
+        updateViews();
 
         opponentAddBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -88,16 +90,16 @@ public class InputActivity extends Activity {
         editor.putInt(OPPONENT_SCORE, opponentScore + 1);
         editor.apply();
 
-        loadMatchInfo();
-        updateMatchInfo();
+        loadOpponentScore();
+        updateViews();
     }
 
-    public void loadMatchInfo() {
+    public void loadOpponentScore() {
         SharedPreferences sharedPreferences = getSharedPreferences(OPPONENT, MODE_PRIVATE);
         opponentScore = sharedPreferences.getInt(OPPONENT_SCORE, 0);
     }
 
-    public void updateMatchInfo() {
+    public void updateViews() {
         opponentScoreView.setText(Integer.toString(opponentScore));
     }
 }

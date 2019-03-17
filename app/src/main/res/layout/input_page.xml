@@ -256,20 +256,25 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+<<<<<<< HEAD
 
         <LinearLayout
+=======
+        <RelativeLayout
+>>>>>>> dda7b55de0927df7ef8c94d3b3a8a3092567d1cf
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/opponent_add"
+                android:id="@+id/opponentAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="button" />
 
             <TextView
+<<<<<<< HEAD
                 android:id="@+id/opponent_score"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -284,6 +289,15 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+=======
+                android:id="@+id/action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/opponentAdd"
+                android:layout_toStartOf="@id/trash_can"
+                android:layout_centerInParent="true"
+                android:text="Last Action"
+>>>>>>> dda7b55de0927df7ef8c94d3b3a8a3092567d1cf
                 android:gravity="center"
                 android:text="My Score"
                 android:textColor="@color/classic_black"
@@ -293,10 +307,10 @@
                 android:id="@+id/trash_can"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
+                android:layout_alignParentRight="true"
                 android:src="@drawable/ic_icons8_trash_can" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </RelativeLayout>
 
