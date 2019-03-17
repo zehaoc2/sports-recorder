@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+    <color name="classic_black">#000</color>
+    <color name="classic_white">#fff</color>
+
     //color for fbutton
 
     <color name="fbutton_default_color">#3eadeb</color>
