@@ -17,6 +17,7 @@ import com.terry.view.swipeanimationbutton.SwipeAnimationButton;
 import com.terry.view.swipeanimationbutton.SwipeAnimationListener;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 import info.hoang8f.widget.FButton;
 
@@ -297,9 +298,14 @@ public class InputActivity extends Activity implements View.OnClickListener{
         MyTeam myTeam = match.getMyTeam();
         OpponentTeam opponentTeam = match.getOpponentTeam();
         ArrayList<Player> players = match.getPlayers();
+        Stack<String> history = match.getHistory();
 
-
-
+        myNameView.setText(myTeam.getName());
+        myScoreView.setText(myTeam.getScore());
+        opponentNameView.setText(opponentTeam.getName());
+        opponentNameView.setText(opponentTeam.getScore());
+        //TODO: initialize value to players
+        lastAction.setText(history.peek());
     }
 
     public void updateMatchInfo(String match) {
