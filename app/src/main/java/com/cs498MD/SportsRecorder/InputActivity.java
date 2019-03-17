@@ -28,12 +28,14 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
     private String matchId;
 
+    private TextView myNameView;
     private TextView myScoreView;
     private SwipeAnimationButton swipeAnimationButton;
     private SwipeAnimationButton swipeAnimationButton2;
     private SwipeAnimationButton swipeAnimationButton3;
     private Button foulBtn;
 
+    private TextView opponentNameView;
     private TextView opponentScoreView;
     private Button opponentAddBtn;
 
@@ -48,11 +50,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private int periodNo;
 
 
-
-
     private Button addPeriodBtn;
-
-    public static final String OPPONENT_SCORE = "opponentScore";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +68,22 @@ public class InputActivity extends Activity implements View.OnClickListener{
         setOpponentTeam();
 
         loadMatchInfo();
-        updateMatchInfo();
-
-        addPeriodBtn = findViewById(R.id.period_add);
-        addPeriodBtn.setOnClickListener(this);
 
 
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
+        String matchJson = sharedPreferences.getString(matchId, "");
+
+        if (matchJson == null || matchJson.equals("")) {
+            Match newMatch = new Match();
+            Gson gson = new Gson();
+            String newMatchJson = gson.toJson(newMatch);
+            updateMatchInfo(newMatchJson);
+        } else {
+            Gson gson = new Gson();
+            Match match = gson.fromJson(matchJson, Match.class);
+        }
     }
 
     @Override
@@ -212,6 +220,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
             }
         });
 
+        myNameView = (TextView) findViewById(R.id.my_name);
         myScoreView = (TextView) findViewById(R.id.my_score);
         foulBtn = (Button) findViewById(R.id.foul_btn);
 
@@ -219,42 +228,46 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
     private void setOpponentTeam() {
 
+        opponentNameView = (TextView) findViewById(R.id.opponent_name);
         opponentScoreView = (TextView) findViewById(R.id.opponent_score);
         opponentAddBtn = (Button) findViewById(R.id.opponent_add);
 
         opponentAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveData();
+//                saveData();
             }
         });
-    }
-
-    public void saveData() {
-        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-
-//        editor.putInt(OPPONENT_SCORE, opponentScore + 1);
-        editor.apply();
-
-        loadMatchInfo();
-        updateMatchInfo();
     }
 
     public void loadMatchInfo() {
         SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
         String matchJson = sharedPreferences.getString(matchId, "");
 
+        Match match;
         Gson gson = new Gson();
-        Match match = gson.fromJson(matchJson, Match.class);
-//        match
+
+        if (matchJson == null || matchJson.equals("")) {
+            match = new Match();
+        } else {
+            match = gson.fromJson(matchJson, Match.class);
+        }
+
+        MyTeam myTeam = match.getMyTeam();
+        OpponentTeam opponentTeam = match.getOpponentTeam();
+        ArrayList<Player> players = match.getPlayers();
 
 
-//        opponentScore = sharedPreferences.getInt(OPPONENT_SCORE, 0);
+
     }
 
-    public void updateMatchInfo() {
-//        opponentScoreView.setText(Integer.toString(opponentScore));
+    public void updateMatchInfo(String match) {
+        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString(matchId, match);
+        editor.apply();
+
+        loadMatchInfo();
     }
 }
