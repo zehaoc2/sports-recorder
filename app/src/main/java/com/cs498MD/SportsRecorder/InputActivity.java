@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.terry.view.swipeanimationbutton.SwipeAnimationButton;
 import com.terry.view.swipeanimationbutton.SwipeAnimationListener;
 
@@ -31,6 +32,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
     private TextView lastAction;
     private ImageButton undo;
+
+    private final String MATCH = "match";
 
 
 
@@ -151,7 +154,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
     }
 
     public void saveData() {
-        SharedPreferences sharedPreferences = getSharedPreferences(matchId, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
@@ -163,7 +166,14 @@ public class InputActivity extends Activity implements View.OnClickListener{
     }
 
     public void loadMatchInfo() {
-        SharedPreferences sharedPreferences = getSharedPreferences(matchId, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
+        String matchJson = sharedPreferences.getString(matchId, "");
+
+        Gson gson = new Gson();
+        Match match = gson.fromJson(matchJson, Match.class);
+//        match
+
+
 //        opponentScore = sharedPreferences.getInt(OPPONENT_SCORE, 0);
     }
 
