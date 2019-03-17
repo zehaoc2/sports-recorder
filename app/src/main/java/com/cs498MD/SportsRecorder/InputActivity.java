@@ -44,8 +44,6 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private TextView opponentNameView;
     private TextView opponentScoreView;
     private Button opponentAddBtn;
-    
-    private final String MATCH = "match";
 
     // Active match info
     private int myScore;
