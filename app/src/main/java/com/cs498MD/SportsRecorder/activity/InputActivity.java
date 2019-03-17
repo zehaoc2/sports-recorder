@@ -74,21 +74,6 @@ public class InputActivity extends Activity implements View.OnClickListener{
         loadMatchInfo();
 
 
-
-
-        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
-        String matchJson = sharedPreferences.getString(matchId, "");
-
-        if (matchJson == null || matchJson.equals("")) {
-            Match newMatch = new Match();
-            Gson gson = new Gson();
-            String newMatchJson = gson.toJson(newMatch);
-            updateMatchInfo(newMatchJson);
-        } else {
-            Gson gson = new Gson();
-            Match match = gson.fromJson(matchJson, Match.class);
-        }
-
         //set dynamic add button for period
         periodAddBtn = findViewById(R.id.period_add);
         periodAddBtn.setOnClickListener(this);
