@@ -37,7 +37,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private Button opponentAddBtn;
 
     private TextView lastAction;
-    private ImageButton undo;
+    private FButton undo;
 
     private final String MATCH = "match";
 
@@ -51,6 +51,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
     private FButton periodAddBtn;
     private FButton playerAddBtn;
+
+    private  FButton undoBtn;
 
 
 
@@ -82,6 +84,9 @@ public class InputActivity extends Activity implements View.OnClickListener{
         //set dynamic add button for player
         playerAddBtn = findViewById(R.id.player_add);
         playerAddBtn.setOnClickListener(this);
+
+        undoBtn = findViewById(R.id.undo);
+
 
     }
 
