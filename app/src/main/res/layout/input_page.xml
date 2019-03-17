@@ -280,7 +280,7 @@
         <com.terry.view.swipeanimationbutton.SwipeAnimationButton
             android:id="@+id/swipe_btn"
             android:layout_width="220dp"
-            android:layout_height="45dp"
+            android:layout_height="65dp"
             android:layout_gravity="center_vertical"
 
             app:layout_constraintBottom_toBottomOf="parent"
@@ -288,33 +288,35 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.361" />
+            app:layout_constraintVertical_bias="0.351"
+
+            />
 
         <com.terry.view.swipeanimationbutton.SwipeAnimationButton
             android:id="@+id/swipe_btn2"
             android:layout_width="220dp"
-            android:layout_height="45dp"
+            android:layout_height="65dp"
             android:layout_gravity="center_vertical"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.513"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.46" />
+            app:layout_constraintVertical_bias="0.465" />
 
         <com.terry.view.swipeanimationbutton.SwipeAnimationButton
             android:id="@+id/swipe_btn3"
             android:layout_width="220dp"
-            android:layout_height="45dp"
+            android:layout_height="66dp"
             android:layout_gravity="center_vertical"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.513"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.569" />
+            app:layout_constraintVertical_bias="0.583" />
 
         <info.hoang8f.widget.FButton
             android:id="@+id/foul_btn"
@@ -343,7 +345,7 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.655"
+            app:layout_constraintVertical_bias="0.682"
             fbutton:fButtonColor="@color/fbutton_color_wet_asphalt"
             fbutton:shadowEnabled="true" />
 
@@ -370,7 +372,7 @@
             app:layout_constraintHorizontal_bias="0.028"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.735" />
+            app:layout_constraintVertical_bias="0.759" />
 
         <ImageView
             android:id="@+id/opponent_image"
@@ -389,7 +391,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/opponent_name"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.735" />
+            app:layout_constraintVertical_bias="0.759" />
 
         <TextView
             android:id="@+id/opponent_score"
@@ -408,7 +410,7 @@
             app:layout_constraintHorizontal_bias="0.815"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.735" />
+            app:layout_constraintVertical_bias="0.759" />
 
 
         <info.hoang8f.widget.FButton
@@ -437,7 +439,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.878"
+            app:layout_constraintVertical_bias="0.897"
             fbutton:fButtonColor="@color/fbutton_color_wet_asphalt"
             fbutton:shadowEnabled="true" />
 
