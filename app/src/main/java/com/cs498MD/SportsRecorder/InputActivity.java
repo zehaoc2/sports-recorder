@@ -18,6 +18,8 @@ import info.hoang8f.widget.FButton;
 
 public class InputActivity extends Activity implements View.OnClickListener{
 
+    private String matchId;
+
     private TextView myScoreView;
     private SwipeAnimationButton swipeAnimationButton;
     private SwipeAnimationButton swipeAnimationButton2;
@@ -32,14 +34,17 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
 
 
+
     private Button addPeriodBtn;
-    public static final String MATCH = "match";
+
     public static final String OPPONENT_SCORE = "opponentScore";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.input_page);
+
+        matchId = getIntent().getStringExtra("matchId");
 
         setMatchUtils();
         setMyTeam();
@@ -146,7 +151,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
     }
 
     public void saveData() {
-        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(matchId, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
@@ -158,7 +163,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
     }
 
     public void loadMatchInfo() {
-        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(matchId, MODE_PRIVATE);
 //        opponentScore = sharedPreferences.getInt(OPPONENT_SCORE, 0);
     }
 
