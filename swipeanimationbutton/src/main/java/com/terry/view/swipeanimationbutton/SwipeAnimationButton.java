@@ -62,7 +62,7 @@ public class SwipeAnimationButton extends RelativeLayout {
         this.mSwipeAnimationListener = swipeAnimationListener;
     }
 
-    private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.SwipeAnimationButton);
 
         defaultBackground = ContextCompat.getDrawable(context, ta.getInteger(R.styleable.SwipeAnimationButton_defaultBackground, R.drawable.shape_button_neutral));
@@ -107,7 +107,7 @@ public class SwipeAnimationButton extends RelativeLayout {
         setOnTouchListener(getButtonTouchListener());
     }
 
-    private OnTouchListener getButtonTouchListener() {
+    public OnTouchListener getButtonTouchListener() {
         return new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -172,7 +172,7 @@ public class SwipeAnimationButton extends RelativeLayout {
 
     }
 
-    private void expandButton(final boolean isUp) {
+    public void expandButton(final boolean isUp) {
         final ValueAnimator positionAnimator =
                 ValueAnimator.ofFloat(slidingButton.getX(), 0);
         positionAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -220,7 +220,7 @@ public class SwipeAnimationButton extends RelativeLayout {
         mSwipeAnimationListener.onSwiped(isUp);
     }
 
-    private void collapseButton() {
+    public void collapseButton() {
         final ValueAnimator widthAnimator = ValueAnimator.ofInt(
                 slidingButton.getWidth(),
                 initialButtonWidth);
@@ -252,7 +252,7 @@ public class SwipeAnimationButton extends RelativeLayout {
         animatorSet.start();
     }
 
-    private void moveToCenter() {
+    public void moveToCenter() {
         final ValueAnimator positionAnimator =
                 ValueAnimator.ofFloat(slidingButton.getX(), 0);
         positionAnimator.setInterpolator(new AccelerateDecelerateInterpolator());

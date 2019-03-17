@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,13 +18,19 @@ import com.terry.view.swipeanimationbutton.SwipeAnimationButton;
 import com.terry.view.swipeanimationbutton.SwipeAnimationListener;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 import info.hoang8f.widget.FButton;
 
 public class InputActivity extends Activity implements View.OnClickListener{
 
+    // Match Util
     private String matchId;
+    private final String MATCH = "match";
+    private TextView lastAction;
+    private ImageButton undo;
 
+    // My Team
     private TextView myNameView;
     private TextView myScoreView;
     private SwipeAnimationButton swipeAnimationButton;
@@ -31,24 +38,26 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private SwipeAnimationButton swipeAnimationButton3;
     private Button foulBtn;
 
+    // Opponent Team
     private TextView opponentNameView;
     private TextView opponentScoreView;
     private Button opponentAddBtn;
 
-    private TextView lastAction;
-    private ImageButton undo;
-
-    private final String MATCH = "match";
+    // Active match info
+    private int myScore;
+    private int opponentScore;
+    private Stack<String> history;
 
     private ArrayList<Integer> periodBtnIds;
 
     private String periodUniqueId;
     private int periodNo;
 
+    private String playerUniqueId;
+    private int playerNo;
+
     private FButton periodAddBtn;
     private FButton playerAddBtn;
-
-
 
 
     @Override
@@ -58,15 +67,18 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
         matchId = getIntent().getStringExtra("matchId");
         periodBtnIds = new ArrayList<>();
+
         periodNo = 1;
         periodUniqueId = "Clicking Period ";
+        playerNo = 1;
+        playerUniqueId = "Clicking Player ";
 
 
         setMatchUtils();
         setMyTeam();
         setOpponentTeam();
 
-        loadMatchInfo();
+        initMatchInfo();
 
         //set dynamic add button for period
         periodAddBtn = findViewById(R.id.period_add);
@@ -80,18 +92,16 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.period_add){
+        if (v.getId() == R.id.period_add) {
             //add period event
             if(periodNo >=5){
                 Toast.makeText(getApplicationContext(), "can not deal too manny btns right now", Toast.LENGTH_LONG).show();
             }
 
             addPeriodButton();
-        }
-        else if(v.getId() == R.id.player_add){
+        } else if (v.getId() == R.id.player_add){
             addPlayerButton();
         }
-
     }
 
 
@@ -172,15 +182,15 @@ public class InputActivity extends Activity implements View.OnClickListener{
         params.topMargin = convertDipToPixels(8,InputActivity.this);
         params.bottomMargin = convertDipToPixels(8,InputActivity.this);
 
-        LinearLayout ll = (LinearLayout)findViewById(R.id.button_layout);
+        LinearLayout ll = (LinearLayout)findViewById(R.id.button_player_layout);
 
         ll.addView(myButton, lp);
         ll.removeView(playerAddBtn);
         ll.addView(playerAddBtn, lp);
 
-        periodNo++;
-        myButton.setTag(periodUniqueId + periodNo);
-        myButton.setText("P" + periodNo);
+        playerNo++;
+        myButton.setTag(playerUniqueId + playerNo);
+        myButton.setText("P" + playerNo);
 
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -208,9 +218,6 @@ public class InputActivity extends Activity implements View.OnClickListener{
         return (int) (dips * context.getResources().getDisplayMetrics().density + 0.5f);
     }
 
-
-
-
     private void setMatchUtils() {
         lastAction = findViewById(R.id.last_action);
         undo = findViewById(R.id.undo);
@@ -226,13 +233,35 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
     private void setMyTeam() {
         swipeAnimationButton = (SwipeAnimationButton) findViewById(R.id.swipe_btn);
+
+
         swipeAnimationButton.setOnSwipeAnimationListener(new SwipeAnimationListener() {
             @Override
             public void onSwiped(boolean isRight) {
                 if (isRight) {
-                    Toast.makeText(getApplicationContext(), "right Swipe!!!", Toast.LENGTH_LONG).show();
+                    myScore += 1;
+                    myScoreView.setText(String.valueOf(myScore));
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            swipeAnimationButton.collapseButton();
+
+                        }
+                    }, 400);
                 } else {
                     Toast.makeText(getApplicationContext(), "left Swipe!!!", Toast.LENGTH_LONG).show();
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            swipeAnimationButton.collapseButton();
+
+                        }
+                    }, 400);
                 }
             }
         });
@@ -242,9 +271,28 @@ public class InputActivity extends Activity implements View.OnClickListener{
             @Override
             public void onSwiped(boolean isRight) {
                 if (isRight) {
-                    Toast.makeText(getApplicationContext(), "2right Swipe!!!", Toast.LENGTH_LONG).show();
+                    myScore += 2;
+                    myScoreView.setText(String.valueOf(myScore));
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            swipeAnimationButton2.collapseButton();
+
+                        }
+                    }, 400);
                 } else {
                     Toast.makeText(getApplicationContext(), "2left Swipe!!!", Toast.LENGTH_LONG).show();
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            swipeAnimationButton2.collapseButton();
+
+                        }
+                    }, 400);
                 }
             }
         });
@@ -254,9 +302,26 @@ public class InputActivity extends Activity implements View.OnClickListener{
             @Override
             public void onSwiped(boolean isRight) {
                 if (isRight) {
-                    Toast.makeText(getApplicationContext(), "3right Swipe!!!", Toast.LENGTH_LONG).show();
+                    myScore += 3;
+                    myScoreView.setText(String.valueOf(myScore));
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            swipeAnimationButton3.collapseButton();
+
+                        }
+                    }, 400);
                 } else {
                     Toast.makeText(getApplicationContext(), "3left Swipe!!!", Toast.LENGTH_LONG).show();
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            swipeAnimationButton3.collapseButton();
+                        }
+                    }, 400);
                 }
             }
         });
@@ -281,10 +346,11 @@ public class InputActivity extends Activity implements View.OnClickListener{
         });
     }
 
-    public void loadMatchInfo() {
+    private void initMatchInfo() {
         SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
         String matchJson = sharedPreferences.getString(matchId, "");
 
+        // Initialize match
         Match match;
         Gson gson = new Gson();
 
@@ -294,21 +360,27 @@ public class InputActivity extends Activity implements View.OnClickListener{
             match = gson.fromJson(matchJson, Match.class);
         }
 
+        //
         MyTeam myTeam = match.getMyTeam();
         OpponentTeam opponentTeam = match.getOpponentTeam();
         ArrayList<Player> players = match.getPlayers();
+        history = match.getHistory();
+        myScore = myTeam.getScore();
+        opponentScore = opponentTeam.getScore();
 
-
-
+        myNameView.setText(myTeam.getName());
+        myScoreView.setText(String.valueOf(myScore));
+        opponentNameView.setText(opponentTeam.getName());
+        opponentNameView.setText(String.valueOf(opponentScore));
+        //TODO: initialize value to players
+        lastAction.setText(history.peek());
     }
 
-    public void updateMatchInfo(String match) {
-        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        editor.putString(matchId, match);
-        editor.apply();
-
-        loadMatchInfo();
+    public void saveMatchInfo(String match) {
+//        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//
+//        editor.putString(matchId, match);
+//        editor.apply();
     }
 }
