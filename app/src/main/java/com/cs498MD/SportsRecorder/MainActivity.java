@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //    private View side_setting;
 
     private static FloatingActionButton newMatch;
-    private static String[] matchList = {"match1", "match2"};
     private ArrayList<String> matchArray = new ArrayList<>();
     private int matchCount = 1;
     private MyCustomAdapter adapter;
@@ -35,14 +34,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         newMatch = (FloatingActionButton) findViewById(R.id.newMatch);
         newMatch.setOnClickListener(this);
 
-
-        //        matchArray.add("match2");
-        //        matchArray.add("match3");
         adapter = new MyCustomAdapter(matchArray, this);
 
         ListView listView = (ListView) findViewById(R.id.matchList);
-//        TextView noMatches = (TextView) findViewById(R.id.noMatches);
-//        noMatches.setText("No matches yet");
         listView.setEmptyView(findViewById(R.id.noMatches));
         listView.setAdapter(adapter);
     }
@@ -50,12 +44,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.newMatch) {
-            String matchName = "match" + matchCount;
+            String matchName = "Match" + matchCount;
             matchCount++;
             matchArray.add(matchName);
             adapter.notifyDataSetChanged();
             startActivity(new Intent(this, InputActivity.class));
-//            Toast.makeText(this, matchName, Toast.LENGTH_SHORT).show();
         }
 //        switch (v.getId()) {
 //
