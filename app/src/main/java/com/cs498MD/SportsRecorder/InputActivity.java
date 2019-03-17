@@ -14,8 +14,7 @@ import com.terry.view.swipeanimationbutton.SwipeAnimationListener;
 public class InputActivity extends Activity {
 
     private TextView opponentScoreView;
-    private TextView myScoreView;
-    private Button opponentAddBtn;
+    private Button opponentAdd;
     private int opponentScore;
 
     public static final String OPPONENT = "opponent";
@@ -39,12 +38,11 @@ public class InputActivity extends Activity {
             }
         });
 
-        myScoreView = (TextView) findViewById(R.id.my_score);
-        opponentScoreView = (TextView) findViewById(R.id.opponent_score);
-        opponentAddBtn = (Button) findViewById(R.id.opponent_add);
+        opponentScoreView = (TextView) findViewById(R.id.action);
+        opponentAdd = (Button) findViewById(R.id.opponentAdd);
 
-        loadMatchInfo();
-        updateMatchInfo();
+        loadOpponentScore();
+        updateViews();
 
         opponentAdd.setOnClickListener(new View.OnClickListener() {
 
@@ -63,16 +61,16 @@ public class InputActivity extends Activity {
         editor.putInt(OPPONENT_SCORE, opponentScore + 1);
         editor.apply();
 
-        loadMatchInfo();
-        updateMatchInfo();
+        loadOpponentScore();
+        updateViews();
     }
 
-    public void loadMatchInfo() {
+    public void loadOpponentScore() {
         SharedPreferences sharedPreferences = getSharedPreferences(OPPONENT, MODE_PRIVATE);
         opponentScore = sharedPreferences.getInt(OPPONENT_SCORE, 0);
     }
 
-    public void updateMatchInfo() {
+    public void updateViews() {
         opponentScoreView.setText(Integer.toString(opponentScore));
     }
 }
