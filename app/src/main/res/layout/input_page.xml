@@ -63,47 +63,86 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/buttonlayout"
+
+
+    <android.support.constraint.ConstraintLayout
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <info.hoang8f.widget.FButton
-            android:id="@+id/period_head"
-
-            android:layout_width="120dp"
-            android:layout_height="47dp"
-
-
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
+        <LinearLayout
+            android:id="@+id/button_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-
             android:layout_marginBottom="8dp"
-            android:minWidth="@dimen/button_min_width"
-
-            android:minHeight="@dimen/button_min_height"
-            android:text="FOUL"
-            android:textColor="@android:color/white"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            fbutton:fButtonColor="@color/fbutton_color_wet_asphalt"
-            fbutton:shadowEnabled="true" />
-    </LinearLayout>
+            app:layout_constraintVertical_bias="0.075">
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            <info.hoang8f.widget.FButton
+                android:id="@+id/period_head"
+
+                android:layout_width="48dp"
+                android:layout_height="47dp"
+
+
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+
+                android:layout_marginBottom="8dp"
+                android:minWidth="@dimen/button_min_width"
+
+                android:minHeight="@dimen/button_min_height"
+                android:text="P1"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                fbutton:fButtonColor="@color/fbutton_color_wet_asphalt"
+                fbutton:shadowEnabled="true" />
+            <info.hoang8f.widget.FButton
+                android:id="@+id/period_add"
+
+                android:layout_width="48dp"
+                android:layout_height="47dp"
+
+
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+
+                android:layout_marginBottom="8dp"
+                android:minWidth="@dimen/button_min_width"
+
+                android:minHeight="@dimen/button_min_height"
+                android:text="ADD"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                fbutton:fButtonColor="@color/fbutton_color_wet_asphalt"
+                fbutton:shadowEnabled="true" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/my_team_text_view"
