@@ -1,18 +1,22 @@
 package com.cs498MD.SportsRecorder;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.terry.view.swipeanimationbutton.SwipeAnimationButton;
 import com.terry.view.swipeanimationbutton.SwipeAnimationListener;
 
-public class InputActivity extends Activity {
+import info.hoang8f.widget.FButton;
+
+public class InputActivity extends Activity implements View.OnClickListener{
 
     private TextView myScoreView;
     private SwipeAnimationButton swipeAnimationButton;
@@ -26,6 +30,9 @@ public class InputActivity extends Activity {
     private TextView lastAction;
     private ImageButton undo;
 
+
+
+    private Button addPeriodBtn;
     public static final String MATCH = "match";
     public static final String OPPONENT_SCORE = "opponentScore";
 
@@ -40,7 +47,35 @@ public class InputActivity extends Activity {
 
         loadMatchInfo();
         updateMatchInfo();
+
+        addPeriodBtn = findViewById(R.id.period_add);
+        addPeriodBtn.setOnClickListener(this);
+
+
     }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.period_add){
+            //add period event
+            FButton myButton = new FButton(this );
+            myButton.setButtonColor(getResources().getColor(R.color.fbutton_color_wet_asphalt));
+            myButton.setWidth(48);
+            myButton.setHeight(48);
+            myButton.setShadowEnabled(true);
+            myButton.setShadowHeight(5);
+            myButton.setCornerRadius(5);
+            myButton.setText("New");
+
+            LinearLayout ll = (LinearLayout)findViewById(R.id.button_layout);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            ll.addView(myButton, lp);
+
+        }
+
+    }
+
+
 
     private void setMatchUtils() {
         lastAction = findViewById(R.id.last_action);

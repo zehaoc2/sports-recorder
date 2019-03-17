@@ -90,7 +90,7 @@
                 android:id="@+id/period_head"
 
                 android:layout_width="48dp"
-                android:layout_height="47dp"
+                android:layout_height="48dp"
 
 
                 android:layout_alignParentStart="true"
@@ -118,7 +118,7 @@
                 android:id="@+id/period_add"
 
                 android:layout_width="48dp"
-                android:layout_height="47dp"
+                android:layout_height="48dp"
 
 
                 android:layout_alignParentStart="true"
