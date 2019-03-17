@@ -6,7 +6,6 @@
     android:id="@+id/setting_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/guillotine_background_dark"
     android:orientation="vertical"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="0dp">
@@ -14,8 +13,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/guillotine_actionbar_background_view_height"
-        android:layout_gravity="top"
-        android:background="@color/guillotine_background" />
+        android:layout_gravity="top" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
