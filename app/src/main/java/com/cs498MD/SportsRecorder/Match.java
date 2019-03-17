@@ -8,5 +8,9 @@ public class Match {
     Team opponentTeam;
     ArrayList<Player> players;
 
-
+    public Match(Team myTeam, Team opponentTeam, ArrayList<Player> players) {
+        this.myTeam = myTeam;
+        this.opponentTeam = opponentTeam;
+        this.players = players;
+    }
 }

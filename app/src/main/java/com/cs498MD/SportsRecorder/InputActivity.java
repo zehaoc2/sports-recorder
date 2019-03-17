@@ -169,12 +169,15 @@ public class InputActivity extends Activity implements View.OnClickListener{
         SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
         String matchJson = sharedPreferences.getString(matchId, "");
 
-        Gson gson = new Gson();
-        Match match = gson.fromJson(matchJson, Match.class);
+        if (matchJson == null || matchJson.equals("")) {
+//            Team
+//            Match match = new Match();
+
+        } else {
+            Gson gson = new Gson();
+            Match match = gson.fromJson(matchJson, Match.class);
 //        match
-
-
-//        opponentScore = sharedPreferences.getInt(OPPONENT_SCORE, 0);
+        }
     }
 
     public void updateMatchInfo() {
