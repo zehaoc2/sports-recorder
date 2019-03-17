@@ -264,20 +264,10 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/opponentAdd"
+                android:id="@+id/opponent_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="button" />
-
-            <TextView
-                android:id="@+id/opponent_score"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Opponent Score"
-                android:textColor="@color/colorAccent"
-                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/my_score"

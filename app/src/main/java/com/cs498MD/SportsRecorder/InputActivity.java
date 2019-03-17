@@ -13,8 +13,9 @@ import com.terry.view.swipeanimationbutton.SwipeAnimationListener;
 
 public class InputActivity extends Activity {
 
+    private TextView myScoreView;
     private TextView opponentScoreView;
-    private Button opponentAdd;
+    private Button opponentAddBtn;
     private int opponentScore;
 
     public static final String OPPONENT = "opponent";
