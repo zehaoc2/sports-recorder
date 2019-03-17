@@ -386,7 +386,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
         myNameView.setText(myTeam.getName());
         myScoreView.setText("Score: " + String.valueOf(myScore));
         opponentNameView.setText(opponentTeam.getName());
-        opponentNameView.setText("Score: " + String.valueOf(opponentScore));
+        opponentScoreView.setText("Score: " + String.valueOf(opponentScore));
         //TODO: initialize value to players
         lastAction.setText(history.peek());
     }
