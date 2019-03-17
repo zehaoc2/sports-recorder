@@ -41,6 +41,9 @@ public class InputActivity extends Activity {
         opponentScoreView = (TextView) findViewById(R.id.action);
         opponentAdd = (Button) findViewById(R.id.opponentAdd);
 
+        loadOpponentScore();
+        updateViews();
+
         opponentAdd.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -49,21 +52,16 @@ public class InputActivity extends Activity {
             }
         });
 
-        loadOpponentScore();
-        updateViews();
-
     }
 
     public void saveData() {
         SharedPreferences sharedPreferences = getSharedPreferences(OPPONENT, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        loadOpponentScore();
-
         editor.putInt(OPPONENT_SCORE, opponentScore + 1);
-
         editor.apply();
 
+        loadOpponentScore();
         updateViews();
     }
 
