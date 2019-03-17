@@ -21,10 +21,10 @@ public class InputActivity extends Activity {
     private Button foulBtn;
 
     private TextView opponentScoreView;
-    private ImageButton opponentAddBtn;
+    private Button opponentAddBtn;
 
     private TextView lastAction;
-    private Button undo;
+    private ImageButton undo;
 
     public static final String MATCH = "match";
     public static final String OPPONENT_SCORE = "opponentScore";
