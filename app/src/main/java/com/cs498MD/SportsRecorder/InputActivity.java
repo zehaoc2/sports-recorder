@@ -14,20 +14,48 @@ import com.terry.view.swipeanimationbutton.SwipeAnimationListener;
 public class InputActivity extends Activity {
 
     private TextView myScoreView;
+    private SwipeAnimationButton swipeAnimationButton;
+    private SwipeAnimationButton swipeAnimationButton2;
+    private SwipeAnimationButton swipeAnimationButton3;
+    private Button foulBtn;
+
     private TextView opponentScoreView;
     private Button opponentAddBtn;
-    private int opponentScore;
 
-    public static final String OPPONENT = "opponent";
+    private TextView lastAction;
+    private Button undo;
+
+    public static final String MATCH = "match";
     public static final String OPPONENT_SCORE = "opponentScore";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.input_page);
 
-        SwipeAnimationButton swipeAnimationButton = (SwipeAnimationButton) findViewById(R.id.swipe_btn);
+        setMatchUtils();
+        setMyTeam();
+        setOpponentTeam();
+
+        loadMatchInfo();
+        updateMatchInfo();
+    }
+
+    private void setMatchUtils() {
+        lastAction = findViewById(R.id.last_action);
+        undo = findViewById(R.id.undo);
+
+        undo.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+    }
+
+    private void setMyTeam() {
+        swipeAnimationButton = (SwipeAnimationButton) findViewById(R.id.swipe_btn);
         swipeAnimationButton.setOnSwipeAnimationListener(new SwipeAnimationListener() {
             @Override
             public void onSwiped(boolean isRight) {
@@ -39,8 +67,7 @@ public class InputActivity extends Activity {
             }
         });
 
-
-        SwipeAnimationButton swipeAnimationButton2 = (SwipeAnimationButton) findViewById(R.id.swipe_btn2);
+        swipeAnimationButton2 = (SwipeAnimationButton) findViewById(R.id.swipe_btn2);
         swipeAnimationButton2.setOnSwipeAnimationListener(new SwipeAnimationListener() {
             @Override
             public void onSwiped(boolean isRight) {
@@ -52,7 +79,7 @@ public class InputActivity extends Activity {
             }
         });
 
-        SwipeAnimationButton swipeAnimationButton3 = (SwipeAnimationButton) findViewById(R.id.swipe_btn3);
+        swipeAnimationButton3 = (SwipeAnimationButton) findViewById(R.id.swipe_btn3);
         swipeAnimationButton3.setOnSwipeAnimationListener(new SwipeAnimationListener() {
             @Override
             public void onSwiped(boolean isRight) {
@@ -64,43 +91,42 @@ public class InputActivity extends Activity {
             }
         });
 
-
         myScoreView = (TextView) findViewById(R.id.my_score);
+        foulBtn = (Button) findViewById(R.id.foul_btn);
+
+    }
+
+    private void setOpponentTeam() {
+
         opponentScoreView = (TextView) findViewById(R.id.opponent_score);
         opponentAddBtn = (Button) findViewById(R.id.opponent_add);
 
-
-
-        loadOpponentScore();
-        updateViews();
-
         opponentAddBtn.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 saveData();
             }
         });
-
     }
 
     public void saveData() {
-        SharedPreferences sharedPreferences = getSharedPreferences(OPPONENT, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putInt(OPPONENT_SCORE, opponentScore + 1);
+
+//        editor.putInt(OPPONENT_SCORE, opponentScore + 1);
         editor.apply();
 
-        loadOpponentScore();
-        updateViews();
+        loadMatchInfo();
+        updateMatchInfo();
     }
 
-    public void loadOpponentScore() {
-        SharedPreferences sharedPreferences = getSharedPreferences(OPPONENT, MODE_PRIVATE);
-        opponentScore = sharedPreferences.getInt(OPPONENT_SCORE, 0);
+    public void loadMatchInfo() {
+        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
+//        opponentScore = sharedPreferences.getInt(OPPONENT_SCORE, 0);
     }
 
-    public void updateViews() {
-        opponentScoreView.setText(Integer.toString(opponentScore));
+    public void updateMatchInfo() {
+//        opponentScoreView.setText(Integer.toString(opponentScore));
     }
 }
