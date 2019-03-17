@@ -7,7 +7,7 @@
     android:id="@+id/setting_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/guillotine_background_dark"
+    android:background="@color/classic_white"
     android:orientation="vertical"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="0dp">
@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/guillotine_actionbar_background_view_height"
         android:layout_gravity="top"
-        android:background="@color/guillotine_background" />
+        android:background="@color/fbutton_color_midnight_blue" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:text="@string/settings"
-                android:textColor="@color/fbutton_color_green_sea"
+                android:textColor="@color/fbutton_color_carrot"
                 android:textSize="15sp" />
 
             <ImageView
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:text="game_stats"
-                android:textColor="@color/fbutton_color_green_sea"
+                android:textColor="@color/classic_black"
                 android:textSize="15sp" />
         </android.support.v7.widget.Toolbar>
 
@@ -76,7 +76,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:text="MyTeam"
-            android:textColor="@color/fbutton_color_green_sea"
+            android:textColor="@color/classic_black"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +115,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:text="Score: "
-            android:textColor="@color/fbutton_color_green_sea"
+            android:textColor="@color/classic_black"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -256,39 +256,47 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <RelativeLayout
+
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true">
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
 
             <Button
-                android:id="@+id/opponentAdd"
+                android:id="@+id/opponent_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="button"
-                />
+                android:text="button" />
 
             <TextView
-                android:id="@+id/action"
-                android:layout_width="wrap_content"
+                android:id="@+id/opponent_score"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/opponentAdd"
-                android:layout_toStartOf="@id/trash_can"
-                android:layout_centerInParent="true"
-                android:text="Last Action"
+                android:layout_weight="1"
                 android:gravity="center"
+                android:text="Opponent Score"
                 android:textColor="@color/colorAccent"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/my_score"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="My Score"
+                android:textColor="@color/classic_black"
                 android:textSize="15sp" />
 
             <ImageButton
                 android:id="@+id/trash_can"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_gravity="end"
                 android:src="@drawable/ic_icons8_trash_can" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </RelativeLayout>
 

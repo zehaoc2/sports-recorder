@@ -1,11 +1,11 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/guillotine_background</item>
-        <item name="colorPrimaryDark">@color/guillotine_background_dark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/fbutton_color_clouds</item>
+        <item name="colorPrimaryDark">@color/fbutton_color_midnight_blue</item>
+        <item name="colorAccent">@color/fbutton_color_carrot</item>
     </style>
 
 
@@ -46,7 +46,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:minHeight">?attr/actionBarSize</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:background">@color/guillotine_background</item>
+        <item name="android:background">@color/fbutton_color_clouds</item>
     </style>
 
     <style name="ImageView" />
