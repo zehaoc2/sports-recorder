@@ -29,7 +29,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private Match match;
     private final String MATCH = "match";
     private TextView lastAction;
-    private ImageButton undo;
+    private FButton undo;
+
 
     // My Team
     private TextView myNameView;
@@ -43,11 +44,14 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private TextView opponentNameView;
     private TextView opponentScoreView;
     private Button opponentAddBtn;
+    
+    private final String MATCH = "match";
 
     // Active match info
     private int myScore;
     private int opponentScore;
     private Stack<String> history;
+
 
     private ArrayList<Integer> periodBtnIds;
 
@@ -59,6 +63,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
     private FButton periodAddBtn;
     private FButton playerAddBtn;
+
+    private  FButton undoBtn;
 
 
     @Override
@@ -88,6 +94,9 @@ public class InputActivity extends Activity implements View.OnClickListener{
         //set dynamic add button for player
         playerAddBtn = findViewById(R.id.player_add);
         playerAddBtn.setOnClickListener(this);
+
+        undoBtn = findViewById(R.id.undo);
+
 
     }
 
