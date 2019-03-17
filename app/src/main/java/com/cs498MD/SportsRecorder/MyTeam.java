@@ -10,11 +10,6 @@ public class MyTeam extends Team {
 
     public MyTeam() {
         name = "My Team";
-        onePoint = 0;
-        twoPoint = 0;
-        threePoint = 0;
-        foulCount = 0;
-        System.out.println(score);
     }
 
 }
