@@ -26,6 +26,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
     // Match Util
     private String matchId;
+    private Match match;
     private final String MATCH = "match";
     private TextView lastAction;
     private ImageButton undo;
@@ -95,15 +96,28 @@ public class InputActivity extends Activity implements View.OnClickListener{
         if (v.getId() == R.id.period_add) {
             //add period event
             if(periodNo >=5){
-                Toast.makeText(getApplicationContext(), "can not deal too manny btns right now", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "can not deal too many btns right now", Toast.LENGTH_LONG).show();
             }
 
             addPeriodButton();
         } else if (v.getId() == R.id.player_add){
             addPlayerButton();
+        } else if (v.getId() == R.id.opponent_add) {
+            opponentScoreView.setText(String.valueOf(++opponentScore));
+            setLastAction(match.getMyTeam().getName() + " got 1 point!");
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveMatchInfo();
+    }
+
+    private void setLastAction(String action) {
+        history.push(action);
+        lastAction.setText(action);
+    }
 
     /**
      * when user click the fButton, we dynamically add a period
@@ -239,8 +253,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
             @Override
             public void onSwiped(boolean isRight) {
                 if (isRight) {
-                    myScore += 1;
-                    myScoreView.setText(String.valueOf(myScore));
+                    myScoreView.setText("Score: " + String.valueOf(++myScore));
+                    setLastAction(match.getMyTeam().getName() + " got 1 point!");
 
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -272,7 +286,9 @@ public class InputActivity extends Activity implements View.OnClickListener{
             public void onSwiped(boolean isRight) {
                 if (isRight) {
                     myScore += 2;
-                    myScoreView.setText(String.valueOf(myScore));
+                    myScoreView.setText("Score: " + String.valueOf(myScore));
+                    setLastAction(match.getMyTeam().getName() + " got 2 points!");
+
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -303,7 +319,9 @@ public class InputActivity extends Activity implements View.OnClickListener{
             public void onSwiped(boolean isRight) {
                 if (isRight) {
                     myScore += 3;
-                    myScoreView.setText(String.valueOf(myScore));
+                    myScoreView.setText("Score: " + String.valueOf(myScore));
+                    setLastAction(match.getOpponentTeam().getName() + " got 3 points!");
+
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -350,8 +368,6 @@ public class InputActivity extends Activity implements View.OnClickListener{
         SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
         String matchJson = sharedPreferences.getString(matchId, "");
 
-        // Initialize match
-        Match match;
         Gson gson = new Gson();
 
         if (matchJson == null || matchJson.equals("")) {
@@ -360,7 +376,6 @@ public class InputActivity extends Activity implements View.OnClickListener{
             match = gson.fromJson(matchJson, Match.class);
         }
 
-        //
         MyTeam myTeam = match.getMyTeam();
         OpponentTeam opponentTeam = match.getOpponentTeam();
         ArrayList<Player> players = match.getPlayers();
@@ -369,18 +384,24 @@ public class InputActivity extends Activity implements View.OnClickListener{
         opponentScore = opponentTeam.getScore();
 
         myNameView.setText(myTeam.getName());
-        myScoreView.setText(String.valueOf(myScore));
+        myScoreView.setText("Score: " + String.valueOf(myScore));
         opponentNameView.setText(opponentTeam.getName());
-        opponentNameView.setText(String.valueOf(opponentScore));
+        opponentNameView.setText("Score: " + String.valueOf(opponentScore));
         //TODO: initialize value to players
         lastAction.setText(history.peek());
     }
 
-    public void saveMatchInfo(String match) {
-//        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//
-//        editor.putString(matchId, match);
-//        editor.apply();
+    public void saveMatchInfo() {
+        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        match.setHistory(history);
+        MyTeam myTeam = match.getMyTeam();
+        OpponentTeam opponentTeam = match.getOpponentTeam();
+        myTeam.setScore(myScore);
+        opponentTeam.setScore(opponentScore);
+
+        editor.putString(matchId, new Gson().toJson(match));
+        editor.apply();
     }
 }
