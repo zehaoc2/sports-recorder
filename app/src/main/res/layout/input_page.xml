@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
 
     android:id="@+id/setting_page"
     android:layout_width="match_parent"
@@ -161,6 +162,93 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.421" />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/manageBtn"
+
+            android:layout_width="120dp"
+            android:layout_height="47dp"
+
+
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:minWidth="@dimen/button_min_width"
+            android:minHeight="@dimen/button_min_height"
+            android:text="Manage My Team"
+
+            android:textColor="@android:color/white"
+            fbutton:fButtonColor="@color/fbutton_color_wet_asphalt"
+
+            fbutton:shadowEnabled="true"
+            tools:layout_editor_absoluteX="145dp"
+            tools:layout_editor_absoluteY="342dp" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/opponent_text_view"
+            android:layout_width="118dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Opponent"
+            android:textColor="@color/fbutton_color_green_sea"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.028"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.592" />
+
+        <ImageView
+            android:id="@+id/opponent_image"
+            style="@style/ImageView.Hamburger"
+            android:layout_width="39dp"
+            android:layout_height="38dp"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:src="@drawable/ic_stats_colorful"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/opponent_score"
+            app:layout_constraintHorizontal_bias="0.06"
+            app:layout_constraintStart_toEndOf="@+id/opponent_text_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.592" />
+
+        <TextView
+            android:id="@+id/opponent_score"
+            android:layout_width="118dp"
+            android:layout_height="38dp"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Score: "
+            android:textColor="@color/fbutton_color_green_sea"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.808"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.592" />
+
 
 
     </android.support.constraint.ConstraintLayout>

@@ -38,6 +38,30 @@ public class InputActivity extends Activity {
             }
         });
 
+        SwipeAnimationButton swipeAnimationButton2 = (SwipeAnimationButton) findViewById(R.id.swipe_btn2);
+        swipeAnimationButton2.setOnSwipeAnimationListener(new SwipeAnimationListener() {
+            @Override
+            public void onSwiped(boolean isRight) {
+                if (isRight) {
+                    Toast.makeText(getApplicationContext(), "right Swipe!!!", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "left Swipe!!!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        SwipeAnimationButton swipeAnimationButton3 = (SwipeAnimationButton) findViewById(R.id.swipe_btn3);
+        swipeAnimationButton3.setOnSwipeAnimationListener(new SwipeAnimationListener() {
+            @Override
+            public void onSwiped(boolean isRight) {
+                if (isRight) {
+                    Toast.makeText(getApplicationContext(), "right Swipe!!!", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "left Swipe!!!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
         opponentScoreView = (TextView) findViewById(R.id.action);
         opponentAdd = (Button) findViewById(R.id.opponentAdd);
 
