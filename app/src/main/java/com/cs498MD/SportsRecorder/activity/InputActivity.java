@@ -1,13 +1,9 @@
-package com.cs498MD.SportsRecorder;
+package com.cs498MD.SportsRecorder.activity;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.text.Layout;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -16,6 +12,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cs498MD.SportsRecorder.R;
+import com.cs498MD.SportsRecorder.java.Match;
+import com.cs498MD.SportsRecorder.java.MyTeam;
+import com.cs498MD.SportsRecorder.java.OpponentTeam;
+import com.cs498MD.SportsRecorder.java.Player;
 import com.google.gson.Gson;
 import com.terry.view.swipeanimationbutton.SwipeAnimationButton;
 import com.terry.view.swipeanimationbutton.SwipeAnimationListener;

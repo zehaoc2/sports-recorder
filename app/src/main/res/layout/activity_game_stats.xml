@@ -30,12 +30,47 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.v7.widget.GridLayout
-                android:id="@+id/grid1"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
 
-            </android.support.v7.widget.GridLayout>
+                <TableLayout
+                    android:id="@+id/overallStats"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:divider="#030300"
+                    android:gravity="center"
+                    android:showDividers="middle"
+                    android:stretchColumns="*">
+
+                    <!--<TableRow-->
+                    <!--android:layout_width="4dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:dividerPadding="24dip"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:divider="#080900"-->
+                    <!--android:showDividers="middle"/>-->
+
+                    <!--<TextView-->
+                    <!--android:id="@+id/gameText"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="TextView"-->
+                    <!--android:background="@drawable/cell_shape"/>-->
+
+                    <!--<TableRow-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent" />-->
+
+                    <!--<TableRow-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent" />-->
+
+                </TableLayout>
+            </LinearLayout>
         </HorizontalScrollView>
 
         <TextView

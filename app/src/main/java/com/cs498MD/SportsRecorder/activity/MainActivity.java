@@ -1,28 +1,17 @@
-package com.cs498MD.SportsRecorder;
+package com.cs498MD.SportsRecorder.activity;
 
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
-import com.yalantis.guillotine.animation.GuillotineAnimation;
-import com.yalantis.guillotine.interfaces.GuillotineListener;
+import com.cs498MD.SportsRecorder.R;
 
 import java.util.ArrayList;
-
-import info.hoang8f.widget.FButton;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 

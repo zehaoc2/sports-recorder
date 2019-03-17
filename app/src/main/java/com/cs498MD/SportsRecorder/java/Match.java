@@ -1,4 +1,4 @@
-package com.cs498MD.SportsRecorder;
+package com.cs498MD.SportsRecorder.java;
 
 import java.util.ArrayList;
 
