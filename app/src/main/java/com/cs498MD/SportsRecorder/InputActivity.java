@@ -14,6 +14,8 @@ import com.terry.view.swipeanimationbutton.SwipeAnimationListener;
 
 public class InputActivity extends Activity {
 
+    private String matchId;
+
     private TextView myScoreView;
     private SwipeAnimationButton swipeAnimationButton;
     private SwipeAnimationButton swipeAnimationButton2;
@@ -26,13 +28,14 @@ public class InputActivity extends Activity {
     private TextView lastAction;
     private ImageButton undo;
 
-    public static final String MATCH = "match";
     public static final String OPPONENT_SCORE = "opponentScore";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.input_page);
+
+        matchId = getIntent().getStringExtra("matchId");
 
         setMatchUtils();
         setMyTeam();
@@ -111,7 +114,7 @@ public class InputActivity extends Activity {
     }
 
     public void saveData() {
-        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(matchId, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
@@ -123,7 +126,7 @@ public class InputActivity extends Activity {
     }
 
     public void loadMatchInfo() {
-        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(matchId, MODE_PRIVATE);
 //        opponentScore = sharedPreferences.getInt(OPPONENT_SCORE, 0);
     }
 
