@@ -1,6 +1,4 @@
-package com.cs498MD.SportsRecorder.java;
-
-import com.cs498MD.SportsRecorder.java.MyTeam;
+package com.cs498MD.SportsRecorder;
 
 public class Player extends MyTeam {
     String name;

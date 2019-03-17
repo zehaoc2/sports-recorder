@@ -9,9 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.GameStats"></activity>
-        <activity android:name=".activity.MatchList" />
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".GameStats"></activity>
+        <activity android:name=".MatchList" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.InputActivity"></activity>
+        <activity android:name=".InputActivity"></activity>
     </application>
 
 </manifest>

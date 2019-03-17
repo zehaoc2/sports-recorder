@@ -1,4 +1,4 @@
-package com.cs498MD.SportsRecorder.activity;
+package com.cs498MD.SportsRecorder;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,8 +9,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-
-import com.cs498MD.SportsRecorder.R;
 
 import java.util.ArrayList;
 

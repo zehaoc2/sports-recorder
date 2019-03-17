@@ -1,4 +1,4 @@
-package com.cs498MD.SportsRecorder.activity;
+package com.cs498MD.SportsRecorder;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-
-import com.cs498MD.SportsRecorder.R;
 
 
 public class SettingActivity extends Activity implements View.OnClickListener {
