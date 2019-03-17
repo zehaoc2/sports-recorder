@@ -25,7 +25,7 @@ public class InputActivity extends Activity {
     private TextView lastAction;
     private Button undo;
 
-    public static final String OPPONENT = "opponent";
+    public static final String MATCH = "match";
     public static final String OPPONENT_SCORE = "opponentScore";
 
     @Override
@@ -110,10 +110,11 @@ public class InputActivity extends Activity {
     }
 
     public void saveData() {
-        SharedPreferences sharedPreferences = getSharedPreferences(OPPONENT, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putInt(OPPONENT_SCORE, opponentScore + 1);
+
+//        editor.putInt(OPPONENT_SCORE, opponentScore + 1);
         editor.apply();
 
         loadMatchInfo();
@@ -121,11 +122,11 @@ public class InputActivity extends Activity {
     }
 
     public void loadMatchInfo() {
-        SharedPreferences sharedPreferences = getSharedPreferences(OPPONENT, MODE_PRIVATE);
-        opponentScore = sharedPreferences.getInt(OPPONENT_SCORE, 0);
+        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
+//        opponentScore = sharedPreferences.getInt(OPPONENT_SCORE, 0);
     }
 
     public void updateMatchInfo() {
-        opponentScoreView.setText(Integer.toString(opponentScore));
+//        opponentScoreView.setText(Integer.toString(opponentScore));
     }
 }
