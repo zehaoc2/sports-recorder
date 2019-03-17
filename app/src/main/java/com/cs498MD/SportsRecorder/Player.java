@@ -1,10 +1,6 @@
 package com.cs498MD.SportsRecorder;
 
-import java.util.ArrayList;
-
-public class Player {
-    String name;
-    int score;
+public class Player extends Team {
     int onePoint;
     int twoPoint;
     int threePoint;
