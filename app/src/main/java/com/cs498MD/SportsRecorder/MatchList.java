@@ -1,4 +1,4 @@
-package com.cs498MD.SportsRecorder.activity;
+package com.cs498MD.SportsRecorder;
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.cs498MD.SportsRecorder.activity;
+package com.cs498MD.SportsRecorder;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,11 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cs498MD.SportsRecorder.R;
-import com.cs498MD.SportsRecorder.java.Match;
-import com.cs498MD.SportsRecorder.java.MyTeam;
-import com.cs498MD.SportsRecorder.java.OpponentTeam;
-import com.cs498MD.SportsRecorder.java.Player;
 import com.google.gson.Gson;
 import com.terry.view.swipeanimationbutton.SwipeAnimationButton;
 import com.terry.view.swipeanimationbutton.SwipeAnimationListener;
@@ -73,18 +68,18 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
 
 
-        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
-        String matchJson = sharedPreferences.getString(matchId, "");
-
-        if (matchJson == null || matchJson.equals("")) {
-            Match newMatch = new Match();
-            Gson gson = new Gson();
-            String newMatchJson = gson.toJson(newMatch);
-            updateMatchInfo(newMatchJson);
-        } else {
-            Gson gson = new Gson();
-            Match match = gson.fromJson(matchJson, Match.class);
-        }
+//        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
+//        String matchJson = sharedPreferences.getString(matchId, "");
+//
+//        if (matchJson == null || matchJson.equals("")) {
+//            Match newMatch = new Match();
+//            Gson gson = new Gson();
+//            String newMatchJson = gson.toJson(newMatch);
+//            updateMatchInfo(newMatchJson);
+//        } else {
+//            Gson gson = new Gson();
+//            Match match = gson.fromJson(matchJson, Match.class);
+//        }
     }
 
     @Override

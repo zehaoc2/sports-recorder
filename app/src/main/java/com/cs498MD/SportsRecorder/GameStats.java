@@ -1,14 +1,11 @@
-package com.cs498MD.SportsRecorder.activity;
+package com.cs498MD.SportsRecorder;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
-import com.cs498MD.SportsRecorder.R;
 
 public class GameStats extends AppCompatActivity {
 
