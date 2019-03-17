@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +21,7 @@ public class InputActivity extends Activity {
     private Button foulBtn;
 
     private TextView opponentScoreView;
-    private Button opponentAddBtn;
+    private ImageButton opponentAddBtn;
 
     private TextView lastAction;
     private Button undo;
