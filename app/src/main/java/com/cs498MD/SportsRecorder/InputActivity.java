@@ -1,10 +1,15 @@
 package com.cs498MD.SportsRecorder;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.Layout;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -65,20 +70,44 @@ public class InputActivity extends Activity implements View.OnClickListener{
             //add period event
             FButton myButton = new FButton(this );
             myButton.setButtonColor(getResources().getColor(R.color.fbutton_color_wet_asphalt));
-            myButton.setWidth(48);
-            myButton.setHeight(48);
+
+            myButton.setMinHeight(R.dimen.button_min_height);
+            myButton.setMinWidth(R.dimen.button_min_width);
+
             myButton.setShadowEnabled(true);
-            myButton.setShadowHeight(5);
-            myButton.setCornerRadius(5);
+            myButton.setTextColor(getResources().getColor(R.color.classic_white));
+            myButton.setShadowHeight(12);
+            myButton.setCornerRadius(20);
             myButton.setText("New");
+            
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(convertDipToPixels(48,InputActivity.this), convertDipToPixels(48,InputActivity.this) );
+            myButton.setLayoutParams(lp);
+
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) myButton.getLayoutParams();
+            params.width = convertDipToPixels(48,InputActivity.this);
+            params.height = convertDipToPixels(48,InputActivity.this);
+            params.setMarginStart(convertDipToPixels(8,InputActivity.this));
+            params.setMarginEnd(convertDipToPixels(8,InputActivity.this));
+            params.topMargin = convertDipToPixels(8,InputActivity.this);
+            params.bottomMargin = convertDipToPixels(8,InputActivity.this);
 
             LinearLayout ll = (LinearLayout)findViewById(R.id.button_layout);
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
             ll.addView(myButton, lp);
+            ll.removeView(addPeriodBtn);
+
+            ll.addView(addPeriodBtn, lp);
 
         }
 
     }
+
+
+    public static int convertDipToPixels(float dips, Context context)
+    {
+        return (int) (dips * context.getResources().getDisplayMetrics().density + 0.5f);
+    }
+
 
 
 
