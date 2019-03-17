@@ -23,8 +23,13 @@ import info.hoang8f.widget.FButton;
 
 public class InputActivity extends Activity implements View.OnClickListener{
 
+    // Match Util
     private String matchId;
+    private final String MATCH = "match";
+    private TextView lastAction;
+    private ImageButton undo;
 
+    // My Team
     private TextView myNameView;
     private TextView myScoreView;
     private SwipeAnimationButton swipeAnimationButton;
@@ -32,14 +37,15 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private SwipeAnimationButton swipeAnimationButton3;
     private Button foulBtn;
 
+    // Opponent Team
     private TextView opponentNameView;
     private TextView opponentScoreView;
     private Button opponentAddBtn;
 
-    private TextView lastAction;
-    private ImageButton undo;
-
-    private final String MATCH = "match";
+    // Active match info
+    private int myScore;
+    private int opponentScore;
+    private Stack<String> history;
 
     private ArrayList<Integer> periodBtnIds;
 
@@ -48,8 +54,6 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
     private FButton periodAddBtn;
     private FButton playerAddBtn;
-
-
 
 
     @Override
@@ -67,7 +71,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
         setMyTeam();
         setOpponentTeam();
 
-        loadMatchInfo();
+        initMatchInfo();
 
         //set dynamic add button for period
         periodAddBtn = findViewById(R.id.period_add);
@@ -81,18 +85,16 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.period_add){
+        if (v.getId() == R.id.period_add) {
             //add period event
             if(periodNo >=5){
                 Toast.makeText(getApplicationContext(), "can not deal too manny btns right now", Toast.LENGTH_LONG).show();
             }
 
             addPeriodButton();
-        }
-        else if(v.getId() == R.id.player_add){
+        } else if (v.getId() == R.id.player_add){
             addPlayerButton();
         }
-
     }
 
 
@@ -209,9 +211,6 @@ public class InputActivity extends Activity implements View.OnClickListener{
         return (int) (dips * context.getResources().getDisplayMetrics().density + 0.5f);
     }
 
-
-
-
     private void setMatchUtils() {
         lastAction = findViewById(R.id.last_action);
         undo = findViewById(R.id.undo);
@@ -231,7 +230,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
             @Override
             public void onSwiped(boolean isRight) {
                 if (isRight) {
-                    Toast.makeText(getApplicationContext(), "right Swipe!!!", Toast.LENGTH_LONG).show();
+                    myScore += 1;
+                    myScoreView.setText(String.valueOf(myScore));
                 } else {
                     Toast.makeText(getApplicationContext(), "left Swipe!!!", Toast.LENGTH_LONG).show();
                 }
@@ -243,7 +243,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
             @Override
             public void onSwiped(boolean isRight) {
                 if (isRight) {
-                    Toast.makeText(getApplicationContext(), "2right Swipe!!!", Toast.LENGTH_LONG).show();
+                    myScore += 2;
+                    myScoreView.setText(String.valueOf(myScore));
                 } else {
                     Toast.makeText(getApplicationContext(), "2left Swipe!!!", Toast.LENGTH_LONG).show();
                 }
@@ -255,7 +256,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
             @Override
             public void onSwiped(boolean isRight) {
                 if (isRight) {
-                    Toast.makeText(getApplicationContext(), "3right Swipe!!!", Toast.LENGTH_LONG).show();
+                    myScore += 3;
+                    myScoreView.setText(String.valueOf(myScore));
                 } else {
                     Toast.makeText(getApplicationContext(), "3left Swipe!!!", Toast.LENGTH_LONG).show();
                 }
@@ -282,10 +284,11 @@ public class InputActivity extends Activity implements View.OnClickListener{
         });
     }
 
-    public void loadMatchInfo() {
+    private void initMatchInfo() {
         SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
         String matchJson = sharedPreferences.getString(matchId, "");
 
+        // Initialize match
         Match match;
         Gson gson = new Gson();
 
@@ -295,26 +298,27 @@ public class InputActivity extends Activity implements View.OnClickListener{
             match = gson.fromJson(matchJson, Match.class);
         }
 
+        //
         MyTeam myTeam = match.getMyTeam();
         OpponentTeam opponentTeam = match.getOpponentTeam();
         ArrayList<Player> players = match.getPlayers();
-        Stack<String> history = match.getHistory();
+        history = match.getHistory();
+        myScore = myTeam.getScore();
+        opponentScore = opponentTeam.getScore();
 
         myNameView.setText(myTeam.getName());
-        myScoreView.setText(myTeam.getScore());
+        myScoreView.setText(String.valueOf(myScore));
         opponentNameView.setText(opponentTeam.getName());
-        opponentNameView.setText(opponentTeam.getScore());
+        opponentNameView.setText(String.valueOf(opponentScore));
         //TODO: initialize value to players
         lastAction.setText(history.peek());
     }
 
-    public void updateMatchInfo(String match) {
-        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        editor.putString(matchId, match);
-        editor.apply();
-
-        loadMatchInfo();
+    public void saveMatchInfo(String match) {
+//        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//
+//        editor.putString(matchId, match);
+//        editor.apply();
     }
 }

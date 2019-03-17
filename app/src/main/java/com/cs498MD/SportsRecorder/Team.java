@@ -1,6 +1,6 @@
 package com.cs498MD.SportsRecorder;
 
-public class Team {
+public abstract class Team {
     String name;
     int score;
 
