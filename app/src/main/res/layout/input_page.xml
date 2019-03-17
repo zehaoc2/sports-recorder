@@ -168,27 +168,35 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_alignParentBottom="true">
 
             <Button
-                android:id="@+id/opponentAdd"
+                android:id="@+id/opponent_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="button"
                 />
 
             <TextView
-                android:id="@+id/action"
-                android:layout_width="wrap_content"
+                android:id="@+id/opponent_score"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/opponentAdd"
-                android:layout_toStartOf="@id/trash_can"
-                android:layout_centerInParent="true"
-                android:text="Last Action"
+                android:layout_weight="1"
+                android:text="Opponent Score"
+                android:gravity="center"
+                android:textColor="@color/colorAccent"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/my_score"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="My Score"
                 android:gravity="center"
                 android:textColor="@color/classic_black"
                 android:textSize="15sp" />
@@ -197,10 +205,10 @@
                 android:id="@+id/trash_can"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_gravity="end"
                 android:src="@drawable/ic_icons8_trash_can" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </RelativeLayout>
 
