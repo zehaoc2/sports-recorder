@@ -20,6 +20,8 @@ import com.google.gson.Gson;
 import com.terry.view.swipeanimationbutton.SwipeAnimationButton;
 import com.terry.view.swipeanimationbutton.SwipeAnimationListener;
 
+import java.util.ArrayList;
+
 import info.hoang8f.widget.FButton;
 
 public class InputActivity extends Activity implements View.OnClickListener{
@@ -40,6 +42,11 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
     private final String MATCH = "match";
 
+    private ArrayList<Integer> periodBtnIds;
+
+    private String periodUniqueId;
+    private int periodNo;
+
 
 
 
@@ -53,6 +60,10 @@ public class InputActivity extends Activity implements View.OnClickListener{
         setContentView(R.layout.input_page);
 
         matchId = getIntent().getStringExtra("matchId");
+        periodBtnIds = new ArrayList<>();
+        periodNo = 1;
+        periodUniqueId = "Clicking Period ";
+
 
         setMatchUtils();
         setMyTeam();
@@ -71,40 +82,77 @@ public class InputActivity extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         if(v.getId() == R.id.period_add){
             //add period event
-            FButton myButton = new FButton(this );
-            myButton.setButtonColor(getResources().getColor(R.color.fbutton_color_wet_asphalt));
+            if(periodNo >=5){
+                Toast.makeText(getApplicationContext(), "can not deal too manny btns right now", Toast.LENGTH_LONG).show();
+            }
 
-            myButton.setMinHeight(R.dimen.button_min_height);
-            myButton.setMinWidth(R.dimen.button_min_width);
 
-            myButton.setShadowEnabled(true);
-            myButton.setTextColor(getResources().getColor(R.color.classic_white));
-            myButton.setShadowHeight(12);
-            myButton.setCornerRadius(20);
-            myButton.setText("New");
-            
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(convertDipToPixels(48,InputActivity.this), convertDipToPixels(48,InputActivity.this) );
-            myButton.setLayoutParams(lp);
-
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) myButton.getLayoutParams();
-            params.width = convertDipToPixels(48,InputActivity.this);
-            params.height = convertDipToPixels(48,InputActivity.this);
-            params.setMarginStart(convertDipToPixels(8,InputActivity.this));
-            params.setMarginEnd(convertDipToPixels(8,InputActivity.this));
-            params.topMargin = convertDipToPixels(8,InputActivity.this);
-            params.bottomMargin = convertDipToPixels(8,InputActivity.this);
-
-            LinearLayout ll = (LinearLayout)findViewById(R.id.button_layout);
-
-            ll.addView(myButton, lp);
-            ll.removeView(addPeriodBtn);
-
-            ll.addView(addPeriodBtn, lp);
+            addPeriodButton();
 
         }
 
     }
 
+
+    /**
+     * when user click the fButton, we dynamically add a period
+     * we push the new id to an arraylist and keep update the onlick listener
+     * @return
+     */
+
+    private FButton addPeriodButton(){
+
+        final FButton myButton = new FButton(this );
+        myButton.setButtonColor(getResources().getColor(R.color.fbutton_color_wet_asphalt));
+
+        myButton.setMinHeight(R.dimen.button_min_height);
+        myButton.setMinWidth(R.dimen.button_min_width);
+
+        myButton.setShadowEnabled(true);
+        myButton.setTextColor(getResources().getColor(R.color.classic_white));
+        myButton.setShadowHeight(12);
+        myButton.setCornerRadius(20);
+        myButton.setText("New");
+
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(convertDipToPixels(48,InputActivity.this), convertDipToPixels(48,InputActivity.this) );
+        myButton.setLayoutParams(lp);
+
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) myButton.getLayoutParams();
+        params.width = convertDipToPixels(48,InputActivity.this);
+        params.height = convertDipToPixels(48,InputActivity.this);
+        params.setMarginStart(convertDipToPixels(8,InputActivity.this));
+        params.setMarginEnd(convertDipToPixels(8,InputActivity.this));
+        params.topMargin = convertDipToPixels(8,InputActivity.this);
+        params.bottomMargin = convertDipToPixels(8,InputActivity.this);
+
+        LinearLayout ll = (LinearLayout)findViewById(R.id.button_layout);
+
+        ll.addView(myButton, lp);
+        ll.removeView(addPeriodBtn);
+        ll.addView(addPeriodBtn, lp);
+
+        periodNo++;
+        myButton.setTag(periodUniqueId + periodNo);
+        myButton.setText("P" + periodNo);
+
+        myButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), (String)myButton.getTag(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        return myButton;
+
+    }
+
+
+    /**
+     * Convert dp to pxiels, return an int
+     * @param dips
+     * @param context
+     * @return
+     */
 
     public static int convertDipToPixels(float dips, Context context)
     {

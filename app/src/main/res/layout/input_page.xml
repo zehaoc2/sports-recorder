@@ -146,7 +146,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/my_team_text_view"
+            android:id="@+id/my_name"
             android:layout_width="118dp"
             android:layout_height="38dp"
             android:layout_marginStart="8dp"
@@ -178,7 +178,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/my_team_text_view"
+            app:layout_constraintStart_toEndOf="@+id/my_name"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.165" />
 
@@ -202,6 +202,81 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.165" />
 
+        <LinearLayout
+            android:id="@+id/button_player_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.248">
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/player_head"
+
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+
+                android:minWidth="@dimen/button_min_width"
+
+                android:minHeight="@dimen/button_min_height"
+                android:text="P1"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                fbutton:fButtonColor="@color/fbutton_color_wet_asphalt"
+                fbutton:shadowEnabled="true" />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/player_add"
+
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+
+
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+
+                android:minWidth="@dimen/button_min_width"
+                android:minHeight="@dimen/button_min_height"
+
+                android:text="ADD"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                fbutton:fButtonColor="@color/fbutton_color_wet_asphalt"
+                fbutton:shadowEnabled="true" />
+        </LinearLayout>
+
         <com.terry.view.swipeanimationbutton.SwipeAnimationButton
             android:id="@+id/swipe_btn"
             android:layout_width="220dp"
@@ -213,7 +288,7 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.23" />
+            app:layout_constraintVertical_bias="0.361" />
 
         <com.terry.view.swipeanimationbutton.SwipeAnimationButton
             android:id="@+id/swipe_btn2"
@@ -223,10 +298,10 @@
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.513"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.323" />
+            app:layout_constraintVertical_bias="0.46" />
 
         <com.terry.view.swipeanimationbutton.SwipeAnimationButton
             android:id="@+id/swipe_btn3"
@@ -236,10 +311,10 @@
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.513"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.421" />
+            app:layout_constraintVertical_bias="0.569" />
 
         <info.hoang8f.widget.FButton
             android:id="@+id/foul_btn"
@@ -265,8 +340,10 @@
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.655"
             fbutton:fButtonColor="@color/fbutton_color_wet_asphalt"
             fbutton:shadowEnabled="true" />
 
@@ -278,7 +355,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/opponent_text_view"
+            android:id="@+id/opponent_name"
             android:layout_width="118dp"
             android:layout_height="38dp"
             android:layout_marginStart="8dp"
@@ -293,7 +370,7 @@
             app:layout_constraintHorizontal_bias="0.028"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.592" />
+            app:layout_constraintVertical_bias="0.735" />
 
         <ImageView
             android:id="@+id/opponent_image"
@@ -309,10 +386,10 @@
             android:src="@drawable/ic_stats_colorful"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/opponent_score"
-            app:layout_constraintHorizontal_bias="0.06"
-            app:layout_constraintStart_toEndOf="@+id/opponent_text_view"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/opponent_name"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.592" />
+            app:layout_constraintVertical_bias="0.735" />
 
         <TextView
             android:id="@+id/opponent_score"
@@ -328,10 +405,10 @@
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.808"
+            app:layout_constraintHorizontal_bias="0.815"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.592" />
+            app:layout_constraintVertical_bias="0.735" />
 
 
         <info.hoang8f.widget.FButton
@@ -360,7 +437,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.713"
+            app:layout_constraintVertical_bias="0.878"
             fbutton:fButtonColor="@color/fbutton_color_wet_asphalt"
             fbutton:shadowEnabled="true" />
 
