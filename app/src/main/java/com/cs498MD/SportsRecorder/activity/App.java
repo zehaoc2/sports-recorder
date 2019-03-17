@@ -1,4 +1,4 @@
-package com.cs498MD.SportsRecorder;
+package com.cs498MD.SportsRecorder.activity;
 
 import android.app.Application;
 import android.graphics.Typeface;

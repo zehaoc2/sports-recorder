@@ -5,7 +5,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-import com.cs498MD.SportsRecorder.App;
+import com.cs498MD.SportsRecorder.activity.App;
 
 /**
  * Copied from github
