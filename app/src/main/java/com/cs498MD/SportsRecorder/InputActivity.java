@@ -44,8 +44,6 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private TextView opponentNameView;
     private TextView opponentScoreView;
     private Button opponentAddBtn;
-    
-    private final String MATCH = "match";
 
     // Active match info
     private int myScore;
@@ -94,6 +92,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
         //set dynamic add button for player
         playerAddBtn = findViewById(R.id.player_add);
         playerAddBtn.setOnClickListener(this);
+
+
 
         undoBtn = findViewById(R.id.undo);
 
@@ -364,13 +364,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
         opponentNameView = (TextView) findViewById(R.id.opponent_name);
         opponentScoreView = (TextView) findViewById(R.id.opponent_score);
         opponentAddBtn = (Button) findViewById(R.id.opponent_add);
-
-        opponentAddBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                saveData();
-            }
-        });
+        opponentAddBtn.setOnClickListener(this);
     }
 
     private void initMatchInfo() {
