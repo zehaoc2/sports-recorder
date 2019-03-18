@@ -32,4 +32,8 @@ public class Match {
     public Stack<String> getHistory() {
         return history;
     }
+
+    public void setHistory(Stack<String> history) {
+        this.history = history;
+    }
 }
