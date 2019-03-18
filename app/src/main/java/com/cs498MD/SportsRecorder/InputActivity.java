@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +17,7 @@ import com.terry.view.swipeanimationbutton.SwipeAnimationButton;
 import com.terry.view.swipeanimationbutton.SwipeAnimationListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Stack;
 
 import info.hoang8f.widget.FButton;
@@ -39,6 +39,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private SwipeAnimationButton swipeAnimationButton2;
     private SwipeAnimationButton swipeAnimationButton3;
     private Button foulBtn;
+    private HashMap<Integer, Integer> totalFailAttempts;
 
     // Opponent Team
     private TextView opponentNameView;
@@ -77,7 +78,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
         periodUniqueId = "Clicking Period ";
         playerNo = 1;
         playerUniqueId = "Clicking Player ";
-
+        totalFailAttempts = new HashMap<>();
+        setUpAttpemtsMap();
 
         setMatchUtils();
         setMyTeam();
@@ -283,6 +285,11 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
                         }
                     }, 400);
+                    setLastAction(match.getMyTeam().getName() + " failed 1 point attempt!");
+                    totalFailAttempts.put(1, totalFailAttempts.get(1) + 1);
+                    Toast.makeText(getApplicationContext(), "total 1 point fail" + totalFailAttempts.get(1), Toast.LENGTH_LONG).show();
+
+
                 }
             }
         });
@@ -316,6 +323,9 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
                         }
                     }, 400);
+                    setLastAction(match.getMyTeam().getName() + " failed 2 points attempt!");
+                    totalFailAttempts.put(2, totalFailAttempts.get(2) + 1);
+                    Toast.makeText(getApplicationContext(), "total 2 point fail" + totalFailAttempts.get(2), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -347,6 +357,9 @@ public class InputActivity extends Activity implements View.OnClickListener{
                             swipeAnimationButton3.collapseButton();
                         }
                     }, 400);
+                    setLastAction(match.getMyTeam().getName() + " failed 3 points attempt!");
+                    totalFailAttempts.put(3, totalFailAttempts.get(3) + 1);
+                    Toast.makeText(getApplicationContext(), "total 3 point fail" + totalFailAttempts.get(3), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -411,4 +424,10 @@ public class InputActivity extends Activity implements View.OnClickListener{
         editor.putString(matchId, new Gson().toJson(match));
         editor.apply();
     }
+    private void setUpAttpemtsMap(){
+        totalFailAttempts.put(1,0);
+        totalFailAttempts.put(2,0);
+        totalFailAttempts.put(3,0);
+    }
+
 }
