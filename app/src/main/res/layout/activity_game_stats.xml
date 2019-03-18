@@ -56,6 +56,7 @@
                     android:gravity="center"
                     android:showDividers="middle"
                     android:stretchColumns="*">
+                    <!--android:background="@color/table_color"-->
 
                     <!--<TableRow-->
                     <!--android:layout_width="4dp"-->
@@ -118,9 +119,9 @@
                     android:id="@+id/playerStats"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
+                    android:layout_gravity="bottom"
                     android:divider="#030300"
-                    android:gravity="center"
+                    android:gravity="bottom"
                     android:showDividers="middle"
                     android:stretchColumns="*">
 
