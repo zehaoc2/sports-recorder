@@ -1,20 +1,19 @@
 package com.cs498MD.SportsRecorder;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Stack;
 
 public class Match {
     MyTeam myTeam;
     OpponentTeam opponentTeam;
     ArrayList<Player> players;
-    Stack<String> history;
+    Stack<Action> history;
 
     public Match() {
         myTeam = new MyTeam();
         opponentTeam = new OpponentTeam();
-        history = new Stack<>();
-        history.push("");
+        history = new Stack<Action>();
+        history.push(null);
     }
 
     public MyTeam getMyTeam() {
@@ -29,11 +28,11 @@ public class Match {
         return players;
     }
 
-    public Stack<String> getHistory() {
+    public Stack<Action> getHistory() {
         return history;
     }
 
-    public void setHistory(Stack<String> history) {
+    public void setHistory(Stack<Action> history) {
         this.history = history;
     }
 }

@@ -31,7 +31,6 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private TextView lastAction;
     private FButton undo;
 
-
     // My Team
     private TextView myNameView;
     private TextView myScoreView;
@@ -49,7 +48,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
     // Active match info
     private int myScore;
     private int opponentScore;
-    private Stack<String> history;
+    private Stack<Action> history;
 
 
     private ArrayList<Integer> periodBtnIds;
@@ -63,7 +62,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private FButton periodAddBtn;
     private FButton playerAddBtn;
 
-    private FButton undoBtn;
+
+
 
 
     @Override
@@ -95,9 +95,6 @@ public class InputActivity extends Activity implements View.OnClickListener{
         playerAddBtn = findViewById(R.id.player_add);
         playerAddBtn.setOnClickListener(this);
 
-        undoBtn = findViewById(R.id.undo);
-
-
     }
 
     @Override
@@ -112,8 +109,11 @@ public class InputActivity extends Activity implements View.OnClickListener{
         } else if (v.getId() == R.id.player_add){
             addPlayerButton();
         } else if (v.getId() == R.id.opponent_add) {
-            opponentScoreView.setText(String.valueOf(++opponentScore));
-            setLastAction(match.getMyTeam().getName() + " got 1 point!");
+            opponentScoreView.setText(String.valueOf("Score: " + ++opponentScore));
+            setLastAction(new Action(match.getOpponentTeam().getName(), Type.Score, 1));
+        } else if (v.getId() == R.id.undo) {
+            Toast.makeText(this, "clicked", Toast.LENGTH_LONG);
+            undoLastAction();
         }
     }
 
@@ -123,9 +123,26 @@ public class InputActivity extends Activity implements View.OnClickListener{
         saveMatchInfo();
     }
 
-    private void setLastAction(String action) {
+    private void undoLastAction() {
+        Action lastAction = history.pop();
+        if (lastAction.getType() == Type.Score) {
+            if (lastAction.getTeamName().equals(match.getMyTeam().getName())) {
+                myScore -= lastAction.getPoint();
+            } else {
+                opponentScore -= lastAction.getPoint();
+            }
+            //TODO:set score in textview
+        } else if (lastAction.getType() == Type.Attempt) {
+            //TODO
+        } else {
+            //TODO
+        }
+        setLastAction(history.peek());
+    }
+
+    private void setLastAction(Action action) {
         history.push(action);
-        lastAction.setText(action);
+        lastAction.setText(action.getMessage());
     }
 
     /**
@@ -244,14 +261,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private void setMatchUtils() {
         lastAction = findViewById(R.id.last_action);
         undo = findViewById(R.id.undo);
-
-        undo.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+        undo.setOnClickListener(this);
     }
 
     private void setMyTeam() {
@@ -263,7 +273,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
             public void onSwiped(boolean isRight) {
                 if (isRight) {
                     myScoreView.setText("Score: " + String.valueOf(++myScore));
-                    setLastAction(match.getMyTeam().getName() + " got 1 point!");
+                    setLastAction(new Action(match.getMyTeam().getName(), Type.Score, 1));
 
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -275,7 +285,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
                         }
                     }, 400);
                 } else {
-                    Toast.makeText(getApplicationContext(), "left Swipe!!!", Toast.LENGTH_LONG).show();
+
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -285,10 +295,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
                         }
                     }, 400);
-                    setLastAction(match.getMyTeam().getName() + " failed 1 point attempt!");
+                    setLastAction(new Action(match.getMyTeam().getName(), Type.Attempt, 1));
                     totalFailAttempts.put(1, totalFailAttempts.get(1) + 1);
-                    Toast.makeText(getApplicationContext(), "total 1 point fail" + totalFailAttempts.get(1), Toast.LENGTH_LONG).show();
-
 
                 }
             }
@@ -301,7 +309,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
                 if (isRight) {
                     myScore += 2;
                     myScoreView.setText("Score: " + String.valueOf(myScore));
-                    setLastAction(match.getMyTeam().getName() + " got 2 points!");
+                    setLastAction(new Action(match.getMyTeam().getName(), Type.Score, 2));
 
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -313,7 +321,6 @@ public class InputActivity extends Activity implements View.OnClickListener{
                         }
                     }, 400);
                 } else {
-                    Toast.makeText(getApplicationContext(), "2left Swipe!!!", Toast.LENGTH_LONG).show();
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -323,9 +330,9 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
                         }
                     }, 400);
-                    setLastAction(match.getMyTeam().getName() + " failed 2 points attempt!");
+                    setLastAction(new Action(match.getMyTeam().getName(), Type.Attempt, 2));
                     totalFailAttempts.put(2, totalFailAttempts.get(2) + 1);
-                    Toast.makeText(getApplicationContext(), "total 2 point fail" + totalFailAttempts.get(2), Toast.LENGTH_LONG).show();
+
                 }
             }
         });
@@ -337,7 +344,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
                 if (isRight) {
                     myScore += 3;
                     myScoreView.setText("Score: " + String.valueOf(myScore));
-                    setLastAction(match.getOpponentTeam().getName() + " got 3 points!");
+                    setLastAction(new Action(match.getMyTeam().getName(), Type.Score, 3));
 
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -349,7 +356,6 @@ public class InputActivity extends Activity implements View.OnClickListener{
                         }
                     }, 400);
                 } else {
-                    Toast.makeText(getApplicationContext(), "3left Swipe!!!", Toast.LENGTH_LONG).show();
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -357,9 +363,9 @@ public class InputActivity extends Activity implements View.OnClickListener{
                             swipeAnimationButton3.collapseButton();
                         }
                     }, 400);
-                    setLastAction(match.getMyTeam().getName() + " failed 3 points attempt!");
+                    setLastAction(new Action(match.getMyTeam().getName(), Type.Attempt, 3));
                     totalFailAttempts.put(3, totalFailAttempts.get(3) + 1);
-                    Toast.makeText(getApplicationContext(), "total 3 point fail" + totalFailAttempts.get(3), Toast.LENGTH_LONG).show();
+
                 }
             }
         });
@@ -375,13 +381,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
         opponentNameView = (TextView) findViewById(R.id.opponent_name);
         opponentScoreView = (TextView) findViewById(R.id.opponent_score);
         opponentAddBtn = (Button) findViewById(R.id.opponent_add);
-
-        opponentAddBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                saveData();
-            }
-        });
+        opponentAddBtn.setOnClickListener(this);
     }
 
     private void initMatchInfo() {
@@ -408,7 +408,12 @@ public class InputActivity extends Activity implements View.OnClickListener{
         opponentNameView.setText(opponentTeam.getName());
         opponentScoreView.setText("Score: " + String.valueOf(opponentScore));
         //TODO: initialize value to players
-        lastAction.setText(history.peek());
+        if (history.peek() == null) {
+            lastAction.setText("");
+        } else {
+            lastAction.setText(history.peek().getMessage());
+        }
+
     }
 
     public void saveMatchInfo() {
