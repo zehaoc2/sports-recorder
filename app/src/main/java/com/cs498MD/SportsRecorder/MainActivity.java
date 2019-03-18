@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         android.support.v7.app.ActionBar bar = getSupportActionBar();
         bar.setTitle("Matches");
 
+        // TODO: Take out later
+        matchArray.add("TempMatch");
+
         newMatch = (FloatingActionButton) findViewById(R.id.newMatch);
         newMatch.setOnClickListener(this);
 

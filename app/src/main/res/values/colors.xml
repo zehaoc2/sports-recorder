@@ -11,7 +11,7 @@
 
     <color name="table_color">#B2DFDB</color>
 
-    <color name="fbutton_default_color">#3eadeb</color>
+    <color name="fbutton_default_color">#3EADEB</color>
     <color name="fbutton_default_shadow_color">#ff3493c8</color>
     //Color Swatches provided by http://designmodo.github.io/Flat-UI/
     <color name="fbutton_color_turquoise">#1abc9c</color>

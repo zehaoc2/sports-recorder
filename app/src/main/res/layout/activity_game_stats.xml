@@ -2,22 +2,21 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
 
         <TextView
             android:id="@+id/score"
@@ -30,12 +29,12 @@
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="@color/classic_black"
-            android:textSize="24sp"
+            android:textSize="30sp"
             android:typeface="sans" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="8dp" />
+            android:layout_height="16dp" />
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -44,8 +43,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TableLayout
                     android:id="@+id/overallStats"
@@ -58,36 +57,13 @@
                     android:stretchColumns="*">
                     <!--android:background="@color/table_color"-->
 
-                    <!--<TableRow-->
-                    <!--android:layout_width="4dp"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:dividerPadding="24dip"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:divider="#080900"-->
-                    <!--android:showDividers="middle"/>-->
-
-                    <!--<TextView-->
-                    <!--android:id="@+id/gameText"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:text="TextView"-->
-                    <!--android:background="@drawable/cell_shape"/>-->
-
-                    <!--<TableRow-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent" />-->
-
-                    <!--<TableRow-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent" />-->
-
                 </TableLayout>
             </LinearLayout>
         </HorizontalScrollView>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            android:layout_height="36dp" />
 
         <TextView
             android:id="@+id/playerStatsTitle"
@@ -98,12 +74,12 @@
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/classic_black"
-            android:textSize="24sp"
+            android:textSize="30sp"
             android:typeface="sans" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="8dp" />
+            android:layout_height="16dp" />
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -125,32 +101,20 @@
                     android:showDividers="middle"
                     android:stretchColumns="*">
 
-                    <!--<TableRow-->
-                    <!--android:layout_width="4dp"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:dividerPadding="24dip"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:divider="#080900"-->
-                    <!--android:showDividers="middle"/>-->
-
-                    <!--<TextView-->
-                    <!--android:id="@+id/gameText"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:text="TextView"-->
-                    <!--android:background="@drawable/cell_shape"/>-->
-
-                    <!--<TableRow-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent" />-->
-
-                    <!--<TableRow-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent" />-->
-
                 </TableLayout>
             </LinearLayout>
         </HorizontalScrollView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:clickable="true"
+            app:backgroundTint="@color/fbutton_default_color"
+            app:elevation="0dp"
+            app:fabSize="normal"
+            app:srcCompat="@android:drawable/ic_dialog_email" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

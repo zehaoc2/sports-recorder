@@ -23,7 +23,7 @@ public class GameStats extends AppCompatActivity {
         TableLayout playerTable = findViewById(R.id.playerStats);
 
         TableRow scoreHeader = new TableRow(GameStats.this);
-        String[] h = {"Team", "Total", "1", "2", "3", "4", "4+"};
+        String[] h = {"Team", "Total", "QTR 1", "QTR 2", "QTR 3", "QTR 4", "QTR 4+"};
         String[] teams = {"My Team", "Opponent"};
         // Set header for score breakdown table
         for (int i = 0; i < 7; i++) {
@@ -54,7 +54,7 @@ public class GameStats extends AppCompatActivity {
                     tv.setTextColor(i==0 ? 0xFFC0392B:0xFF2980B9);
 
                 } else {
-                    tv.setText("Something");
+                    tv.setText("0");
                 }
                 row.addView(tv);
             }
