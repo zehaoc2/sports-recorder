@@ -453,61 +453,69 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <RelativeLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/last_action"
+            android:layout_width="335dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Last Activity"
+            android:textColor="@color/fbutton_color_peter_river"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/undo"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/undo"
+
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+
+
+            android:foreground="@drawable/ic_icons8_trash_can"
+            android:foregroundGravity="center"
+            android:minWidth="@dimen/button_min_width"
+            android:minHeight="@dimen/button_min_height"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            fbutton:fButtonColor="@color/fbutton_color_peter_river"
+            fbutton:shadowEnabled="true" />
 
 
 
-            <TextView
-                android:id="@+id/last_action"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Last Activity"
-                android:gravity="center|bottom"
-                android:textColor="@color/colorAccent"
-                android:textSize="15sp" />
-
-            <info.hoang8f.widget.FButton
-                android:id="@+id/undo"
-
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-
-
-                android:minWidth="@dimen/button_min_width"
-                android:minHeight="@dimen/button_min_height"
-
-                android:foreground="@drawable/ic_icons8_trash_can"
-                android:foregroundGravity="center"
-
-
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                fbutton:fButtonColor="@color/fbutton_color_peter_river"
-                fbutton:shadowEnabled="true" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
 
 
 

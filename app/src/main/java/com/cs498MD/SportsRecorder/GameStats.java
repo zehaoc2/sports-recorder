@@ -23,7 +23,7 @@ public class GameStats extends AppCompatActivity {
         TableLayout playerTable = findViewById(R.id.playerStats);
 
         TableRow scoreHeader = new TableRow(GameStats.this);
-        String[] h = {"", "Total", "Period 1", "Period 2", "Period 3", "Period 4", "Period 4+"};
+        String[] h = {"Team", "Total", "1", "2", "3", "4", "4+"};
         String[] teams = {"My Team", "Opponent"};
         // Set header for score breakdown table
         for (int i = 0; i < 7; i++) {
@@ -31,6 +31,7 @@ public class GameStats extends AppCompatActivity {
             tv.setText(h[i]);
             tv.setPadding(8, 0, 8, 0);
             tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+            tv.setTextSize(20);
 
             if (i < h.length) { tv.setBackgroundResource(R.drawable.cell_shape); }
             scoreHeader.addView(tv);
@@ -44,11 +45,14 @@ public class GameStats extends AppCompatActivity {
                 TextView tv = new TextView(GameStats.this);
                 tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
                 tv.setPadding(8, 0, 8, 0);
+                tv.setTextSize(20);
 
                 if (i < h.length) { tv.setBackgroundResource(R.drawable.cell_shape); }
 
                 if (j == 0) {
                     tv.setText(teams[i]);
+                    tv.setTextColor(i==0 ? 0xFFC0392B:0xFF2980B9);
+
                 } else {
                     tv.setText("Something");
                 }
@@ -59,12 +63,13 @@ public class GameStats extends AppCompatActivity {
 
         TableRow playerHeader = new TableRow(GameStats.this);
         String[] players = {"Bill", "Susan"};
-        String[] points = {"", "Total", "1 Point", "2 Point", "3 Point", "1 Point Attempts", "2 Point Attempts", "3 Point Attempts", "Fouls"};
+        String[] points = {"Player", "Total", "1 PT", "2 PT", "3 PT", "Fouls"};
         for (int i = 0; i < points.length; i++) {
             TextView tv = new TextView(GameStats.this);
             tv.setText(points[i]);
             tv.setPadding(8, 0, 8, 0);
             tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+            tv.setTextSize(20);
 
             if (i < points.length) { tv.setBackgroundResource(R.drawable.cell_shape); }
             playerHeader.addView(tv);
@@ -77,6 +82,7 @@ public class GameStats extends AppCompatActivity {
                 TextView tv = new TextView(GameStats.this);
                 tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
                 tv.setPadding(8, 0, 8, 0);
+                tv.setTextSize(20);
 
                 if (i < points.length) { tv.setBackgroundResource(R.drawable.cell_shape); }
 

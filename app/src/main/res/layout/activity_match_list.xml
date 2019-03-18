@@ -27,18 +27,18 @@
         tools:layout_editor_absoluteY="16dp">
 
         <TextView
-            android:id="@+id/Matches"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Matches"
-            android:textAlignment="center" />
-
-        <TextView
             android:id="@+id/noMatches"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="NO MATCHES YET"
-            android:textAlignment="center" />
+            android:fontFamily="sans-serif-condensed-light"
+            android:lineSpacingExtra="36sp"
+            android:text="NO MATCHES"
+            android:paddingTop="8dp"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:textColor="@color/classic_black"
+            android:textSize="36sp"
+            android:typeface="sans" />
 
         <ListView
         android:id="@+id/matchList"
