@@ -1,13 +1,13 @@
 package com.cs498MD.SportsRecorder;
 
 
+import android.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-
 
 import java.util.ArrayList;
 
@@ -30,6 +30,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match_list);
+
+        android.support.v7.app.ActionBar bar = getSupportActionBar();
+        bar.setTitle("Matches");
 
         newMatch = (FloatingActionButton) findViewById(R.id.newMatch);
         newMatch.setOnClickListener(this);
