@@ -63,7 +63,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private FButton periodAddBtn;
     private FButton playerAddBtn;
 
-    private  FButton undoBtn;
+    private FButton undoBtn;
 
 
     @Override
