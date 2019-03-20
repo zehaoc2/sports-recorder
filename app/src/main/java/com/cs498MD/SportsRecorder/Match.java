@@ -24,7 +24,6 @@ public class Match extends Activity {
         this.myTeam = new MyTeam();
         this.opponentTeam = new OpponentTeam();
         this.history = new Stack<Action>();
-        this.history.push(null);
     }
 
     public int getId() {

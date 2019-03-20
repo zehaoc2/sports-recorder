@@ -5,14 +5,14 @@ enum Type {Attempt, Score, Foul;}
 public class Action {
     private String teamName;
     Type type;
-    int point;
+    Integer point;
     String message;
 
     public Type getType() {
         return type;
     }
 
-    public Action(String teamName, Type type, int point) {
+    public Action(String teamName, Type type, Integer point) {
         this.teamName = teamName;
         this.type = type;
         this.point = point;
