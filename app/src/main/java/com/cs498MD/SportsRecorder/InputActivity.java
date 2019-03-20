@@ -50,6 +50,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private int myScore;
     private int opponentScore;
     private Stack<Action> history;
+    private ArrayList<Player> players;
 
 
     private ArrayList<Integer> periodBtnIds;
@@ -73,9 +74,9 @@ public class InputActivity extends Activity implements View.OnClickListener{
         matchId = getIntent().getStringExtra("matchId");
         periodBtnIds = new ArrayList<>();
 
-        periodNo = 1;
-        periodUniqueId = "Clicking Period ";
-        playerNo = 1;
+//        periodNo = 1;
+//        periodUniqueId = "Clicking Period ";
+        playerNo = 0;
         playerUniqueId = "Clicking Player ";
         totalFailAttempts = new HashMap<>();
 
@@ -113,17 +114,16 @@ public class InputActivity extends Activity implements View.OnClickListener{
         } else if (v.getId() == R.id.foul_btn) {
             foulCount++;
             setLastAction(new Action(match.getMyTeam().getName(), Type.Foul, null));
-        }else if (v.getId() == R.id.player_head) {
+        } else if (v.getId() == R.id.player_head) {
             //user is clicking head button
 
         }
-
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        saveMatchInfo();
+//        saveMatchInfo();
     }
 
     private void undoLastAction() {
@@ -178,7 +178,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
         periodNo++;
         myButton.setTag(periodUniqueId + periodNo);
-        myButton.setText("P" + periodNo);
+        myButton.setText("PP" + periodNo);
+
 
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -224,15 +225,18 @@ public class InputActivity extends Activity implements View.OnClickListener{
         ll.removeView(playerAddBtn);
         ll.addView(playerAddBtn, lp);
 
-        playerNo++;
-        myButton.setTag(playerUniqueId + playerNo);
-
-        myButton.setText("P" + playerNo);
+//        myButton.setTag(playerUniqueId + playerNo);
         myButton.setId(playerNo);
+        players.add(new Player("P" + playerNo));
+
+        myButton.setText("P" + ++playerNo);
+
 
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Toast.makeText(getApplicationContext(), (String)myButton.getTag(), Toast.LENGTH_LONG).show();
                 //TODO mbutton.getID()
 
@@ -394,7 +398,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
         MyTeam myTeam = match.getMyTeam();
         OpponentTeam opponentTeam = match.getOpponentTeam();
-        ArrayList<Player> players = match.getPlayers();
+        players = myTeam.getPlayers();
         history = match.getHistory();
         myScore = myTeam.getScore();
         opponentScore = opponentTeam.getScore();
@@ -403,7 +407,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
         myScoreView.setText("Score: " + String.valueOf(myScore));
         opponentNameView.setText(opponentTeam.getName());
         opponentScoreView.setText("Score: " + String.valueOf(opponentScore));
-        //TODO: initialize value to players
+
+
         if (history.isEmpty()) {
             lastAction.setText("");
         } else {
@@ -422,7 +427,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
         myTeam.setScore(myScore);
         opponentTeam.setScore(opponentScore);
 
-        editor.putString(matchId, new Gson().toJson(match));
+        editor.putString(matchId, new Gson().toJson(match, Match.class));
         editor.apply();
     }
     private void setUpAttpemtsMap(){

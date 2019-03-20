@@ -15,7 +15,6 @@ public class Match extends Activity {
     String name;
     MyTeam myTeam;
     OpponentTeam opponentTeam;
-    ArrayList<Player> players;
     Stack<Action> history;
 
     public Match(int id) {
@@ -48,10 +47,6 @@ public class Match extends Activity {
 
     public OpponentTeam getOpponentTeam() {
         return opponentTeam;
-    }
-
-    public ArrayList<Player> getPlayers() {
-        return players;
     }
 
     public Stack<Action> getHistory() {
