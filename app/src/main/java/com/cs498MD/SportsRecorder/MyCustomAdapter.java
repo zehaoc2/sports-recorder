@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 
@@ -82,10 +83,10 @@ public class MyCustomAdapter extends BaseAdapter {
         listItemText.setText(list.get(position));
 
         //Handle buttons and add onClickListeners
-        Button shareBtn = (Button)view.findViewById(R.id.share_btn);
+        Button delete_btn = (Button)view.findViewById(R.id.delete_btn);
         Button viewBtn = (Button)view.findViewById(R.id.view_btn);
 
-        shareBtn.setOnClickListener(new View.OnClickListener(){
+        delete_btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 //do something

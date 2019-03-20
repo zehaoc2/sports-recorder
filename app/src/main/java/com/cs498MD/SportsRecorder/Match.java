@@ -10,12 +10,15 @@ import java.util.Stack;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class Match extends Activity {
-    int id;
-    String name;
-    MyTeam myTeam;
-    OpponentTeam opponentTeam;
-    Stack<Action> history;
+public class Match {
+    private int id;
+    private String name;
+    private MyTeam myTeam;
+    private OpponentTeam opponentTeam;
+    private Stack<Action> history;
+
+    public Match() {
+    }
 
     public Match(int id) {
         this.id = id;
