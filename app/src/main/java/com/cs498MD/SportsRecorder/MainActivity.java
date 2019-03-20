@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         android.support.v7.app.ActionBar bar = getSupportActionBar();
         bar.setTitle("Matches");
 
-
         SharedPreferences sharedPreferences = this.getSharedPreferences("matchId", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("matchId", "Match1");
