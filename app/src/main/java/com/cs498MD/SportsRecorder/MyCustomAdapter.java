@@ -83,7 +83,7 @@ public class MyCustomAdapter extends BaseAdapter {
         listItemText.setText(list.get(position));
 
         //Handle buttons and add onClickListeners
-        ImageButton delete_btn = (ImageButton)view.findViewById(R.id.delete_btn);
+        Button delete_btn = (Button)view.findViewById(R.id.delete_btn);
         Button viewBtn = (Button)view.findViewById(R.id.view_btn);
 
         delete_btn.setOnClickListener(new View.OnClickListener(){
