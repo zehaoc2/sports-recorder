@@ -92,8 +92,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
         initMatchInfo();
 
         //set dynamic add button for period
-        periodAddBtn = findViewById(R.id.period_add);
-        periodAddBtn.setOnClickListener(this);
+//        periodAddBtn = findViewById(R.id.period_add);
+//        periodAddBtn.setOnClickListener(this);
 
         //set dynamic add button for player
         playerAddBtn = findViewById(R.id.player_add);
@@ -103,14 +103,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.period_add) {
-            //add period event
-            if(periodNo >=5){
-                Toast.makeText(getApplicationContext(), "can not deal too many btns right now", Toast.LENGTH_LONG).show();
-            }
-
-            addPeriodButton();
-        } else if (v.getId() == R.id.player_add){
+        if (v.getId() == R.id.player_add){
             addPlayerButton();
         } else if (v.getId() == R.id.opponent_add) {
             opponentScoreView.setText(String.valueOf("Score: " + ++opponentScore));
@@ -182,12 +175,6 @@ public class InputActivity extends Activity implements View.OnClickListener{
         params.setMarginEnd(convertDipToPixels(8,InputActivity.this));
         params.topMargin = convertDipToPixels(8,InputActivity.this);
         params.bottomMargin = convertDipToPixels(8,InputActivity.this);
-
-        LinearLayout ll = (LinearLayout)findViewById(R.id.button_layout);
-
-        ll.addView(myButton, lp);
-        ll.removeView(periodAddBtn);
-        ll.addView(periodAddBtn, lp);
 
         periodNo++;
         myButton.setTag(periodUniqueId + periodNo);
