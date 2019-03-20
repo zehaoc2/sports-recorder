@@ -1,7 +1,10 @@
 package com.cs498MD.SportsRecorder;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +13,19 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class MyCustomAdapter extends BaseAdapter {
+    Activity activity;
+
     private ArrayList<String> list = new ArrayList<String>();
     private Context context;
+
+    private String MATCH = "match";
 
     public MyCustomAdapter(ArrayList<String> list, Context context) {
         this.list = list;
@@ -35,6 +46,32 @@ public class MyCustomAdapter extends BaseAdapter {
     public long getItemId(int pos) {
         return 0;
         //just return 0 if your list items do not have an Id variable.
+    }
+
+//    SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
+//    String matchJson = sharedPreferences.getString(matchId, "");
+//
+//    Gson gson = new Gson();
+//
+//        if (matchJson == null || matchJson.equals("")) {
+//        match = new Match();
+//    } else {
+//        match = gson.fromJson(matchJson, Match.class);
+//    }
+
+    private Match parseJSON() {
+        // TODO: Need to collect matchId from matchArray... change this later
+        String matchId = "Match1";
+
+        SharedPreferences sharedPreferences = activity.getSharedPreferences(MATCH, MODE_PRIVATE);
+        String matchJson = sharedPreferences.getString(matchId, "");
+
+        Gson gson = new Gson();
+        Match match = gson.fromJson(matchJson, Match.class);
+
+//        Log.d("DEBUG", "Something");
+
+        return match;
     }
 
     @Override
