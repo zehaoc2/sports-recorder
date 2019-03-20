@@ -6,7 +6,38 @@ public class Player {
     private int onePoint;
     private int twoPoint;
     private int threePoint;
+    private int onePointMiss;
+    private int twoPointMiss;
+    private int threePointMiss;
     private int foulCount;
+
+    public int getOnePointMiss() {
+        return onePointMiss;
+    }
+
+    public void setOnePointMiss(int onePointMiss) {
+        this.onePointMiss = onePointMiss;
+    }
+
+    public int getTwoPointMiss() {
+        return twoPointMiss;
+    }
+
+    public void setTwoPointMiss(int twoPointMiss) {
+        this.twoPointMiss = twoPointMiss;
+    }
+
+    public int getThreePointMiss() {
+        return threePointMiss;
+    }
+
+    public void setThreePointMiss(int threePointMiss) {
+        this.threePointMiss = threePointMiss;
+    }
+
+    public Player () {
+
+    }
 
     public Player(String name) {
         this.name = name;

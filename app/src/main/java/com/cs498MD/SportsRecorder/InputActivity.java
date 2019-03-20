@@ -51,6 +51,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private int opponentScore;
     private Stack<Action> history;
     private ArrayList<Player> players;
+    private Player player;
+
 
 
     private ArrayList<Integer> periodBtnIds;
@@ -112,18 +114,19 @@ public class InputActivity extends Activity implements View.OnClickListener{
         } else if (v.getId() == R.id.undo && history.size() >= 1) {
             undoLastAction();
         } else if (v.getId() == R.id.foul_btn) {
+            if (player != null)
+                player.setFoulCount(player.getFoulCount() + 1);
             foulCount++;
             setLastAction(new Action(match.getMyTeam().getName(), Type.Foul, null));
         } else if (v.getId() == R.id.player_head) {
-            //user is clicking head button
-
+            player = null;
         }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-//        saveMatchInfo();
+        saveMatchInfo();
     }
 
     private void undoLastAction() {
@@ -235,15 +238,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                Toast.makeText(getApplicationContext(), (String)myButton.getTag(), Toast.LENGTH_LONG).show();
-                //TODO mbutton.getID()
-
+                player = players.get(myButton.getId());
                 Toast.makeText(getApplicationContext(), "" + myButton.getId(), Toast.LENGTH_LONG).show();
-
-
-
             }
         });
 
@@ -271,6 +267,11 @@ public class InputActivity extends Activity implements View.OnClickListener{
             @Override
             public void onSwiped(boolean isRight) {
                 if (isRight) {
+                    if (player != null) {
+                        player.setScore(player.getScore() + 1);
+                        player.setOnePoint(player.getOnePoint() + 1);
+                    }
+
                     myScoreView.setText("Score: " + String.valueOf(++myScore));
                     setLastAction(new Action(match.getMyTeam().getName(), Type.Score, 1));
 
@@ -296,6 +297,9 @@ public class InputActivity extends Activity implements View.OnClickListener{
                     }, 400);
                     setLastAction(new Action(match.getMyTeam().getName(), Type.Attempt, 1));
                     totalFailAttempts.put(1, totalFailAttempts.get(1) + 1);
+                    if (player != null) {
+                        player.setOnePointMiss(player.getOnePointMiss() + 1);
+                    }
 
                 }
             }
@@ -306,6 +310,10 @@ public class InputActivity extends Activity implements View.OnClickListener{
             @Override
             public void onSwiped(boolean isRight) {
                 if (isRight) {
+                    if (player != null) {
+                        player.setScore(player.getScore() + 2);
+                        player.setTwoPoint(player.getTwoPoint() + 1);
+                    }
                     myScore += 2;
                     myScoreView.setText("Score: " + String.valueOf(myScore));
                     setLastAction(new Action(match.getMyTeam().getName(), Type.Score, 2));
@@ -331,6 +339,9 @@ public class InputActivity extends Activity implements View.OnClickListener{
                     }, 400);
                     setLastAction(new Action(match.getMyTeam().getName(), Type.Attempt, 2));
                     totalFailAttempts.put(2, totalFailAttempts.get(2) + 1);
+                    if (player != null) {
+                        player.setTwoPointMiss(player.getTwoPointMiss() + 1);
+                    }
 
                 }
             }
@@ -341,6 +352,11 @@ public class InputActivity extends Activity implements View.OnClickListener{
             @Override
             public void onSwiped(boolean isRight) {
                 if (isRight) {
+                    if (player != null) {
+                        player.setScore(player.getScore() + 3);
+                        player.setThreePoint(player.getThreePoint() + 1);
+                    }
+
                     myScore += 3;
                     myScoreView.setText("Score: " + String.valueOf(myScore));
                     setLastAction(new Action(match.getMyTeam().getName(), Type.Score, 3));
@@ -364,6 +380,9 @@ public class InputActivity extends Activity implements View.OnClickListener{
                     }, 400);
                     setLastAction(new Action(match.getMyTeam().getName(), Type.Attempt, 3));
                     totalFailAttempts.put(3, totalFailAttempts.get(3) + 1);
+                    if (player != null) {
+                        player.setThreePointMiss(player.getThreePointMiss() + 1);
+                    }
 
                 }
             }
@@ -428,6 +447,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
         opponentTeam.setScore(opponentScore);
 
         editor.putString(matchId, new Gson().toJson(match, Match.class));
+
         editor.apply();
     }
     private void setUpAttpemtsMap(){
