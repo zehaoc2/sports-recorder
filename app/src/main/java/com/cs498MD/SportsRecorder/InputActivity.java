@@ -65,7 +65,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.input_page);
+        setContentView(R.layout.activity_input_page);
 
         matchId = getIntent().getStringExtra("matchId");
         periodBtnIds = new ArrayList<>();
