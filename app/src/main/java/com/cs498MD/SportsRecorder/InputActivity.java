@@ -63,6 +63,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private FButton periodAddBtn;
     private FButton playerAddBtn;
 
+    private  FButton teamBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +78,11 @@ public class InputActivity extends Activity implements View.OnClickListener{
         playerNo = 1;
         playerUniqueId = "Clicking Player ";
         totalFailAttempts = new HashMap<>();
+
+        teamBtn = findViewById(R.id.player_head);
+        teamBtn.setId(playerNo);
+        teamBtn.setOnClickListener(this);
+
         setUpAttpemtsMap();
 
         setMatchUtils();
@@ -113,7 +120,11 @@ public class InputActivity extends Activity implements View.OnClickListener{
         } else if (v.getId() == R.id.foul_btn) {
             foulCount++;
             setLastAction(new Action(match.getMyTeam().getName(), Type.Foul, null));
+        }else if (v.getId() == R.id.player_head) {
+            //user is clicking head button
+
         }
+
     }
 
     @Override
@@ -186,6 +197,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), (String)myButton.getTag(), Toast.LENGTH_LONG).show();
+
             }
         });
 
@@ -227,12 +239,20 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
         playerNo++;
         myButton.setTag(playerUniqueId + playerNo);
+
         myButton.setText("P" + playerNo);
+        myButton.setId(playerNo);
 
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), (String)myButton.getTag(), Toast.LENGTH_LONG).show();
+                //TODO mbutton.getID()
+
+                Toast.makeText(getApplicationContext(), "" + myButton.getId(), Toast.LENGTH_LONG).show();
+
+
+
             }
         });
 
