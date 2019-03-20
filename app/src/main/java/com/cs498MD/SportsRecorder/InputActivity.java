@@ -391,7 +391,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
         Gson gson = new Gson();
 
         if (matchJson == null || matchJson.equals("")) {
-            match = new Match();
+            match = new Match(Integer.parseInt(matchId));
         } else {
             match = gson.fromJson(matchJson, Match.class);
         }
