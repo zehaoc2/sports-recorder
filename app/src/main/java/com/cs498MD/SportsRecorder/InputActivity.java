@@ -134,6 +134,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
         } else if (v.getId() == R.id.end_match){
             showAlertDialog(v);
             Log.e("TEST", "Clicked End Mathc");
+        } else if (v.getId() == R.id.next_period) {
+
         }
     }
 
@@ -285,7 +287,6 @@ public class InputActivity extends Activity implements View.OnClickListener{
             @Override
             public void onClick(View v) {
                 player = players.get(myButton.getId());
-                Toast.makeText(getApplicationContext(), "" + myButton.getId(), Toast.LENGTH_LONG).show();
             }
         });
 
