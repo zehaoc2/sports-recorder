@@ -20,16 +20,16 @@ import java.util.ArrayList;
 import static android.content.Context.MODE_PRIVATE;
 
 public class MyCustomAdapter extends BaseAdapter {
-    Activity activity;
-
     private ArrayList<String> list = new ArrayList<String>();
     private Context context;
+    private Activity activity;
 
     private String MATCH = "match";
 
-    public MyCustomAdapter(ArrayList<String> list, Context context) {
+    public MyCustomAdapter(ArrayList<String> list, Context context, Activity activity) {
         this.list = list;
         this.context = context;
+        this.activity = activity;
     }
 
     @Override
@@ -48,28 +48,19 @@ public class MyCustomAdapter extends BaseAdapter {
         //just return 0 if your list items do not have an Id variable.
     }
 
-//    SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
-//    String matchJson = sharedPreferences.getString(matchId, "");
-//
-//    Gson gson = new Gson();
-//
-//        if (matchJson == null || matchJson.equals("")) {
-//        match = new Match();
-//    } else {
-//        match = gson.fromJson(matchJson, Match.class);
-//    }
-
-    private Match parseJSON() {
+    private Match getMatch(String matchId) {
         // TODO: Need to collect matchId from matchArray... change this later
-        String matchId = "Match1";
-
-        SharedPreferences sharedPreferences = activity.getSharedPreferences(MATCH, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = this.activity.getSharedPreferences("matchId", MODE_PRIVATE);
         String matchJson = sharedPreferences.getString(matchId, "");
+
+        if (matchJson == "" | matchJson == null) {
+            Log.d("DEBUG", "Null matchJson");
+        } else {
+            Log.d("DEBUG", matchJson);
+        }
 
         Gson gson = new Gson();
         Match match = gson.fromJson(matchJson, Match.class);
-
-//        Log.d("DEBUG", "Something");
 
         return match;
     }
@@ -81,6 +72,10 @@ public class MyCustomAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.match_list_layout, null);
         }
+
+        String matchId = "Match1";
+        Match m = getMatch(matchId);
+//        Log.d("DEBUG", m.name);
 
         //Handle TextView and display string from your list
         TextView listItemText = (TextView)view.findViewById(R.id.match_item_string);

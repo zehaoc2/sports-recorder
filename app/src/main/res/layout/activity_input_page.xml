@@ -87,8 +87,8 @@
         <ImageView
             android:id="@+id/edit_image2"
             style="@style/ImageView.Hamburger"
-            android:layout_width="39dp"
-            android:layout_height="38dp"
+            android:layout_width="44dp"
+            android:layout_height="37dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
 
@@ -101,7 +101,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/my_name"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.08" />
+            app:layout_constraintVertical_bias="0.079" />
 
         <TextView
             android:id="@+id/my_score"
@@ -382,7 +382,7 @@
 
         <TextView
             android:id="@+id/last_action"
-            android:layout_width="335dp"
+            android:layout_width="282dp"
             android:layout_height="46dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -433,5 +433,38 @@
             fbutton:fButtonColor="@color/fbutton_color_peter_river"
             fbutton:shadowEnabled="true" />
 
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/end_match"
+
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+
+
+            android:layout_marginStart="8dp"
+
+
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:foreground="@drawable/ic_lock_outline_black_24dp"
+
+            android:foregroundGravity="center"
+            android:minWidth="@dimen/button_min_width"
+            android:minHeight="@dimen/button_min_height"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/undo"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            fbutton:fButtonColor="@color/fbutton_color_peter_river"
+            fbutton:shadowEnabled="true" />
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>
