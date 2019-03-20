@@ -513,11 +513,5 @@
             fbutton:fButtonColor="@color/fbutton_color_peter_river"
             fbutton:shadowEnabled="true" />
 
-
-
     </android.support.constraint.ConstraintLayout>
-
-
-
-
 </FrameLayout>
