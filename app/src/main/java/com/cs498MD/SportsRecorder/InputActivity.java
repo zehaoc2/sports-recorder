@@ -46,6 +46,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private Button opponentAddBtn;
 
     // Active match info
+    private int foulCount;
     private int myScore;
     private int opponentScore;
     private Stack<Action> history;
@@ -62,14 +63,10 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private FButton periodAddBtn;
     private FButton playerAddBtn;
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.input_page);
+        setContentView(R.layout.activity_input_page);
 
         matchId = getIntent().getStringExtra("matchId");
         periodBtnIds = new ArrayList<>();
@@ -111,9 +108,11 @@ public class InputActivity extends Activity implements View.OnClickListener{
         } else if (v.getId() == R.id.opponent_add) {
             opponentScoreView.setText(String.valueOf("Score: " + ++opponentScore));
             setLastAction(new Action(match.getOpponentTeam().getName(), Type.Score, 1));
-        } else if (v.getId() == R.id.undo) {
-            Toast.makeText(this, "clicked", Toast.LENGTH_LONG);
+        } else if (v.getId() == R.id.undo && history.size() >= 1) {
             undoLastAction();
+        } else if (v.getId() == R.id.foul_btn) {
+            foulCount++;
+            setLastAction(new Action(match.getMyTeam().getName(), Type.Foul, null));
         }
     }
 
@@ -124,32 +123,29 @@ public class InputActivity extends Activity implements View.OnClickListener{
     }
 
     private void undoLastAction() {
-        Action lastAction = history.pop();
-        if (lastAction.getType() == Type.Score) {
-            if (lastAction.getTeamName().equals(match.getMyTeam().getName())) {
-                myScore -= lastAction.getPoint();
+        Action action = history.pop();
+        if (action.getType() == Type.Score) {
+            if (action.getTeamName().equals(match.getMyTeam().getName())) {
+                myScore -= action.getPoint();
+                myScoreView.setText("Score: " + String.valueOf(myScore));
             } else {
-                opponentScore -= lastAction.getPoint();
+                opponentScore -= action.getPoint();
+                opponentScoreView.setText("Score: " + String.valueOf(opponentScore));
             }
-            //TODO:set score in textview
-        } else if (lastAction.getType() == Type.Attempt) {
+
+
+        } else if (action.getType() == Type.Attempt) {
             //TODO
         } else {
             //TODO
         }
-        setLastAction(history.peek());
+        lastAction.setText(history.isEmpty() ? "" : history.peek().getMessage());
     }
 
     private void setLastAction(Action action) {
         history.push(action);
         lastAction.setText(action.getMessage());
     }
-
-    /**
-     * when user click the fButton, we dynamically add a period
-     * we push the new id to an arraylist and keep update the onlick listener
-     * @return
-     */
 
     private FButton addPeriodButton(){
 
@@ -244,15 +240,6 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
 
     }
-
-
-
-    /**
-     * Convert dp to pxiels, return an int
-     * @param dips
-     * @param context
-     * @return
-     */
 
     public static int convertDipToPixels(float dips, Context context)
     {
@@ -374,6 +361,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
         myNameView = (TextView) findViewById(R.id.my_name);
         myScoreView = (TextView) findViewById(R.id.my_score);
         foulBtn = (Button) findViewById(R.id.foul_btn);
+        foulBtn.setOnClickListener(this);
 
     }
 
@@ -392,7 +380,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
         Gson gson = new Gson();
 
         if (matchJson == null || matchJson.equals("")) {
-            match = new Match();
+            match = new Match(Integer.parseInt(matchId));
         } else {
             match = gson.fromJson(matchJson, Match.class);
         }
@@ -409,7 +397,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
         opponentNameView.setText(opponentTeam.getName());
         opponentScoreView.setText("Score: " + String.valueOf(opponentScore));
         //TODO: initialize value to players
-        if (history.peek() == null) {
+        if (history.isEmpty()) {
             lastAction.setText("");
         } else {
             lastAction.setText(history.peek().getMessage());
