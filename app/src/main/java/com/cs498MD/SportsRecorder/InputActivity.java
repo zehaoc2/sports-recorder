@@ -197,6 +197,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
     }
 
+
     private FButton addPlayerButton(){
 
         final FButton myButton = new FButton(this );
