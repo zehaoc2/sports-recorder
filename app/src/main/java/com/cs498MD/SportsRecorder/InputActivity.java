@@ -62,10 +62,6 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private FButton periodAddBtn;
     private FButton playerAddBtn;
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,13 +121,15 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
     private void undoLastAction() {
         Action lastAction = history.pop();
+        System.out.println(history.size());
         if (lastAction.getType() == Type.Score) {
             if (lastAction.getTeamName().equals(match.getMyTeam().getName())) {
                 myScore -= lastAction.getPoint();
             } else {
                 opponentScore -= lastAction.getPoint();
             }
-            //TODO:set score in textview
+
+            opponentScoreView.setText("Score: " + String.valueOf(opponentScore));
         } else if (lastAction.getType() == Type.Attempt) {
             //TODO
         } else {
