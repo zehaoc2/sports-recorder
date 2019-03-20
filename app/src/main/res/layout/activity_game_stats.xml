@@ -107,7 +107,7 @@
             android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:clickable="true"
             app:backgroundTint="@color/fbutton_default_color"
             app:elevation="0dp"
