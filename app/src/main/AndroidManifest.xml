@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".GameStats"></activity>
+        <activity android:name=".GameStats" />
         <activity android:name=".MatchList" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -18,8 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".InputActivity"></activity>
+        <activity android:name=".InputActivity" />
     </application>
 
 </manifest>
