@@ -1,10 +1,14 @@
 package com.cs498MD.SportsRecorder;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -63,7 +67,9 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private FButton periodAddBtn;
     private FButton playerAddBtn;
 
-    private  FButton teamBtn;
+    private FButton teamBtn;
+
+    private FButton endMatchBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,9 +85,14 @@ public class InputActivity extends Activity implements View.OnClickListener{
         playerUniqueId = "Clicking Player ";
         totalFailAttempts = new HashMap<>();
 
+        //set team button (the first player head button's on click listener)
         teamBtn = findViewById(R.id.player_head);
         teamBtn.setId(playerNo);
         teamBtn.setOnClickListener(this);
+
+        //set end match button onclick listener
+        endMatchBtn = findViewById(R.id.end_match);
+        endMatchBtn.setOnClickListener(this);
 
         setUpAttpemtsMap();
 
@@ -113,8 +124,12 @@ public class InputActivity extends Activity implements View.OnClickListener{
         } else if (v.getId() == R.id.foul_btn) {
             foulCount++;
             setLastAction(new Action(match.getMyTeam().getName(), Type.Foul, null));
-        }else if (v.getId() == R.id.player_head) {
+        } else if (v.getId() == R.id.player_head) {
             //user is clicking head button
+
+        } else if (v.getId() == R.id.end_match){
+            showAlertDialog(v);
+            Log.e("TEST", "Clicked End Mathc");
 
         }
 
@@ -125,6 +140,37 @@ public class InputActivity extends Activity implements View.OnClickListener{
         super.onPause();
         saveMatchInfo();
     }
+
+    public void showAlertDialog (final View v) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setMessage("Are you sure you want to end this match? ");
+        alert.setTitle("Sports Recorder");
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "Match Ended and Saved!", Toast.LENGTH_LONG);
+                Log.e("TEST", "Dialog Yes Clicked");
+
+                Intent intent = new Intent(InputActivity.this, MainActivity.class);
+
+                startActivity(intent);
+            }
+        });
+
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Log.e("TEST", "Dialog No Clicked");
+
+            }
+        });
+
+        alert.create().show();
+
+
+
+    }
+
 
     private void undoLastAction() {
         Action action = history.pop();
@@ -184,6 +230,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), (String)myButton.getTag(), Toast.LENGTH_LONG).show();
+
 
             }
         });
@@ -425,6 +472,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
         editor.putString(matchId, new Gson().toJson(match));
         editor.apply();
     }
+
     private void setUpAttpemtsMap(){
         totalFailAttempts.put(1,0);
         totalFailAttempts.put(2,0);
