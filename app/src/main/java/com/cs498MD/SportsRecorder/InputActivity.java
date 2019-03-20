@@ -165,12 +165,6 @@ public class InputActivity extends Activity implements View.OnClickListener{
         params.topMargin = convertDipToPixels(8,InputActivity.this);
         params.bottomMargin = convertDipToPixels(8,InputActivity.this);
 
-////        LinearLayout ll = (LinearLayout)findViewById(R.id.button_layout);
-//        LinearLayout ll = new LinearLayout(this);
-//        ll.addView(myButton, lp);
-//        ll.removeView(periodAddBtn);
-//        ll.addView(periodAddBtn, lp);
-
         periodNo++;
         myButton.setTag(periodUniqueId + periodNo);
         myButton.setText("P" + periodNo);
