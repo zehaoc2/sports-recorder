@@ -1,9 +1,12 @@
 package com.cs498MD.SportsRecorder;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.view.menu.ActionMenuItemView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +52,10 @@ public class MyCustomAdapter extends BaseAdapter {
         //just return 0 if your list items do not have an Id variable.
     }
 
+    public void clear() {
+        list.clear();
+    }
+
     private Match getMatch(String matchId) {
         // TODO: Need to collect matchId from matchArray... change this later
         SharedPreferences sharedPreferences = this.activity.getSharedPreferences("matchId", MODE_PRIVATE);
@@ -90,8 +97,22 @@ public class MyCustomAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //do something
-//                list.remove(position); //or some other task
-//                notifyDataSetChanged();
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+                                list.remove(position); //or some other task
+                                notifyDataSetChanged();
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Are you sure you want to delete this match?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
             }
         });
         viewBtn.setOnClickListener(new View.OnClickListener(){
