@@ -73,6 +73,9 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private FButton teamBtn;
 
     private FButton endMatchBtn;
+    private int onePoint;
+    private int twoPoint;
+    private int threePoint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,6 +140,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
         } else if (v.getId() == R.id.next_period) {
             match.getPeriods().push(new Period());
+            saveMatchInfo();
             initPeriodInfo();
         }
     }
@@ -319,6 +323,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
                     }
 
                     myScoreView.setText("Score: " + String.valueOf(++myScore));
+                    onePoint++;
                     setLastAction(new Action(period.getMyTeam().getName(), Type.Score, 1));
 
                     final Handler handler = new Handler();
@@ -361,6 +366,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
                         player.setTwoPoint(player.getTwoPoint() + 1);
                     }
                     myScore += 2;
+                    twoPoint++;
                     myScoreView.setText("Score: " + String.valueOf(myScore));
                     setLastAction(new Action(period.getMyTeam().getName(), Type.Score, 2));
 
@@ -404,6 +410,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
                     }
 
                     myScore += 3;
+                    threePoint++;
                     myScoreView.setText("Score: " + String.valueOf(myScore));
                     setLastAction(new Action(period.getMyTeam().getName(), Type.Score, 3));
 
@@ -447,10 +454,6 @@ public class InputActivity extends Activity implements View.OnClickListener {
         opponentScoreView = (TextView) findViewById(R.id.opponent_score);
         opponentAddBtn = (Button) findViewById(R.id.opponent_add);
         opponentAddBtn.setOnClickListener(this);
-    }
-
-    private void switchPeroid() {
-
     }
 
     private void initMatchInfo() {
@@ -501,12 +504,16 @@ public class InputActivity extends Activity implements View.OnClickListener {
         myTeam.setScore(myScore);
         opponentTeam.setScore(opponentScore);
 
+        myTeam.setOnePoint(onePoint);
+        myTeam.setTwoPoint(twoPoint);
+        myTeam.setThreePoint(threePoint);
+
         myTeam.setOnePointAttempt(totalFailAttempts.get(1));
         myTeam.setTwoPointAttempt(totalFailAttempts.get(2));
         myTeam.setThreePointAttempt(totalFailAttempts.get(3));
         myTeam.setFoulCount(foulCount);
 
-        editor.putString(matchId, new Gson().toJson(period, Period.class));
+        editor.putString(matchId, new Gson().toJson(match, Match.class));
 
         editor.apply();
     }
