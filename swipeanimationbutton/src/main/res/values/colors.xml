@@ -15,10 +15,6 @@
     <color name="fbutton_default_shadow_color">#ff3493c8</color>
     //Color Swatches provided by http://designmodo.github.io/Flat-UI/
     <color name="fbutton_color_turquoise">#1abc9c</color>
-
-    <color name="regular_button_color">#16a085</color>
-
-
     <color name="fbutton_color_green_sea">#16a085</color>
     <color name="fbutton_color_emerald">#2ecc71</color>
     <color name="fbutton_color_nephritis">#27ae60</color>
@@ -45,12 +41,14 @@
     <color name="guillotine_background">#444153</color>
     <color name="guillotine_background_dark">#383547</color>
     <color name="selected_item_color">#30d1d5</color>
-
-
+    
+    
     <color name="med_background_gray">#344955</color>
     <color name="dark_background_gray">#232F34</color>
     <color name="light_background_gray">#4A6572</color>
     <color name="yellow"> #F9AA33</color>
+
+
 
 
 
