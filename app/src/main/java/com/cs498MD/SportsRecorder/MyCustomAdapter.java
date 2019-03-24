@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 
@@ -51,12 +50,12 @@ public class MyCustomAdapter extends BaseAdapter {
         return 0;
         //just return 0 if your list items do not have an Id variable.
     }
-
+    
     public void clear() {
         list.clear();
     }
 
-    private Match getMatch(String matchId) {
+    private Period getMatch(String matchId) {
         // TODO: Need to collect matchId from matchArray... change this later
         SharedPreferences sharedPreferences = this.activity.getSharedPreferences("matchId", MODE_PRIVATE);
         String matchJson = sharedPreferences.getString(matchId, "");
@@ -68,7 +67,7 @@ public class MyCustomAdapter extends BaseAdapter {
         }
 
         Gson gson = new Gson();
-        Match match = gson.fromJson(matchJson, Match.class);
+        Period match = gson.fromJson(matchJson, Period.class);
 
         return match;
     }
@@ -82,7 +81,7 @@ public class MyCustomAdapter extends BaseAdapter {
         }
 
         String matchId = "Match1";
-        Match m = getMatch(matchId);
+        Period m = getMatch(matchId);
 //        Log.d("DEBUG", m.name);
 
         //Handle TextView and display string from your list

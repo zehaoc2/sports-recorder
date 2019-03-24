@@ -6,6 +6,9 @@ public class MyTeam extends Team {
     private int onePoint;
     private int twoPoint;
     private int threePoint;
+    private int onePointAttempt;
+    private int twoPointAttempt;
+    private int threePointAttempt;
     private int foulCount;
     private ArrayList<Player> players;
 
@@ -14,6 +17,29 @@ public class MyTeam extends Team {
         players = new ArrayList<>();
     }
 
+    public int getOnePointAttempt() {
+        return onePointAttempt;
+    }
+
+    public void setOnePointAttempt(int onePointAttempt) {
+        this.onePointAttempt = onePointAttempt;
+    }
+
+    public int getTwoPointAttempt() {
+        return twoPointAttempt;
+    }
+
+    public void setTwoPointAttempt(int twoPointAttempt) {
+        this.twoPointAttempt = twoPointAttempt;
+    }
+
+    public int getThreePointAttempt() {
+        return threePointAttempt;
+    }
+
+    public void setThreePointAttempt(int threePointAttempt) {
+        this.threePointAttempt = threePointAttempt;
+    }
 
     public int getOnePoint() {
         return onePoint;
