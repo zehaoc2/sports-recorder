@@ -12,11 +12,6 @@ public class GameStats extends AppCompatActivity {
     private static TextView scores;
 
     @Override
-    protected void onStop(Bundle savedInstanceState) {
-        // TODO: Keep track of all games created and save them in shared preferences
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_stats);
