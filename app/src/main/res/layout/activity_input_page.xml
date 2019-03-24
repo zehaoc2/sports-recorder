@@ -7,7 +7,7 @@
     android:id="@+id/setting_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/classic_white"
+    android:background="@color/med_background_gray"
     android:orientation="vertical"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="0dp">
@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="top"
-        android:background="@color/fbutton_color_peter_river" />
+        android:background="@color/dark_background_gray" />
 
     <LinearLayout
         android:id="@+id/matchInfo"
@@ -31,6 +31,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/classic_white"
+            android:textStyle="bold"
             android:hint="Edit Match Name"
             android:textAlignment="center" />
 
@@ -42,13 +44,16 @@
             android:text=":P0"
             android:textStyle="bold" />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/next_period"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_weight="1"
-            android:text="Next Qtr" />
+            android:text="Next Qtr"
+            android:textColor="@android:color/white"
+            fbutton:fButtonColor="@color/light_background_gray"
+            fbutton:shadowEnabled="true" />
 
     </LinearLayout>
 
@@ -69,7 +74,9 @@
             android:layout_marginBottom="8dp"
             android:gravity="center|left"
             android:text="MyTeam"
-            android:textColor="@color/classic_black"
+
+            android:textColor="@color/yellow"
+            android:textStyle="bold"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -109,7 +116,8 @@
             android:layout_marginBottom="8dp"
             android:gravity="center|left"
             android:text="Score: "
-            android:textColor="@color/classic_black"
+            android:textColor="@color/yellow"
+            android:textStyle="bold"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -125,9 +133,12 @@
             android:fontFamily="sans-serif-light"
             android:rotation="-90"
             android:text="Attempted"
+
+            android:textColor="@color/yellow"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/swipe_btn3"
             app:layout_constraintEnd_toStartOf="@+id/swipe_btn2"
             app:layout_constraintStart_toStartOf="parent"
@@ -143,7 +154,9 @@
             android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif-light"
             android:rotation="90"
-            android:text="Made"
+            android:text="Scored"
+            android:textStyle="bold"
+            android:textColor="@color/yellow"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textSize="24sp"
@@ -193,7 +206,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                fbutton:fButtonColor="@color/fbutton_color_peter_river"
+                fbutton:fButtonColor="@color/fbutton_color_sun_flower"
                 fbutton:shadowEnabled="true" />
 
             <info.hoang8f.widget.FButton
@@ -223,7 +236,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                fbutton:fButtonColor="@color/fbutton_color_peter_river"
+                fbutton:fButtonColor="@color/light_background_gray"
                 fbutton:shadowEnabled="true" />
         </LinearLayout>
 
@@ -249,7 +262,6 @@
             android:layout_width="220dp"
             android:layout_height="65dp"
             android:layout_gravity="center_vertical"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -290,14 +302,16 @@
 
             android:minHeight="@dimen/button_min_height"
             android:text="FOUL"
-            android:textColor="@android:color/white"
+            android:textColor="@color/yellow"
+            android:textSize="20dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.64"
-            fbutton:fButtonColor="@color/fbutton_color_peter_river"
+            fbutton:fButtonColor="@color/light_background_gray"
             fbutton:shadowEnabled="true" />
 
 
@@ -317,7 +331,8 @@
             android:layout_marginBottom="8dp"
             android:gravity="center|left"
             android:text="Opponent Team"
-            android:textColor="@color/classic_black"
+            android:textColor="@color/classic_white"
+            android:textStyle="bold"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -355,7 +370,8 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:text="Score: "
-            android:textColor="@color/classic_black"
+            android:textColor="@color/classic_white"
+            android:textStyle="bold"
             android:textSize="20sp"
             android:gravity="center|left"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -387,13 +403,14 @@
 
             android:minHeight="@dimen/button_min_height"
             android:text="ADD"
+            android:textSize="20dp"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.87"
-            fbutton:fButtonColor="@color/fbutton_color_peter_river"
+            fbutton:fButtonColor="@color/light_background_gray"
             fbutton:shadowEnabled="true" />
 
 
@@ -420,8 +437,10 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Last Activity"
-            android:textColor="@color/fbutton_color_peter_river"
-            android:textSize="20sp"
+            android:textColor="@color/yellow"
+            android:textStyle="bold"
+
+            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/undo"
             app:layout_constraintHorizontal_bias="1.0"
@@ -459,7 +478,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
-            fbutton:fButtonColor="@color/fbutton_color_peter_river"
+            fbutton:fButtonColor="@color/light_background_gray"
             fbutton:shadowEnabled="true" />
 
 
@@ -493,7 +512,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
-            fbutton:fButtonColor="@color/fbutton_color_peter_river"
+            fbutton:fButtonColor="@color/light_background_gray"
             fbutton:shadowEnabled="true" />
 
     </android.support.constraint.ConstraintLayout>

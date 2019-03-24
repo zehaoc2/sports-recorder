@@ -57,6 +57,9 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private ArrayList<Player> players;
     private Player player;
 
+    //ArrayList for dynamically assigning color to player
+    private ArrayList<Integer> player_button_colors;
+    private int playerCount;
 
 
     private ArrayList<Integer> periodBtnIds;
@@ -82,12 +85,15 @@ public class InputActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_page);
 
+        initPlayerButtonColor();
+
         matchId = getIntent().getStringExtra("matchId");
         periodBtnIds = new ArrayList<>();
 
 //        periodNo = 1;
 //        periodUniqueId = "Clicking Period ";
-        playerNo = 0;
+
+        playerCount = 0;
         playerUniqueId = "Clicking Player ";
         totalFailAttempts = new HashMap<>();
 
@@ -121,7 +127,11 @@ public class InputActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.player_add){
-            addPlayerButton();
+
+            addPlayerButton(playerCount);
+
+
+
         } else if (v.getId() == R.id.opponent_add) {
             opponentScoreView.setText(String.valueOf("Score: " + ++opponentScore));
             setLastAction(new Action(period.getOpponentTeam().getName(), Type.Score, 1));
@@ -149,6 +159,16 @@ public class InputActivity extends Activity implements View.OnClickListener {
     protected void onPause() {
         super.onPause();
         saveMatchInfo();
+    }
+
+
+    public void initPlayerButtonColor(){
+        player_button_colors = new ArrayList<>();
+        player_button_colors.add(R.color.yellow);
+        player_button_colors.add(R.color.fbutton_color_carrot);
+        player_button_colors.add(R.color.fbutton_color_pumpkin);
+        player_button_colors.add(R.color.fbutton_color_pomegranate);
+
     }
 
     public void showAlertDialog (final View v) {
@@ -250,10 +270,13 @@ public class InputActivity extends Activity implements View.OnClickListener {
     }
 
 
-    private FButton addPlayerButton(){
+    private FButton addPlayerButton(int player_num){
+        if(player_num < 4){
+
+
 
         final FButton myButton = new FButton(this );
-        myButton.setButtonColor(getResources().getColor(R.color.fbutton_color_wet_asphalt));
+        myButton.setButtonColor(getResources().getColor(player_button_colors.get(player_num)));
 
         myButton.setMinHeight(R.dimen.button_min_height);
         myButton.setMinWidth(R.dimen.button_min_width);
@@ -264,7 +287,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
         myButton.setCornerRadius(20);
         myButton.setText("New");
 
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(convertDipToPixels(48,InputActivity.this), convertDipToPixels(48,InputActivity.this) );
+        final LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(convertDipToPixels(48,InputActivity.this), convertDipToPixels(48,InputActivity.this) );
         myButton.setLayoutParams(lp);
 
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) myButton.getLayoutParams();
@@ -280,12 +303,14 @@ public class InputActivity extends Activity implements View.OnClickListener {
         ll.addView(myButton, lp);
         ll.removeView(playerAddBtn);
         ll.addView(playerAddBtn, lp);
+        playerCount++;
 
 //        myButton.setTag(playerUniqueId + playerNo);
-        myButton.setId(playerNo);
-        players.add(new Player("P" + playerNo));
+        myButton.setId(playerCount);
+        players.add(new Player("P" + playerCount));
 
-        myButton.setText("P" + ++playerNo);
+        myButton.setText("P" + playerCount);
+//        myButton.setBackgroundColor(player_button_colors.get(player_num));
 
 
         myButton.setOnClickListener(new View.OnClickListener() {
@@ -295,7 +320,27 @@ public class InputActivity extends Activity implements View.OnClickListener {
             }
         });
 
+        myButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                // TODO Auto-generated method stub
+
+                ((ViewGroup) myButton.getParent()).removeView(myButton);
+                playerCount--;
+                return true;
+            }
+        });
+
+
+
         return myButton;
+
+        }
+//        Toast.makeText(getApplicationContext(), "You can only add up to 5 players!", Toast.LENGTH_LONG);
+        return null;
+
+
+
     }
 
     public static int convertDipToPixels(float dips, Context context)
