@@ -1,7 +1,6 @@
 package com.cs498MD.SportsRecorder;
 
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -75,4 +74,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+
+    @Override
+    protected void onRestart() {
+//        SharedPreferences sharedPreferences = this.getSharedPreferences("matchId", MODE_PRIVATE);
+////        SharedPreferences.Editor editor = sharedPreferences.edit();
+////        editor.putString("matchId", "Match1");
+////        editor.apply();
+//
+//        Map<String, ?> allEntries = sharedPreferences.getAll();
+//        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+//            Log.d("map values", entry.getKey() + ": " + entry.getValue().toString());
+//            matchArray.add(entry.getValue().toString());
+//        }
+//
+//        adapter.clear();
+//
+//        ListView listView = (ListView) findViewById(R.id.matchList);
+//        listView.setEmptyView(findViewById(R.id.noMatches));
+//        listView.setAdapter(adapter);
+
+        super.onRestart();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 }

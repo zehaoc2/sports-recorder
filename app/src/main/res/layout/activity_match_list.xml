@@ -14,8 +14,11 @@
         android:layout_marginBottom="8dp"
         android:clickable="true"
         android:src="@android:drawable/ic_input_add"
+        android:tint="@color/classic_white"
+        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="@dimen/guillotine_actionbar_background_view_height" />
 
 
     <LinearLayout
