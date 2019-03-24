@@ -26,14 +26,13 @@ import java.util.Stack;
 
 import info.hoang8f.widget.FButton;
 
-public class InputActivity extends Activity implements View.OnClickListener{
+public class InputActivity extends Activity implements View.OnClickListener {
 
     // Match Util
     private String matchId;
-    private Match match;
+    private Period period;
     private final String MATCH = "match";
     private TextView lastAction;
-    private FButton undo;
 
     // My Team
     private TextView myNameView;
@@ -50,6 +49,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
     private Button opponentAddBtn;
 
     // Active match info
+    private Match match;
     private int foulCount;
     private int myScore;
     private int opponentScore;
@@ -97,7 +97,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
         endMatchBtn = findViewById(R.id.end_match);
         endMatchBtn.setOnClickListener(this);
 
-        setUpAttpemtsMap();
+        setUpAttemptsMap();
 
         setMatchUtils();
         setMyTeam();
@@ -121,21 +121,22 @@ public class InputActivity extends Activity implements View.OnClickListener{
             addPlayerButton();
         } else if (v.getId() == R.id.opponent_add) {
             opponentScoreView.setText(String.valueOf("Score: " + ++opponentScore));
-            setLastAction(new Action(match.getOpponentTeam().getName(), Type.Score, 1));
+            setLastAction(new Action(period.getOpponentTeam().getName(), Type.Score, 1));
         } else if (v.getId() == R.id.undo && history.size() >= 1) {
             undoLastAction();
         } else if (v.getId() == R.id.foul_btn) {
             if (player != null)
                 player.setFoulCount(player.getFoulCount() + 1);
             foulCount++;
-            setLastAction(new Action(match.getMyTeam().getName(), Type.Foul, null));
+            setLastAction(new Action(period.getMyTeam().getName(), Type.Foul, null));
         } else if (v.getId() == R.id.player_head) {
             player = null;
         } else if (v.getId() == R.id.end_match){
             showAlertDialog(v);
             Log.e("TEST", "Clicked End Mathc");
         } else if (v.getId() == R.id.next_period) {
-
+            match.getPeriods().push(new Period());
+            initPeriodInfo();
         }
     }
 
@@ -170,16 +171,12 @@ public class InputActivity extends Activity implements View.OnClickListener{
         });
 
         alert.create().show();
-
-
-
     }
-
 
     private void undoLastAction() {
         Action action = history.pop();
         if (action.getType() == Type.Score) {
-            if (action.getTeamName().equals(match.getMyTeam().getName())) {
+            if (action.getTeamName().equals(period.getMyTeam().getName())) {
                 myScore -= action.getPoint();
                 myScoreView.setText("Score: " + String.valueOf(myScore));
             } else {
@@ -291,8 +288,6 @@ public class InputActivity extends Activity implements View.OnClickListener{
         });
 
         return myButton;
-
-
     }
 
     public static int convertDipToPixels(float dips, Context context)
@@ -302,8 +297,8 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
     private void setMatchUtils() {
         lastAction = findViewById(R.id.last_action);
-        undo = findViewById(R.id.undo);
-        undo.setOnClickListener(this);
+        findViewById(R.id.undo).setOnClickListener(this);
+        findViewById(R.id.next_period).setOnClickListener(this);
     }
 
     private void setMyTeam() {
@@ -320,7 +315,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
                     }
 
                     myScoreView.setText("Score: " + String.valueOf(++myScore));
-                    setLastAction(new Action(match.getMyTeam().getName(), Type.Score, 1));
+                    setLastAction(new Action(period.getMyTeam().getName(), Type.Score, 1));
 
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -342,7 +337,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
                         }
                     }, 400);
-                    setLastAction(new Action(match.getMyTeam().getName(), Type.Attempt, 1));
+                    setLastAction(new Action(period.getMyTeam().getName(), Type.Attempt, 1));
                     totalFailAttempts.put(1, totalFailAttempts.get(1) + 1);
                     if (player != null) {
                         player.setOnePointMiss(player.getOnePointMiss() + 1);
@@ -363,7 +358,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
                     }
                     myScore += 2;
                     myScoreView.setText("Score: " + String.valueOf(myScore));
-                    setLastAction(new Action(match.getMyTeam().getName(), Type.Score, 2));
+                    setLastAction(new Action(period.getMyTeam().getName(), Type.Score, 2));
 
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -384,7 +379,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
                         }
                     }, 400);
-                    setLastAction(new Action(match.getMyTeam().getName(), Type.Attempt, 2));
+                    setLastAction(new Action(period.getMyTeam().getName(), Type.Attempt, 2));
                     totalFailAttempts.put(2, totalFailAttempts.get(2) + 1);
                     if (player != null) {
                         player.setTwoPointMiss(player.getTwoPointMiss() + 1);
@@ -406,7 +401,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
 
                     myScore += 3;
                     myScoreView.setText("Score: " + String.valueOf(myScore));
-                    setLastAction(new Action(match.getMyTeam().getName(), Type.Score, 3));
+                    setLastAction(new Action(period.getMyTeam().getName(), Type.Score, 3));
 
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -425,7 +420,7 @@ public class InputActivity extends Activity implements View.OnClickListener{
                             swipeAnimationButton3.collapseButton();
                         }
                     }, 400);
-                    setLastAction(new Action(match.getMyTeam().getName(), Type.Attempt, 3));
+                    setLastAction(new Action(period.getMyTeam().getName(), Type.Attempt, 3));
                     totalFailAttempts.put(3, totalFailAttempts.get(3) + 1);
                     if (player != null) {
                         player.setThreePointMiss(player.getThreePointMiss() + 1);
@@ -450,6 +445,10 @@ public class InputActivity extends Activity implements View.OnClickListener{
         opponentAddBtn.setOnClickListener(this);
     }
 
+    private void switchPeroid() {
+
+    }
+
     private void initMatchInfo() {
         SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
         String matchJson = sharedPreferences.getString(matchId, "");
@@ -462,10 +461,16 @@ public class InputActivity extends Activity implements View.OnClickListener{
             match = gson.fromJson(matchJson, Match.class);
         }
 
-        MyTeam myTeam = match.getMyTeam();
-        OpponentTeam opponentTeam = match.getOpponentTeam();
+        initPeriodInfo();
+    }
+
+    private void initPeriodInfo() {
+        period = match.getPeriods().peek();
+
+        MyTeam myTeam = period.getMyTeam();
+        OpponentTeam opponentTeam = period.getOpponentTeam();
         players = myTeam.getPlayers();
-        history = match.getHistory();
+        history = period.getHistory();
         myScore = myTeam.getScore();
         opponentScore = opponentTeam.getScore();
 
@@ -480,25 +485,24 @@ public class InputActivity extends Activity implements View.OnClickListener{
         } else {
             lastAction.setText(history.peek().getMessage());
         }
-
     }
 
     public void saveMatchInfo() {
         SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        match.setHistory(history);
-        MyTeam myTeam = match.getMyTeam();
-        OpponentTeam opponentTeam = match.getOpponentTeam();
+        period.setHistory(history);
+        MyTeam myTeam = period.getMyTeam();
+        OpponentTeam opponentTeam = period.getOpponentTeam();
         myTeam.setScore(myScore);
         opponentTeam.setScore(opponentScore);
 
-        editor.putString(matchId, new Gson().toJson(match, Match.class));
+        editor.putString(matchId, new Gson().toJson(period, Period.class));
 
         editor.apply();
     }
 
-    private void setUpAttpemtsMap(){
+    private void setUpAttemptsMap(){
         totalFailAttempts.put(1,0);
         totalFailAttempts.put(2,0);
         totalFailAttempts.put(3,0);
