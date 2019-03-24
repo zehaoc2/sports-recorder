@@ -6,33 +6,33 @@ public class Player {
     private int onePoint;
     private int twoPoint;
     private int threePoint;
-    private int onePointMiss;
-    private int twoPointMiss;
-    private int threePointMiss;
+    private int onePointAttempt;
+    private int twoPointAttempt;
+    private int threePointAttempt;
     private int foulCount;
 
-    public int getOnePointMiss() {
-        return onePointMiss;
+    public int getOnePointAttempt() {
+        return onePointAttempt;
     }
 
-    public void setOnePointMiss(int onePointMiss) {
-        this.onePointMiss = onePointMiss;
+    public void setOnePointAttempt(int onePointAttempt) {
+        this.onePointAttempt = onePointAttempt;
     }
 
-    public int getTwoPointMiss() {
-        return twoPointMiss;
+    public int getTwoPointAttempt() {
+        return twoPointAttempt;
     }
 
-    public void setTwoPointMiss(int twoPointMiss) {
-        this.twoPointMiss = twoPointMiss;
+    public void setTwoPointAttempt(int twoPointAttempt) {
+        this.twoPointAttempt = twoPointAttempt;
     }
 
-    public int getThreePointMiss() {
-        return threePointMiss;
+    public int getThreePointAttempt() {
+        return threePointAttempt;
     }
 
-    public void setThreePointMiss(int threePointMiss) {
-        this.threePointMiss = threePointMiss;
+    public void setThreePointAttempt(int threePointAttempt) {
+        this.threePointAttempt = threePointAttempt;
     }
 
     public Player () {
