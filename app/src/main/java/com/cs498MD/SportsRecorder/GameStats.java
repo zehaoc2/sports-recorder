@@ -47,23 +47,16 @@ public class GameStats extends AppCompatActivity {
 
         String matchId = getIntent().getStringExtra("matchId");
 
-//        Log.e("sklfjlkasdjklglksjl", matchId);
-
         SharedPreferences sharedPreferences = getSharedPreferences("match", MODE_PRIVATE);
         String matchJson = sharedPreferences.getString(matchId, "");
-
-//        Log.e("sklfjlkasdjklglksjl", matchJson);
 
         Gson gson = new Gson();
         Match match = gson.fromJson(matchJson, Match.class);
         Stack<Period> periods = match.getPeriods();
 
-//        Log.e("sklfjlkasdjklglksjl", "" + periods.size());
-
         int myScore = 0, opponentScore = 0;
         for (int i = 0; i < periods.size(); i++) {
             myScore += periods.get(i).getMyTeam().getScore();
-            Log.e("fuck", "" + myScore);
             opponentScore += periods.get(i).getOpponentTeam().getScore();
         }
 
