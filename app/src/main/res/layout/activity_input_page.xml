@@ -26,14 +26,14 @@
 
 
 
-        <EditText
-            android:id="@+id/matchName"
+        <TextView
+            android:id="@+id/match_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/classic_white"
             android:textStyle="bold"
-            android:hint="Edit Match Name"
+            android:text="Match Name"
             android:textAlignment="center" />
 
         <TextView
@@ -41,7 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=":P0"
+            android:textColor="@color/classic_white"
+            android:text="P0"
             android:textStyle="bold" />
 
         <info.hoang8f.widget.FButton

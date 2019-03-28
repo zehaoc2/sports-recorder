@@ -303,10 +303,9 @@ public class InputActivity extends Activity implements View.OnClickListener {
         ll.addView(myButton, lp);
         ll.removeView(playerAddBtn);
         ll.addView(playerAddBtn, lp);
-        playerCount++;
 
 //        myButton.setTag(playerUniqueId + playerNo);
-        myButton.setId(playerCount);
+        myButton.setId(playerCount++);
         players.add(new Player("P" + playerCount));
 
         myButton.setText("P" + playerCount);
@@ -513,11 +512,17 @@ public class InputActivity extends Activity implements View.OnClickListener {
             match = gson.fromJson(matchJson, Match.class);
         }
 
+        TextView matchName = findViewById(R.id.match_name);
+        matchName.setText(match.getName());
+
         initPeriodInfo();
     }
 
     private void initPeriodInfo() {
         period = match.getPeriods().peek();
+
+        TextView currPeriod = findViewById(R.id.curr_period);
+        currPeriod.setText("P" + (match.getPeriods().size()));
 
         MyTeam myTeam = period.getMyTeam();
         OpponentTeam opponentTeam = period.getOpponentTeam();

@@ -1,10 +1,13 @@
 package com.cs498MD.SportsRecorder;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -14,14 +17,17 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class GameStats extends AppCompatActivity {
+public class GameStats extends AppCompatActivity implements View.OnClickListener {
 
     private static TextView scores;
+    private String matchJson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_stats);
+
+        findViewById(R.id.send).setOnClickListener(this);
 
         scores = findViewById(R.id.score);
         scores.setBackgroundResource(R.drawable.border_bottom);
@@ -48,7 +54,7 @@ public class GameStats extends AppCompatActivity {
         String matchId = getIntent().getStringExtra("matchId");
 
         SharedPreferences sharedPreferences = getSharedPreferences("match", MODE_PRIVATE);
-        String matchJson = sharedPreferences.getString(matchId, "");
+        matchJson = sharedPreferences.getString(matchId, "");
 
         Gson gson = new Gson();
         Match match = gson.fromJson(matchJson, Match.class);
@@ -125,6 +131,20 @@ public class GameStats extends AppCompatActivity {
                 row.addView(tv);
             }
             playerTable.addView(row);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.send) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, matchJson);
+            sendIntent.setType("text/plain");
+
+            if (sendIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(sendIntent);
+            }
         }
     }
 }
