@@ -52,7 +52,8 @@
                     android:divider="#030300"
                     android:gravity="center"
                     android:showDividers="middle"
-                    android:stretchColumns="*">
+                    android:stretchColumns="*"
+                    android:layout_marginStart="8dp">
                     <!--android:background="@color/table_color"-->
 
                 </TableLayout>
@@ -97,7 +98,8 @@
                     android:divider="#030300"
                     android:gravity="bottom"
                     android:showDividers="middle"
-                    android:stretchColumns="*">
+                    android:stretchColumns="*"
+                    android:layout_marginStart="8dp">
 
                 </TableLayout>
             </LinearLayout>

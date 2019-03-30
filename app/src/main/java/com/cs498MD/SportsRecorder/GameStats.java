@@ -2,6 +2,7 @@ package com.cs498MD.SportsRecorder;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,6 +46,8 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
             tv.setPadding(8, 0, 8, 0);
             tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
             tv.setTextSize(20);
+            tv.setTypeface(null, Typeface.BOLD);
+            tv.setBackgroundResource(R.drawable.cell_shape);
 
             if (i < h.length) { tv.setBackgroundResource(R.drawable.cell_shape); }
             scoreHeader.addView(tv);
@@ -100,13 +103,14 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
         TableRow playerHeader = new TableRow(GameStats.this);
         String[] players = {"Bill", "Susan"};
-        String[] points = {"Player", "Total", "1 PT", "2 PT", "3 PT", "Fouls"};
+        String[] points = {"Player", "Total", "1 PT", "2 PT", "3 PT", "1 PT MISS", "2 PT MISS", "3 PT MISS", "Fouls"};
         for (int i = 0; i < points.length; i++) {
             TextView tv = new TextView(GameStats.this);
             tv.setText(points[i]);
             tv.setPadding(8, 0, 8, 0);
             tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
             tv.setTextSize(20);
+            tv.setTypeface(null, Typeface.BOLD);
 
             if (i < points.length) { tv.setBackgroundResource(R.drawable.cell_shape); }
             playerHeader.addView(tv);

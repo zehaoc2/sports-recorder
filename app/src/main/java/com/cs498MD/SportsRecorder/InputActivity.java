@@ -355,8 +355,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
     private void setMyTeam() {
         swipeAnimationButton = (SwipeAnimationButton) findViewById(R.id.swipe_btn);
-
-
+        swipeAnimationButton.setPicture(R.drawable.ic_num1);
         swipeAnimationButton.setOnSwipeAnimationListener(new SwipeAnimationListener() {
             @Override
             public void onSwiped(boolean isRight) {
@@ -401,6 +400,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
         });
 
         swipeAnimationButton2 = (SwipeAnimationButton) findViewById(R.id.swipe_btn2);
+        swipeAnimationButton2.setPicture(R.drawable.num2);
         swipeAnimationButton2.setOnSwipeAnimationListener(new SwipeAnimationListener() {
             @Override
             public void onSwiped(boolean isRight) {
@@ -444,6 +444,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
         });
 
         swipeAnimationButton3 = (SwipeAnimationButton) findViewById(R.id.swipe_btn3);
+        swipeAnimationButton3.setPicture(R.drawable.num3);
         swipeAnimationButton3.setOnSwipeAnimationListener(new SwipeAnimationListener() {
             @Override
             public void onSwiped(boolean isRight) {
