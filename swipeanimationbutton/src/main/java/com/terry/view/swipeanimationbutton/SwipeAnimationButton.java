@@ -1,79 +1,10 @@
-//package com.terry.view.swipeanimationbutton;
-//
-//import android.animation.Animator;
-//import android.animation.AnimatorListenerAdapter;
-//import android.animation.AnimatorSet;
-//import android.animation.ValueAnimator;
-//import android.annotation.SuppressLint;
-//import android.content.Context;
-//import android.content.res.TypedArray;
-//import android.graphics.Bitmap;
-//import android.graphics.drawable.BitmapDrawable;
-//import android.graphics.drawable.Drawable;
-//import android.os.Vibrator;
-//import android.support.v4.content.ContextCompat;
-//import android.util.AttributeSet;
-//import android.util.Log;
-//import android.view.MotionEvent;
-//import android.view.View;
-//import android.view.ViewGroup;
-//import android.view.animation.AccelerateDecelerateInterpolator;
-//import android.widget.ImageView;
-//import android.widget.RelativeLayout;
-//
-//import org.w3c.dom.Text;
-//
-//public class SwipeAnimationButton extends RelativeLayout {
-//
-//    private static final String TAG = "SwipeButton";
-//    private static final boolean RIGHT = true;
-//    private static final boolean LEFT = false;
-//    SwipeAnimationListener mSwipeAnimationListener;
-//    RelativeLayout mBackground;
-//    private ImageView slidingButton;
-//    private float initialX;
-//    private boolean active;
-//    private int initialButtonWidth;
-//
 //    ImageView swipeButton;
 //    TypedArray ta;
 //    Integer drawable = R.drawable.num1;
 //
 //    private Drawable defaultDrawable;
 //    private Drawable defaultBackground;
-//
-//
-//    private Drawable rightSwipeDrawable;
-//    private Drawable rightSwipeBackground;
-//
-//    private Drawable leftSwipeDrawable;
-//    private Drawable leftSwipeBackground;
-//
-//    private Drawable basketballIcon;
-//
-//    private long mDuration;
-//    long[] mVibratePattern = new long[]{0, 300};
-//    Vibrator mVibrate;
-//
-//    public SwipeAnimationButton(Context context) {
-//        super(context);
-//        init(context, null, -1, -1);
-//    }
-//
-//    public SwipeAnimationButton(Context context, AttributeSet attrs) {
-//        super(context, attrs);
-//        init(context, attrs, -1, -1);
-//    }
-//
-//    public SwipeAnimationButton(Context context, AttributeSet attrs, int defStyleAttr) {
-//        super(context, attrs, defStyleAttr);
-//        init(context, attrs, defStyleAttr, -1);
-//    }
-//
-//    public void setOnSwipeAnimationListener(SwipeAnimationListener swipeAnimationListener) {
-//        this.mSwipeAnimationListener = swipeAnimationListener;
-//    }
-//
+
 //    public void setPicture(Integer picture) {
 //        Drawable newDrawable = ContextCompat.getDrawable(getContext(), ta.getInteger(R.styleable.SwipeAnimationButton_defaultBackground, picture));
 //
@@ -331,6 +262,9 @@ public class SwipeAnimationButton extends RelativeLayout {
     private boolean active;
     private int initialButtonWidth;
 
+    private TypedArray ta;
+    private Integer ic_num = R.drawable.ic_num1;
+
     private Drawable defaultDrawable;
     private Drawable defaultBackground;
 
@@ -364,19 +298,18 @@ public class SwipeAnimationButton extends RelativeLayout {
     }
 
     public void setPicture(Integer picture) {
-//        Drawable newDrawable = ContextCompat.getDrawable(getContext(), ta.getInteger(R.styleable.SwipeAnimationButton_defaultBackground, picture));
+        this.ic_num = picture;
 
-//        Bitmap bitmap = ((BitmapDrawable) newDrawable).getBitmap();
-//        Drawable scaledDrawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 25, 25, true));
-
-//        swipeButton.setImageDrawable(newDrawable);
+        Drawable newDrawable = ContextCompat.getDrawable(getContext(), ta.getInteger(R.styleable.SwipeAnimationButton_defaultBackground, this.ic_num));
+        defaultDrawable = newDrawable;
+        slidingButton.setImageDrawable(newDrawable);
     }
 
     public void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.SwipeAnimationButton);
+        ta = getContext().obtainStyledAttributes(attrs, R.styleable.SwipeAnimationButton);
 
         defaultBackground = ContextCompat.getDrawable(context, ta.getInteger(R.styleable.SwipeAnimationButton_defaultBackground, R.drawable.shape_button_neutral));
-        defaultDrawable = ContextCompat.getDrawable(context, ta.getInteger(R.styleable.SwipeAnimationButton_defaultDrawable, R.drawable.ic_num1));
+        defaultDrawable = ContextCompat.getDrawable(context, ta.getInteger(R.styleable.SwipeAnimationButton_defaultDrawable, this.ic_num));
 
         mVibrate = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         mBackground = new RelativeLayout(context);
