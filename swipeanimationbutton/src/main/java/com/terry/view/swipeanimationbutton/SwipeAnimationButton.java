@@ -279,5 +279,4 @@ public class SwipeAnimationButton extends RelativeLayout {
         animatorSet.play(positionAnimator);
         animatorSet.start();
     }
-
 }
