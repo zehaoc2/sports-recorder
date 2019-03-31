@@ -189,6 +189,7 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
                 if (j == 0) {
                     tv.setText(player.getName());
                 } else {
+                    // TODO: Extract player info from shared preferences
                     tv.setText("0");
                 }
                 row.addView(tv);
