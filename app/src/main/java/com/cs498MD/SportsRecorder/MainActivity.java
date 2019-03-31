@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayList<String> matchIdArray = new ArrayList<>();
     private MyCustomAdapter adapter;
 
-//    private String MATCH = "matchId";
+    private String MATCH = "match";
 
     private boolean isNumeric(String num) {
         return num.matches("[0-9]+");
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         android.support.v7.app.ActionBar bar = getSupportActionBar();
         bar.setTitle("Matches");
 
-        SharedPreferences sharedPreferences = getSharedPreferences("match", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
         Gson gson = new Gson();
 
         Map<String, ?> allEntries = sharedPreferences.getAll();

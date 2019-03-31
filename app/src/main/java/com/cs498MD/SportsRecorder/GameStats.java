@@ -34,6 +34,7 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
     private TableLayout playerTable;
 
     private static String[] SCORE_HEADER = {"Team", "Total", "QTR 1", "QTR 2", "QTR 3", "QTR 4", "QTR 4+"};
+    private static String[] TEAM_HEADER = {"Total", "1 PT", "2 PT", "3 PT", "1 PT Miss", "2 PT Miss", "3 PT Miss", "Foul"};
     private static String[] PLAYER_HEADER = {"Player", "Total", "1 PT", "2 PT", "3 PT", "1 PT Miss", "2 PT Miss", "3 PT Miss", "Foul"};
 
     private void formatHeaderText(TextView tv, String text) {
@@ -100,6 +101,10 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
         Gson gson = new Gson();
         match = gson.fromJson(matchJson, Match.class);
+        myTeam = gson.fromJson(matchJson, MyTeam.class);
+        oppTeam = gson.fromJson(matchJson, OpponentTeam.class);
+
+        Log.d("TEAM DEBUG", myTeam.getName());
 
         populateScoreTable();
         populatePlayerTable();
@@ -161,14 +166,20 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
     }
 
     private void populatePlayerTable() {
-        // TODO: Only generate this table if there are players to keep track of
+        ArrayList<Player> players = myTeam.getPlayers();
+
+        // Only create Players Table if there are players to keep track of
+        if (players.isEmpty()) {
+            TextView playerStatsTitle = findViewById(R.id.playerStatsTitle);
+            playerStatsTitle.setText("");
+            return;
+        }
         createHeaderRow(PLAYER_TABLE);
 
-        // TODO: Grab players from Shared Preferences
-        String[] players = {"Bill", "Susan"};
-
-        for (int i=0; i < players.length; i++) {
+        for (int i=0; i < players.size(); i++) {
             TableRow row = new TableRow(GameStats.this);
+            Player player = players.get(i);
+
             for (int j = 0; j < PLAYER_HEADER.length; j++) {
                 TextView tv = new TextView(GameStats.this);
                 formatTableText(tv);
@@ -176,7 +187,7 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
                 if (i < PLAYER_HEADER.length) { tv.setBackgroundResource(R.drawable.cell_shape); }
 
                 if (j == 0) {
-                    tv.setText(players[i]);
+                    tv.setText(player.getName());
                 } else {
                     tv.setText("0");
                 }
