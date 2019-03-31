@@ -270,4 +270,11 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
             playerTable.addView(row);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }

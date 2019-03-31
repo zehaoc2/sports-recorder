@@ -33,6 +33,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private Period period;
     private final String MATCH = "match";
     private TextView lastAction;
+    private TextView totalScore;
 
     // My Team
     private TextView myNameView;
@@ -49,6 +50,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private Button opponentAddBtn;
 
     // Active match info
+    private int totalMyScore = 0;
+    private int totalOpponentScore = 0;
     private Match match;
     private int foulCount;
     private int myScore;
@@ -118,6 +121,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
         endMatchBtn = findViewById(R.id.end_match);
         endMatchBtn.setOnClickListener(this);
 
+        totalScore = findViewById(R.id.total_score);
+
         setUpAttemptsMap();
 
         setMatchUtils();
@@ -133,6 +138,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
         //set dynamic add button for player
         playerAddBtn = findViewById(R.id.player_add);
         playerAddBtn.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -144,6 +151,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
 
         } else if (v.getId() == R.id.opponent_add) {
+            totalScore.setText(totalMyScore + " : " + ++totalOpponentScore);
+
             opponentScoreView.setText(String.valueOf("Score: " + ++opponentScore));
             setLastAction(new Action(period.getOpponentTeam().getName(), Type.Score, 1));
         } else if (v.getId() == R.id.undo && history.size() >= 1) {
@@ -213,9 +222,15 @@ public class InputActivity extends Activity implements View.OnClickListener {
         if (action.getType() == Type.Score) {
             if (action.getTeamName().equals(period.getMyTeam().getName())) {
                 myScore -= action.getPoint();
+                totalMyScore -= action.getPoint();
+
+                totalScore.setText(totalMyScore + " : " + totalOpponentScore);
                 myScoreView.setText("Score: " + String.valueOf(myScore));
             } else {
+                totalOpponentScore -= action.getPoint();
                 opponentScore -= action.getPoint();
+
+                totalScore.setText(totalMyScore + " : " + totalOpponentScore);
                 opponentScoreView.setText("Score: " + String.valueOf(opponentScore));
             }
 
@@ -373,6 +388,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
                         player.setOnePoint(player.getOnePoint() + 1);
                     }
 
+                    totalScore.setText(++totalMyScore + " : " + totalOpponentScore);
+
                     myScoreView.setText("Score: " + String.valueOf(++myScore));
                     onePoint++;
                     setLastAction(new Action(period.getMyTeam().getName(), Type.Score, 1));
@@ -417,6 +434,11 @@ public class InputActivity extends Activity implements View.OnClickListener {
                         player.setScore(player.getScore() + 2);
                         player.setTwoPoint(player.getTwoPoint() + 1);
                     }
+
+                    totalMyScore += 2;
+
+                    totalScore.setText(totalMyScore + " : " + totalOpponentScore);
+
                     myScore += 2;
                     twoPoint++;
                     myScoreView.setText("Score: " + String.valueOf(myScore));
@@ -461,6 +483,10 @@ public class InputActivity extends Activity implements View.OnClickListener {
                         player.setScore(player.getScore() + 3);
                         player.setThreePoint(player.getThreePoint() + 1);
                     }
+
+                    totalMyScore += 3;
+
+                    totalScore.setText(totalMyScore + " : " + totalOpponentScore);
 
                     myScore += 3;
                     threePoint++;
@@ -522,7 +548,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
         }
 
         TextView matchName = findViewById(R.id.match_name);
-        matchName.setText(match.getName());
+        matchName.setText(match.getName() + " : Period" + (match.getPeriods().size() + 1));
+        totalScore.setText(totalMyScore + " : " + totalOpponentScore);
 
         initPeriodInfo();
     }
@@ -530,8 +557,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private void initPeriodInfo() {
         period = match.getPeriods().peek();
 
-        TextView currPeriod = findViewById(R.id.curr_period);
-        currPeriod.setText("P" + (match.getPeriods().size()));
+        TextView matchName = findViewById(R.id.match_name);
+        matchName.setText(match.getName() + " : Period " + (match.getPeriods().size()));
 
         MyTeam myTeam = period.getMyTeam();
         OpponentTeam opponentTeam = period.getOpponentTeam();
