@@ -31,6 +31,7 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
     private OpponentTeam oppTeam;
 
     private TableLayout scoreTable;
+    private TableLayout teamTable;
     private TableLayout playerTable;
 
     private static String[] SCORE_HEADER = {"Team", "Total", "QTR 1", "QTR 2", "QTR 3", "QTR 4", "QTR 4+"};
@@ -67,6 +68,19 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
                 }
                 scoreTable.addView(scoreHeader);
                 break;
+            case 1:
+                TableRow teamHeader = new TableRow(GameStats.this);
+
+                for (int i = 0; i < TEAM_HEADER.length; i++) {
+                    TextView tv = new TextView(GameStats.this);
+                    formatHeaderText(tv, TEAM_HEADER[i]);
+
+                    if (i < TEAM_HEADER.length) { tv.setBackgroundResource(R.drawable.cell_shape); }
+                    teamHeader.addView(tv);
+                }
+
+                teamTable.addView(teamHeader);
+                break;
             case 2:
                 TableRow playerHeader = new TableRow(GameStats.this);
 
@@ -93,6 +107,7 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
         scores.setBackgroundResource(R.drawable.border_bottom);
 
         scoreTable = findViewById(R.id.overallStats);
+        teamTable = findViewById(R.id.teamStats);
         playerTable = findViewById(R.id.playerStats);
 
         String matchId = getIntent().getStringExtra("matchId");
@@ -107,6 +122,7 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
         Log.d("TEAM DEBUG", myTeam.getName());
 
         populateScoreTable();
+        populateTeamTable();
         populatePlayerTable();
     }
 
@@ -163,6 +179,10 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
             }
             scoreTable.addView(row);
         }
+    }
+
+    private void populateTeamTable() {
+        createHeaderRow(TEAM_TABLE);
     }
 
     private void populatePlayerTable() {
