@@ -102,7 +102,7 @@ public class SwipeAnimationButton extends RelativeLayout {
 
         mDuration = ta.getInteger(R.styleable.SwipeAnimationButton_duration, 200);
         slidingButton.setImageDrawable(defaultDrawable);
-        slidingButton.setPadding(20, 40, 20, 40);
+        slidingButton.setPadding(20, 60, 20, 60);
 
         LayoutParams layoutParamsButton = new LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -212,7 +212,7 @@ public class SwipeAnimationButton extends RelativeLayout {
                     slidingButton.setImageDrawable(leftSwipeDrawable);
                     slidingButton.setBackground(leftSwipeBackground);
                 }
-                slidingButton.setPadding(20, 40, 20, 40);
+                slidingButton.setPadding(20, 60, 20, 60);
             }
         });
 
@@ -250,7 +250,7 @@ public class SwipeAnimationButton extends RelativeLayout {
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 active = false;
-                slidingButton.setPadding(20, 40, 20, 40);
+                slidingButton.setPadding(20, 60, 20, 60);
 
                 slidingButton.setImageDrawable(defaultDrawable);
                 slidingButton.setBackground(defaultBackground);
