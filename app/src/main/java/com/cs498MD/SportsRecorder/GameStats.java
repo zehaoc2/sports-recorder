@@ -183,6 +183,31 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
     private void populateTeamTable() {
         createHeaderRow(TEAM_TABLE);
+        Integer onePoint = myTeam.getOnePoint();
+        Integer twoPoint = myTeam.getTwoPoint();
+        Integer threePoint = myTeam.getThreePoint();
+
+        Integer total = onePoint + (twoPoint*2) + (threePoint*3);
+
+        Integer onePA = myTeam.getOnePointAttempt();
+        Integer twoPA = myTeam.getTwoPointAttempt();
+        Integer threePA = myTeam.getThreePointAttempt();
+
+        Integer numFouls = myTeam.getFoulCount();
+
+        Integer[] values = {total, onePoint, twoPoint, threePoint, onePA, twoPA, threePA, numFouls};
+
+        TableRow row = new TableRow(GameStats.this);
+        for (int i = 0; i < TEAM_HEADER.length; i++) {
+            TextView tv = new TextView(GameStats.this);
+            formatTableText(tv);
+            tv.setText(values[i].toString());
+            if (i < TEAM_HEADER.length) { tv.setBackgroundResource(R.drawable.cell_shape); }
+
+            row.addView(tv);
+        }
+
+        teamTable.addView(row);
     }
 
     private void populatePlayerTable() {
@@ -203,8 +228,9 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
             for (int j = 0; j < PLAYER_HEADER.length; j++) {
                 TextView tv = new TextView(GameStats.this);
                 formatTableText(tv);
+                tv.setBackgroundResource(R.drawable.cell_shape);
 
-                if (i < PLAYER_HEADER.length) { tv.setBackgroundResource(R.drawable.cell_shape); }
+//                if (i < PLAYER_HEADER.length) { tv.setBackgroundResource(R.drawable.cell_shape); }
 
                 if (j == 0) {
                     tv.setText(player.getName());
