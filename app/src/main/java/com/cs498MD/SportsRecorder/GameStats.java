@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -32,8 +31,8 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
     private Integer[] periodScores = {0, 0, 0, 0, 0, 0};
     private Integer[] gameBreakDown = {0, 0, 0, 0, 0, 0, 0, 0};
-
     private Integer[] oppPeriodScores = {0, 0, 0, 0, 0, 0};
+    private Map<String, Player> playerMap = new HashMap<>();
 
     private static TextView scores;
     private String matchJson;
@@ -120,7 +119,6 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
         teamTable = findViewById(R.id.teamStats);
         playerTable = findViewById(R.id.playerStats);
 
-
         String matchId = getIntent().getStringExtra("matchId");
         SharedPreferences sharedPreferences = getSharedPreferences("match", MODE_PRIVATE);
         matchJson = sharedPreferences.getString(matchId, "");
@@ -132,8 +130,6 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 //        private static String[] TEAM_HEADER = {"Total", "1 PT", "2 PT", "3 PT", "1 PT Miss", "2 PT Miss", "3 PT Miss", "Foul"};
 //        private static String[] PLAYER_HEADER = {"Player", "Total", "1 PT", "2 PT", "3 PT", "1 PT Miss", "2 PT Miss", "3 PT Miss", "Foul"};
 
-
-        Map<String, Player> playerMap = new HashMap<>();
         int periodCount = 1;
 
         Stack<Period> periods = match.getPeriods();
@@ -163,8 +159,12 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
             // PLAYER STUFF!!
             ArrayList<Player> players = myTeam.getPlayers();
+            Log.d("ARRAY DEBUG", Integer.toString(players.size()));
+
             for (int p = 0; p < players.size(); p++) {
                 Player player = players.get(p);
+                Log.d("MAP DEBUG", player.getName());
+
                 if (playerMap.containsKey(player.getName())) {
                     Player updatePlayer = playerMap.get(player.getName());
 
@@ -189,7 +189,7 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
         populateScoreTable();
         populateTeamTable();
-//        populatePlayerTable();
+        populatePlayerTable();
     }
 
     @Override
@@ -246,19 +246,50 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
         teamTable.addView(row);
     }
-//
-//    private void populatePlayerTable() {
-//        ArrayList<Player> players = myTeam.getPlayers();
-//
-//        // Only create Players Table if there are players to keep track of
-//        if (players.isEmpty()) {
-//            TextView playerStatsTitle = findViewById(R.id.playerStatsTitle);
-//            playerStatsTitle.setText("");
-//            return;
-//        }
-//        createHeaderRow(PLAYER_TABLE);
-//
-//        for (int i=0; i < players.size(); i++) {
+
+    private void populatePlayerTable() {
+        // Only create Players Table if there are players to keep track of
+        if (playerMap.isEmpty()) {
+            TextView playerStatsTitle = findViewById(R.id.playerStatsTitle);
+            playerStatsTitle.setText("");
+            return;
+        }
+
+        createHeaderRow(PLAYER_TABLE);
+        for (Map.Entry<String, Player> entry : playerMap.entrySet()) {
+            Log.d("DEBUG PLAYER", "Key = " + entry.getKey() + ", Value = " + entry.getValue());
+
+            String playerName = entry.getKey();
+            Player player = entry.getValue();
+
+            Integer[] values = { player.getScore(),
+                                 player.getOnePoint(),
+                                 player.getTwoPoint(),
+                                 player.getThreePoint(),
+                                 player.getOnePointAttempt(),
+                                 player.getTwoPointAttempt(),
+                                 player.getThreePointAttempt(),
+                                 player.getFoulCount()
+            };
+
+            TableRow row = new TableRow(GameStats.this);
+            TextView tv = new TextView(GameStats.this);
+            formatTableText(tv);
+            tv.setText(playerName);
+            row.addView(tv);
+
+            for (int i = 0; i < values.length; i++) {
+               tv = new TextView(GameStats.this);
+               formatTableText(tv);
+               tv.setText(values[i].toString());
+
+               row.addView(tv);
+            }
+
+            playerTable.addView(row);
+        }
+
+//        for (int i=0; i < playerMap.size(); i++) {
 //            TableRow row = new TableRow(GameStats.this);
 //            Player player = players.get(i);
 //
@@ -279,5 +310,5 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 //            }
 //            playerTable.addView(row);
 //        }
-//    }
+    }
 }

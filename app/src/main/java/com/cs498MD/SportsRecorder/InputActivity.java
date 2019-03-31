@@ -572,6 +572,9 @@ public class InputActivity extends Activity implements View.OnClickListener {
         myTeam.setThreePointAttempt(totalFailAttempts.get(3));
         myTeam.setFoulCount(foulCount);
 
+        Log.d("INPUT DEBUG PLAYERS", players.toString());
+        myTeam.setPlayers(players);
+
         editor.putString(matchId, new Gson().toJson(match, Match.class));
 
         editor.commit();
