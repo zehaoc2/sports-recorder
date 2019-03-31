@@ -129,8 +129,8 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
         Stack<Period> periods = match.getPeriods();
 //        Log.d("PRINT MATCH DEBUG", );
-        while (!periods.empty()) {
-            Period period = periods.pop();
+        for (int i = 0; i < periods.size(); i++){
+            Period period = periods.get(i);
 
             OpponentTeam oppTeam = period.getOpponentTeam();
             oppPeriodScores[0] += oppTeam.getScore();

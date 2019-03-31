@@ -535,7 +535,14 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
         MyTeam myTeam = period.getMyTeam();
         OpponentTeam opponentTeam = period.getOpponentTeam();
-        players = myTeam.getPlayers();
+        if (players == null) {
+            players = myTeam.getPlayers();
+        }
+
+        onePoint = 0;
+        twoPoint = 0;
+        threePoint = 0;
+
         history = period.getHistory();
         myScore = myTeam.getScore();
         opponentScore = opponentTeam.getScore();
