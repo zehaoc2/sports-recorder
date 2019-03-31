@@ -7,9 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -18,8 +16,6 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
@@ -125,10 +121,6 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
         Gson gson = new Gson();
         match = gson.fromJson(matchJson, Match.class);
-
-//        private static String[] SCORE_HEADER = {"Team", "Total", "QTR 1", "QTR 2", "QTR 3", "QTR 4", "QTR 4+"};
-//        private static String[] TEAM_HEADER = {"Total", "1 PT", "2 PT", "3 PT", "1 PT Miss", "2 PT Miss", "3 PT Miss", "Foul"};
-//        private static String[] PLAYER_HEADER = {"Player", "Total", "1 PT", "2 PT", "3 PT", "1 PT Miss", "2 PT Miss", "3 PT Miss", "Foul"};
 
         int periodCount = 1;
 
@@ -288,27 +280,5 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
             playerTable.addView(row);
         }
-
-//        for (int i=0; i < playerMap.size(); i++) {
-//            TableRow row = new TableRow(GameStats.this);
-//            Player player = players.get(i);
-//
-//            for (int j = 0; j < PLAYER_HEADER.length; j++) {
-//                TextView tv = new TextView(GameStats.this);
-//                formatTableText(tv);
-//                tv.setBackgroundResource(R.drawable.cell_shape);
-//
-////                if (i < PLAYER_HEADER.length) { tv.setBackgroundResource(R.drawable.cell_shape); }
-//
-//                if (j == 0) {
-//                    tv.setText(player.getName());
-//                } else {
-//                    // TODO: Extract player info from shared preferences
-//                    tv.setText("0");
-//                }
-//                row.addView(tv);
-//            }
-//            playerTable.addView(row);
-//        }
     }
 }
