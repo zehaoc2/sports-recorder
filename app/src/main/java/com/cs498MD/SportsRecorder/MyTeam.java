@@ -15,6 +15,10 @@ public class MyTeam extends Team {
     public MyTeam() {
         name = "My Team";
         players = new ArrayList<>();
+
+        onePoint = twoPoint = threePoint = 0;
+        onePointAttempt = twoPointAttempt = threePointAttempt = 0;
+        foulCount = 0;
     }
 
     public int getOnePointAttempt() {
