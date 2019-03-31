@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -31,17 +30,17 @@ public class SwipeAnimationButton extends RelativeLayout {
     private boolean active;
     private int initialButtonWidth;
 
+    private TypedArray ta;
+    private Integer ic_num = R.drawable.ic_num1;
+
     private Drawable defaultDrawable;
     private Drawable defaultBackground;
-
 
     private Drawable rightSwipeDrawable;
     private Drawable rightSwipeBackground;
 
     private Drawable leftSwipeDrawable;
     private Drawable leftSwipeBackground;
-
-    private Drawable basketballIcon;
 
     private long mDuration;
     long[] mVibratePattern = new long[]{0, 300};
@@ -66,15 +65,19 @@ public class SwipeAnimationButton extends RelativeLayout {
         this.mSwipeAnimationListener = swipeAnimationListener;
     }
 
-    @SuppressLint("ResourceAsColor")
+    public void setPicture(Integer picture) {
+        this.ic_num = picture;
+
+        Drawable newDrawable = ContextCompat.getDrawable(getContext(), ta.getInteger(R.styleable.SwipeAnimationButton_defaultBackground, this.ic_num));
+        defaultDrawable = newDrawable;
+        slidingButton.setImageDrawable(newDrawable);
+    }
+
     public void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.SwipeAnimationButton);
+        ta = getContext().obtainStyledAttributes(attrs, R.styleable.SwipeAnimationButton);
 
-        defaultBackground = ContextCompat.getDrawable(context, ta.getInteger(R.styleable.SwipeAnimationButton_defaultBackground, R.drawable.shape_rounded));
-//        defaultDrawable = ContextCompat.getDrawable(context, ta.getInteger(R.styleable.SwipeAnimationButton_defaultDrawable, R.drawable.sentimental_neutral));
-
-
-        basketballIcon = (Drawable) context.getDrawable(R.drawable.ic_basketball);
+        defaultBackground = ContextCompat.getDrawable(context, ta.getInteger(R.styleable.SwipeAnimationButton_defaultBackground, R.drawable.shape_button_neutral));
+        defaultDrawable = ContextCompat.getDrawable(context, ta.getInteger(R.styleable.SwipeAnimationButton_defaultDrawable, this.ic_num));
 
         mVibrate = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         mBackground = new RelativeLayout(context);
@@ -92,14 +95,14 @@ public class SwipeAnimationButton extends RelativeLayout {
         final ImageView swipeButton = new ImageView(context);
         this.slidingButton = swipeButton;
 
-        rightSwipeDrawable = ContextCompat.getDrawable(getContext(), ta.getInteger(R.styleable.SwipeAnimationButton_rightSwipeDrawable, R.drawable.sentimental_satisfied));
+        rightSwipeDrawable = ContextCompat.getDrawable(getContext(), ta.getInteger(R.styleable.SwipeAnimationButton_rightSwipeDrawable, R.drawable.ic_basketball));
         rightSwipeBackground = ContextCompat.getDrawable(context, ta.getInteger(R.styleable.SwipeAnimationButton_defaultBackground, R.drawable.shape_button));
-        leftSwipeDrawable = ContextCompat.getDrawable(getContext(), ta.getInteger(R.styleable.SwipeAnimationButton_leftSwipeDrawable, R.drawable.sentimental_dissatisfied));
+        leftSwipeDrawable = ContextCompat.getDrawable(getContext(), ta.getInteger(R.styleable.SwipeAnimationButton_leftSwipeDrawable, R.drawable.ic_basketball));
         leftSwipeBackground = ContextCompat.getDrawable(getContext(), ta.getInteger(R.styleable.SwipeAnimationButton_leftSwipeBackground, R.drawable.gradient_radius_grey));
 
         mDuration = ta.getInteger(R.styleable.SwipeAnimationButton_duration, 200);
-        slidingButton.setImageDrawable(basketballIcon);
-        slidingButton.setPadding(66, 60, 66, 60);
+        slidingButton.setImageDrawable(defaultDrawable);
+        slidingButton.setPadding(20, 40, 20, 40);
 
         LayoutParams layoutParamsButton = new LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -108,9 +111,8 @@ public class SwipeAnimationButton extends RelativeLayout {
         layoutParamsButton.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
         layoutParamsButton.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
 
-        swipeButton.setImageDrawable(basketballIcon);
+        swipeButton.setImageDrawable(defaultDrawable);
         swipeButton.setBackground(defaultBackground);
-
 
         addView(swipeButton, layoutParamsButton);
         setOnTouchListener(getButtonTouchListener());
@@ -210,7 +212,7 @@ public class SwipeAnimationButton extends RelativeLayout {
                     slidingButton.setImageDrawable(leftSwipeDrawable);
                     slidingButton.setBackground(leftSwipeBackground);
                 }
-                slidingButton.setPadding(66, 70, 66, 70);
+                slidingButton.setPadding(20, 40, 20, 40);
             }
         });
 
@@ -248,9 +250,9 @@ public class SwipeAnimationButton extends RelativeLayout {
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 active = false;
-                slidingButton.setPadding(66, 60, 66, 60);
+                slidingButton.setPadding(20, 40, 20, 40);
 
-                slidingButton.setImageDrawable(basketballIcon);
+                slidingButton.setImageDrawable(defaultDrawable);
                 slidingButton.setBackground(defaultBackground);
             }
         });
@@ -277,5 +279,4 @@ public class SwipeAnimationButton extends RelativeLayout {
         animatorSet.play(positionAnimator);
         animatorSet.start();
     }
-
 }

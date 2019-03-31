@@ -6,6 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:backgroundTint="@color/fbutton_default_color"
+        app:elevation="0dp"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -52,12 +66,64 @@
                     android:divider="#030300"
                     android:gravity="center"
                     android:showDividers="middle"
-                    android:stretchColumns="*">
+                    android:stretchColumns="*"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp">
                     <!--android:background="@color/table_color"-->
 
                 </TableLayout>
             </LinearLayout>
         </HorizontalScrollView>
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="36dp" />
+
+        <TextView
+            android:id="@+id/teamStatsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_bottom"
+            android:fontFamily="sans-serif-condensed-light"
+            android:lineSpacingExtra="14sp"
+            android:text="Team Stats"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/classic_black"
+            android:textSize="30sp"
+            android:typeface="sans" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TableLayout
+                    android:id="@+id/teamStats"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:divider="#030300"
+                    android:gravity="center"
+                    android:showDividers="middle"
+                    android:stretchColumns="*"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp">
+
+                </TableLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+
 
         <Space
             android:layout_width="match_parent"
@@ -97,22 +163,12 @@
                     android:divider="#030300"
                     android:gravity="bottom"
                     android:showDividers="middle"
-                    android:stretchColumns="*">
-
+                    android:stretchColumns="*"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp">
                 </TableLayout>
             </LinearLayout>
         </HorizontalScrollView>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/send"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:clickable="true"
-            app:backgroundTint="@color/fbutton_default_color"
-            app:elevation="0dp"
-            app:fabSize="normal"
-            app:srcCompat="@android:drawable/ic_dialog_email" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

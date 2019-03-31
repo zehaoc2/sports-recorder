@@ -23,16 +23,18 @@ import java.util.ArrayList;
 import static android.content.Context.MODE_PRIVATE;
 
 public class MyCustomAdapter extends BaseAdapter {
-    private ArrayList<String> list = new ArrayList<String>();
+    private ArrayList<String> list;
+    private ArrayList<String> matchIdList;
     private Context context;
     private Activity activity;
 
     private String MATCH = "match";
 
-    public MyCustomAdapter(ArrayList<String> list, Context context, Activity activity) {
+    public MyCustomAdapter(ArrayList<String> list, ArrayList<String> matchIdList, Context context, Activity activity) {
         this.list = list;
         this.context = context;
         this.activity = activity;
+        this.matchIdList = matchIdList;
     }
 
     @Override
@@ -50,26 +52,13 @@ public class MyCustomAdapter extends BaseAdapter {
         return 0;
         //just return 0 if your list items do not have an Id variable.
     }
+
+    public String getMatchId(int pos) {
+        return matchIdList.get(pos);
+    }
     
     public void clear() {
         list.clear();
-    }
-
-    private Period getMatch(String matchId) {
-        // TODO: Need to collect matchId from matchArray... change this later
-        SharedPreferences sharedPreferences = this.activity.getSharedPreferences("matchId", MODE_PRIVATE);
-        String matchJson = sharedPreferences.getString(matchId, "");
-
-        if (matchJson == "" | matchJson == null) {
-            Log.d("DEBUG", "Null matchJson");
-        } else {
-            Log.d("DEBUG", matchJson);
-        }
-
-        Gson gson = new Gson();
-        Period match = gson.fromJson(matchJson, Period.class);
-
-        return match;
     }
 
     @Override
@@ -79,10 +68,6 @@ public class MyCustomAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.match_list_layout, null);
         }
-
-        String matchId = "Match1";
-        Period m = getMatch(matchId);
-//        Log.d("DEBUG", m.name);
 
         //Handle TextView and display string from your list
         TextView listItemText = (TextView)view.findViewById(R.id.match_item_string);
@@ -101,7 +86,11 @@ public class MyCustomAdapter extends BaseAdapter {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case DialogInterface.BUTTON_POSITIVE:
+                                SharedPreferences sharedPreferences = context.getSharedPreferences(MATCH, MODE_PRIVATE);
+                                sharedPreferences.edit().remove(getMatchId(position)).apply();
+
                                 list.remove(position); //or some other task
+                                matchIdList.remove(position);
                                 notifyDataSetChanged();
 
                             case DialogInterface.BUTTON_NEGATIVE:
@@ -118,6 +107,7 @@ public class MyCustomAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), GameStats.class);
+                intent.putExtra("matchId", matchIdList.get(position));
                 v.getContext().startActivity(intent);
             }
         });
