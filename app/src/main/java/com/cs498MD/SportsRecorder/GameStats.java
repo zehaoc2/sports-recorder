@@ -43,7 +43,7 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
         for (int i = 0; i < 7; i++) {
             TextView tv = new TextView(GameStats.this);
             tv.setText(h[i]);
-            tv.setPadding(8, 0, 8, 0);
+            tv.setPadding(32, 0, 32, 0);
             tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
             tv.setTextSize(20);
             tv.setTypeface(null, Typeface.BOLD);
@@ -61,6 +61,7 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
         Gson gson = new Gson();
         Match match = gson.fromJson(matchJson, Match.class);
+
         Stack<Period> periods = match.getPeriods();
 
         int myScore = 0, opponentScore = 0;
@@ -76,7 +77,7 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
             for (int j = 0; j < h.length; j++) {
                 TextView tv = new TextView(GameStats.this);
                 tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-                tv.setPadding(8, 0, 8, 0);
+                tv.setPadding(32, 0, 32, 0);
                 tv.setTextSize(20);
 
                 if (i < h.length) { tv.setBackgroundResource(R.drawable.cell_shape); }
@@ -103,11 +104,13 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
         TableRow playerHeader = new TableRow(GameStats.this);
         String[] players = {"Bill", "Susan"};
+//        Player players = matchJson.ge
+//        String[] players =
         String[] points = {"Player", "Total", "1 PT", "2 PT", "3 PT", "1 PT MISS", "2 PT MISS", "3 PT MISS", "Fouls"};
         for (int i = 0; i < points.length; i++) {
             TextView tv = new TextView(GameStats.this);
             tv.setText(points[i]);
-            tv.setPadding(8, 0, 8, 0);
+            tv.setPadding(32, 0, 32, 0);
             tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
             tv.setTextSize(20);
             tv.setTypeface(null, Typeface.BOLD);
@@ -122,7 +125,7 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
             for (int j = 0; j < points.length; j++) {
                 TextView tv = new TextView(GameStats.this);
                 tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-                tv.setPadding(8, 0, 8, 0);
+                tv.setPadding(32, 0, 32, 0);
                 tv.setTextSize(20);
 
                 if (i < points.length) { tv.setBackgroundResource(R.drawable.cell_shape); }
