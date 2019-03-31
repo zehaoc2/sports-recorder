@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -16,6 +15,8 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 public class GameStats extends AppCompatActivity implements View.OnClickListener {
@@ -24,11 +25,14 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
     private static final Integer TEAM_TABLE = 1;
     private static final Integer PLAYER_TABLE = 2;
 
+    private Integer[] periodScores = {0, 0, 0, 0, 0, 0};
+    private Integer[] gameBreakDown = {0, 0, 0, 0, 0, 0, 0, 0};
+    private Integer[] oppPeriodScores = {0, 0, 0, 0, 0, 0};
+    private Map<String, Player> playerMap = new HashMap<>();
+
     private static TextView scores;
     private String matchJson;
     private Match match;
-    private MyTeam myTeam;
-    private OpponentTeam oppTeam;
 
     private TableLayout scoreTable;
     private TableLayout teamTable;
@@ -48,6 +52,7 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
     }
 
     private void formatTableText(TextView tv) {
+        tv.setBackgroundResource(R.drawable.cell_shape);
         tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         tv.setPadding(32, 0, 32, 0);
         tv.setTextSize(20);
@@ -116,10 +121,64 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
         Gson gson = new Gson();
         match = gson.fromJson(matchJson, Match.class);
-        myTeam = gson.fromJson(matchJson, MyTeam.class);
-        oppTeam = gson.fromJson(matchJson, OpponentTeam.class);
 
-        Log.d("TEAM DEBUG", myTeam.getName());
+        int periodCount = 1;
+
+        Stack<Period> periods = match.getPeriods();
+//        Log.d("PRINT MATCH DEBUG", );
+        while (!periods.empty()) {
+            Period period = periods.pop();
+
+            OpponentTeam oppTeam = period.getOpponentTeam();
+            oppPeriodScores[0] += oppTeam.getScore();
+            oppPeriodScores[periodCount] += (oppTeam.getScore());
+
+            MyTeam myTeam = period.getMyTeam();
+            periodScores[0] += myTeam.score;
+            periodScores[periodCount++] += myTeam.score;
+
+            if (periodCount > 5) {
+                periodCount = 5;
+            }
+
+            gameBreakDown[0] += myTeam.score;
+            gameBreakDown[1] += myTeam.getOnePoint();
+            gameBreakDown[2] += myTeam.getTwoPoint();
+            gameBreakDown[3] += myTeam.getThreePoint();
+            gameBreakDown[4] += myTeam.getOnePointAttempt();
+            gameBreakDown[5] += myTeam.getTwoPointAttempt();
+            gameBreakDown[6] += myTeam.getThreePointAttempt();
+            gameBreakDown[7] += myTeam.getFoulCount();
+
+            // PLAYER STUFF!!
+            ArrayList<Player> players = myTeam.getPlayers();
+            Log.d("ARRAY DEBUG", Integer.toString(players.size()));
+
+            for (int p = 0; p < players.size(); p++) {
+                Player player = players.get(p);
+                Log.d("MAP DEBUG", player.getName());
+
+                if (playerMap.containsKey(player.getName())) {
+                    Player updatePlayer = playerMap.get(player.getName());
+
+                    updatePlayer.setScore(updatePlayer.getScore() + player.getScore());
+
+                    updatePlayer.setOnePoint(updatePlayer.getOnePoint() + player.getOnePoint());
+                    updatePlayer.setTwoPoint(updatePlayer.getTwoPoint() + player.getTwoPoint());
+                    updatePlayer.setThreePoint(updatePlayer.getThreePoint() + player.getThreePoint());
+
+                    updatePlayer.setOnePointAttempt(updatePlayer.getOnePointAttempt() + player.getOnePointAttempt());
+                    updatePlayer.setTwoPointAttempt(updatePlayer.getTwoPointAttempt() + player.getTwoPointAttempt());
+                    updatePlayer.setThreePointAttempt(updatePlayer.getThreePointAttempt() + player.getThreePointAttempt());
+
+                    updatePlayer.setFoulCount(updatePlayer.getFoulCount() + player.getFoulCount());
+                } else {
+                    playerMap.put(player.getName(), player);
+                }
+            }
+        }
+
+        Log.d("TEAM DEBUG", match.getName());
 
         populateScoreTable();
         populateTeamTable();
@@ -147,63 +206,34 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
         // TODO: Extract Team names from Shared Preferences
         String[] teams = {"My Team", "Opponent"};
 
-        Stack<Period> periods = match.getPeriods();
-        int myScore = 0, opponentScore = 0;
-        for (int i = 0; i < periods.size(); i++) {
-            myScore += periods.get(i).getMyTeam().getScore();
-            opponentScore += periods.get(i).getOpponentTeam().getScore();
-        }
-
-        // Set table info for score breakdown table
-        for (int i=0; i < teams.length; i++) {
+        for (int i = 0; i < teams.length; i++) {
             TableRow row = new TableRow(GameStats.this);
-            for (int j = 0; j < SCORE_HEADER.length; j++) {
-                TextView tv = new TextView(GameStats.this);
+
+            TextView tv = new TextView(GameStats.this);
+            formatTableText(tv);
+            tv.setTextColor(i==0 ? 0xFFC0392B:0xFF2980B9);
+            tv.setText(teams[i]);
+            row.addView(tv);
+
+            for (int j = 0; j < periodScores.length; j++) {
+                tv = new TextView(GameStats.this);
                 formatTableText(tv);
-
-                if (i < SCORE_HEADER.length) { tv.setBackgroundResource(R.drawable.cell_shape); }
-
-                if (j == 0) {
-                    tv.setText(teams[i]);
-                    tv.setTextColor(i==0 ? 0xFFC0392B:0xFF2980B9);
-                } else if (j == 1) {
-                    tv.setText("" + (i == 0 ? myScore : opponentScore));
-                } else {
-                    if ((j - 2) < periods.size()) {
-                        tv.setText("" + (i == 0 ? periods.get(j - 2).getMyTeam().getScore() : periods.get(j - 2).getOpponentTeam().getScore()));
-                    } else {
-                        tv.setText("N/A");
-                    }
-                }
+                tv.setText(i == 0 ? periodScores[j].toString() : oppPeriodScores[j].toString());
                 row.addView(tv);
             }
+
             scoreTable.addView(row);
         }
     }
 
     private void populateTeamTable() {
         createHeaderRow(TEAM_TABLE);
-        Integer onePoint = myTeam.getOnePoint();
-        Integer twoPoint = myTeam.getTwoPoint();
-        Integer threePoint = myTeam.getThreePoint();
-
-        Integer total = onePoint + (twoPoint*2) + (threePoint*3);
-
-        Integer onePA = myTeam.getOnePointAttempt();
-        Integer twoPA = myTeam.getTwoPointAttempt();
-        Integer threePA = myTeam.getThreePointAttempt();
-
-        Integer numFouls = myTeam.getFoulCount();
-
-        Integer[] values = {total, onePoint, twoPoint, threePoint, onePA, twoPA, threePA, numFouls};
 
         TableRow row = new TableRow(GameStats.this);
         for (int i = 0; i < TEAM_HEADER.length; i++) {
             TextView tv = new TextView(GameStats.this);
             formatTableText(tv);
-            tv.setText(values[i].toString());
-            if (i < TEAM_HEADER.length) { tv.setBackgroundResource(R.drawable.cell_shape); }
-
+            tv.setText(gameBreakDown[i].toString());
             row.addView(tv);
         }
 
@@ -211,35 +241,44 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
     }
 
     private void populatePlayerTable() {
-        ArrayList<Player> players = myTeam.getPlayers();
-
         // Only create Players Table if there are players to keep track of
-        if (players.isEmpty()) {
+        if (playerMap.isEmpty()) {
             TextView playerStatsTitle = findViewById(R.id.playerStatsTitle);
             playerStatsTitle.setText("");
             return;
         }
+
         createHeaderRow(PLAYER_TABLE);
+        for (Map.Entry<String, Player> entry : playerMap.entrySet()) {
+            Log.d("DEBUG PLAYER", "Key = " + entry.getKey() + ", Value = " + entry.getValue());
 
-        for (int i=0; i < players.size(); i++) {
+            String playerName = entry.getKey();
+            Player player = entry.getValue();
+
+            Integer[] values = { player.getScore(),
+                                 player.getOnePoint(),
+                                 player.getTwoPoint(),
+                                 player.getThreePoint(),
+                                 player.getOnePointAttempt(),
+                                 player.getTwoPointAttempt(),
+                                 player.getThreePointAttempt(),
+                                 player.getFoulCount()
+            };
+
             TableRow row = new TableRow(GameStats.this);
-            Player player = players.get(i);
+            TextView tv = new TextView(GameStats.this);
+            formatTableText(tv);
+            tv.setText(playerName);
+            row.addView(tv);
 
-            for (int j = 0; j < PLAYER_HEADER.length; j++) {
-                TextView tv = new TextView(GameStats.this);
-                formatTableText(tv);
-                tv.setBackgroundResource(R.drawable.cell_shape);
+            for (int i = 0; i < values.length; i++) {
+               tv = new TextView(GameStats.this);
+               formatTableText(tv);
+               tv.setText(values[i].toString());
 
-//                if (i < PLAYER_HEADER.length) { tv.setBackgroundResource(R.drawable.cell_shape); }
-
-                if (j == 0) {
-                    tv.setText(player.getName());
-                } else {
-                    // TODO: Extract player info from shared preferences
-                    tv.setText("0");
-                }
-                row.addView(tv);
+               row.addView(tv);
             }
+
             playerTable.addView(row);
         }
     }

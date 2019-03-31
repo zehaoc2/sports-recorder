@@ -81,6 +81,18 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private int threePoint;
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        saveMatchInfo();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        saveMatchInfo();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_page);
@@ -121,7 +133,6 @@ public class InputActivity extends Activity implements View.OnClickListener {
         //set dynamic add button for player
         playerAddBtn = findViewById(R.id.player_add);
         playerAddBtn.setOnClickListener(this);
-
     }
 
     @Override
@@ -168,7 +179,6 @@ public class InputActivity extends Activity implements View.OnClickListener {
         player_button_colors.add(R.color.fbutton_color_carrot);
         player_button_colors.add(R.color.fbutton_color_pumpkin);
         player_button_colors.add(R.color.fbutton_color_pomegranate);
-
     }
 
     public void showAlertDialog (final View v) {
@@ -272,8 +282,6 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
     private FButton addPlayerButton(int player_num){
         if(player_num < 4){
-
-
 
         final FButton myButton = new FButton(this );
         myButton.setButtonColor(getResources().getColor(player_button_colors.get(player_num)));
@@ -564,9 +572,12 @@ public class InputActivity extends Activity implements View.OnClickListener {
         myTeam.setThreePointAttempt(totalFailAttempts.get(3));
         myTeam.setFoulCount(foulCount);
 
+        Log.d("INPUT DEBUG PLAYERS", players.toString());
+        myTeam.setPlayers(players);
+
         editor.putString(matchId, new Gson().toJson(match, Match.class));
 
-        editor.apply();
+        editor.commit();
     }
 
     private void setUpAttemptsMap(){

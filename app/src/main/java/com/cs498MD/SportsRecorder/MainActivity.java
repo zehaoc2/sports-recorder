@@ -1,7 +1,6 @@
 package com.cs498MD.SportsRecorder;
 
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
@@ -19,7 +18,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static FloatingActionButton newMatch;
-    private ArrayList<String> matchArray = new ArrayList<>();
+    private ArrayList<String> matchNameArray = new ArrayList<>();
     private ArrayList<String> matchIdArray = new ArrayList<>();
     private MyCustomAdapter adapter;
 
@@ -53,14 +52,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Match match = gson.fromJson(matchJson, Match.class);
 
             Log.d("DEBUG", match.getName());
-            matchArray.add(match.getName());
+            matchNameArray.add(match.getName());
             matchIdArray.add(matchId);
         }
 
         newMatch = (FloatingActionButton) findViewById(R.id.newMatch);
         newMatch.setOnClickListener(this);
 
-        adapter = new MyCustomAdapter(matchArray, matchIdArray, this, MainActivity.this);
+        adapter = new MyCustomAdapter(matchNameArray, matchIdArray, this, MainActivity.this);
 
         ListView listView = (ListView) findViewById(R.id.matchList);
         listView.setEmptyView(findViewById(R.id.noMatches));
@@ -81,7 +80,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editor.apply();
 
         if (v.getId() == R.id.newMatch) {
-            matchArray.add(matchId);
+            matchNameArray.add(matchId);
+            matchIdArray.add(matchId);
             adapter.notifyDataSetChanged();
             Intent intent = new Intent(this, InputActivity.class);
             intent.putExtra("matchId", Integer.toString(matchCount));
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        Map<String, ?> allEntries = sharedPreferences.getAll();
 //        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
 //            Log.d("map values", entry.getKey() + ": " + entry.getValue().toString());
-//            matchArray.add(entry.getValue().toString());
+//            matchNameArray.add(entry.getValue().toString());
 //        }
 //
 //        adapter.clear();
