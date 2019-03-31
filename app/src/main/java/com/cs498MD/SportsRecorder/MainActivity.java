@@ -36,13 +36,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         android.support.v7.app.ActionBar bar = getSupportActionBar();
         bar.setTitle("Matches");
 
+        newMatch = (FloatingActionButton) findViewById(R.id.newMatch);
+        newMatch.setOnClickListener(this);
+
         SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
         Gson gson = new Gson();
 
         Map<String, ?> allEntries = sharedPreferences.getAll();
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
             String matchId = entry.getKey();
-            Log.d("MATCH ID", matchId);
 
             if (!isNumeric(matchId)) {
                 continue;
@@ -51,13 +53,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String matchJson = sharedPreferences.getString(matchId, "");
             Match match = gson.fromJson(matchJson, Match.class);
 
-            Log.d("DEBUG", match.getName());
             matchNameArray.add(match.getName());
             matchIdArray.add(matchId);
         }
 
-        newMatch = (FloatingActionButton) findViewById(R.id.newMatch);
-        newMatch.setOnClickListener(this);
 
         adapter = new MyCustomAdapter(matchNameArray, matchIdArray, this, MainActivity.this);
 
@@ -72,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int matchCount = sharedPreferences.getInt("matchCount", -1);
 
         matchCount++;
-        String matchId = "Match" + matchCount;
+        String matchId = "Match " + matchCount;
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("matchCount", matchCount);
@@ -81,7 +80,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (v.getId() == R.id.newMatch) {
             matchNameArray.add(matchId);
-            matchIdArray.add(matchId);
+
+            matchIdArray.add("" + matchCount);
             adapter.notifyDataSetChanged();
             Intent intent = new Intent(this, InputActivity.class);
             intent.putExtra("matchId", Integer.toString(matchCount));
@@ -92,29 +92,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStop() {
         super.onStop();
-    }
-
-
-    @Override
-    protected void onRestart() {
-//        SharedPreferences sharedPreferences = this.getSharedPreferences("matchId", MODE_PRIVATE);
-////        SharedPreferences.Editor editor = sharedPreferences.edit();
-////        editor.putString("matchId", "Match1");
-////        editor.apply();
-//
-//        Map<String, ?> allEntries = sharedPreferences.getAll();
-//        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-//            Log.d("map values", entry.getKey() + ": " + entry.getValue().toString());
-//            matchNameArray.add(entry.getValue().toString());
-//        }
-//
-//        adapter.clear();
-//
-//        ListView listView = (ListView) findViewById(R.id.matchList);
-//        listView.setEmptyView(findViewById(R.id.noMatches));
-//        listView.setAdapter(adapter);
-
-        super.onRestart();
     }
 
     @Override

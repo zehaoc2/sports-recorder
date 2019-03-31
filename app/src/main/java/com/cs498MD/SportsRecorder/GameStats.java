@@ -117,6 +117,9 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
         String matchId = getIntent().getStringExtra("matchId");
         SharedPreferences sharedPreferences = getSharedPreferences("match", MODE_PRIVATE);
+
+        Log.e("dsfasdsdfsdaf", matchId + "");
+
         matchJson = sharedPreferences.getString(matchId, "");
 
         Gson gson = new Gson();

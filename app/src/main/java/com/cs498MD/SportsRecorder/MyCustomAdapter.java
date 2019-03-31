@@ -107,6 +107,7 @@ public class MyCustomAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), GameStats.class);
+
                 intent.putExtra("matchId", matchIdList.get(position));
                 v.getContext().startActivity(intent);
             }
