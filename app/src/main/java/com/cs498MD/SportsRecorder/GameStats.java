@@ -125,6 +125,7 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
         int periodCount = 1;
 
         Stack<Period> periods = match.getPeriods();
+//        Log.d("PRINT MATCH DEBUG", );
         while (!periods.empty()) {
             Period period = periods.pop();
 
