@@ -592,5 +592,4 @@ public class InputActivity extends Activity implements View.OnClickListener {
         totalFailAttempts.put(2,0);
         totalFailAttempts.put(3,0);
     }
-
 }
