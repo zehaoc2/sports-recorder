@@ -1,6 +1,5 @@
 package com.cs498MD.SportsRecorder;
 
-
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
@@ -57,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             matchIdArray.add(matchId);
         }
 
-
         adapter = new MyCustomAdapter(matchNameArray, matchIdArray, this, MainActivity.this);
 
         ListView listView = (ListView) findViewById(R.id.matchList);
@@ -71,15 +69,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int matchCount = sharedPreferences.getInt("matchCount", -1);
 
         matchCount++;
-        String matchId = "Match " + matchCount;
+        String matchName = "Match " + matchCount;
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("matchCount", matchCount);
-        editor.putString("matchId", matchId);
+        editor.putString("matchId", matchName);
         editor.apply();
 
         if (v.getId() == R.id.newMatch) {
-            matchNameArray.add(matchId);
+            matchNameArray.add(matchName);
 
             matchIdArray.add("" + matchCount);
             adapter.notifyDataSetChanged();
@@ -87,15 +85,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.putExtra("matchId", Integer.toString(matchCount));
             startActivity(intent);
         }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
     }
 }

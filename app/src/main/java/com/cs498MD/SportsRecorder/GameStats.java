@@ -259,13 +259,13 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
             Player player = entry.getValue();
 
             Integer[] values = { player.getScore(),
-                                 player.getOnePoint(),
-                                 player.getTwoPoint(),
-                                 player.getThreePoint(),
-                                 player.getOnePointAttempt(),
-                                 player.getTwoPointAttempt(),
-                                 player.getThreePointAttempt(),
-                                 player.getFoulCount()
+                    player.getOnePoint(),
+                    player.getTwoPoint(),
+                    player.getThreePoint(),
+                    player.getOnePointAttempt(),
+                    player.getTwoPointAttempt(),
+                    player.getThreePointAttempt(),
+                    player.getFoulCount()
             };
 
             TableRow row = new TableRow(GameStats.this);
@@ -275,11 +275,11 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
             row.addView(tv);
 
             for (int i = 0; i < values.length; i++) {
-               tv = new TextView(GameStats.this);
-               formatTableText(tv);
-               tv.setText(values[i].toString());
+                tv = new TextView(GameStats.this);
+                formatTableText(tv);
+                tv.setText(values[i].toString());
 
-               row.addView(tv);
+                row.addView(tv);
             }
 
             playerTable.addView(row);
