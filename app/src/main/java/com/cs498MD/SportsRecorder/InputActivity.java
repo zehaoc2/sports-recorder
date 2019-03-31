@@ -141,8 +141,6 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
             addPlayerButton(playerCount);
 
-
-
         } else if (v.getId() == R.id.opponent_add) {
             opponentScoreView.setText(String.valueOf("Score: " + ++opponentScore));
             setLastAction(new Action(period.getOpponentTeam().getName(), Type.Score, 1));
@@ -172,6 +170,37 @@ public class InputActivity extends Activity implements View.OnClickListener {
         saveMatchInfo();
     }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        IsFinish("Are you sure you want to end this match?");
+    }
+
+    private void IsFinish(String alertmessage) {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        InputActivity.super.onBackPressed();
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                        // This above line close correctly
+                        //finish();
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(alertmessage)
+                .setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
+
+    }
 
     public void initPlayerButtonColor(){
         player_button_colors = new ArrayList<>();
@@ -183,7 +212,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
     public void showAlertDialog (final View v) {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setMessage("Are you sure you want to end this match? ");
+        alert.setMessage("Are you sure you want to end this match?");
         alert.setTitle("Sports Recorder");
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
