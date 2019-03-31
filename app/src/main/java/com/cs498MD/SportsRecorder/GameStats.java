@@ -128,7 +128,6 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
         int periodCount = 1;
 
         Stack<Period> periods = match.getPeriods();
-//        Log.d("PRINT MATCH DEBUG", );
         for (int i = 0; i < periods.size(); i++){
             Period period = periods.get(i);
 
@@ -154,28 +153,14 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
             gameBreakDown[7] += myTeam.getFoulCount();
 
             // PLAYER STUFF!!
-            ArrayList<Player> players = myTeam.getPlayers();
-            Log.d("ARRAY DEBUG", Integer.toString(players.size()));
+            if (i == (periods.size() - 1)) {
+                ArrayList<Player> players = myTeam.getPlayers();
+                Log.d("ARRAY DEBUG", Integer.toString(players.size()));
 
-            for (int p = 0; p < players.size(); p++) {
-                Player player = players.get(p);
-                Log.d("MAP DEBUG", player.getName());
+                for (int p = 0; p < players.size(); p++) {
+                    Player player = players.get(p);
+                    Log.d("MAP DEBUG", player.getName());
 
-                if (playerMap.containsKey(player.getName())) {
-                    Player updatePlayer = playerMap.get(player.getName());
-
-                    updatePlayer.setScore(updatePlayer.getScore() + player.getScore());
-
-                    updatePlayer.setOnePoint(updatePlayer.getOnePoint() + player.getOnePoint());
-                    updatePlayer.setTwoPoint(updatePlayer.getTwoPoint() + player.getTwoPoint());
-                    updatePlayer.setThreePoint(updatePlayer.getThreePoint() + player.getThreePoint());
-
-                    updatePlayer.setOnePointAttempt(updatePlayer.getOnePointAttempt() + player.getOnePointAttempt());
-                    updatePlayer.setTwoPointAttempt(updatePlayer.getTwoPointAttempt() + player.getTwoPointAttempt());
-                    updatePlayer.setThreePointAttempt(updatePlayer.getThreePointAttempt() + player.getThreePointAttempt());
-
-                    updatePlayer.setFoulCount(updatePlayer.getFoulCount() + player.getFoulCount());
-                } else {
                     playerMap.put(player.getName(), player);
                 }
             }
