@@ -61,15 +61,14 @@
     </LinearLayout>
 
     <android.support.constraint.ConstraintLayout
-
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/my_name"
-            android:layout_width="118dp"
-            android:layout_height="38dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -78,8 +77,8 @@
             android:text="MyTeam"
 
             android:textColor="@color/yellow"
-            android:textStyle="bold"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -87,31 +86,11 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.08" />
 
-        <ImageView
-            android:id="@+id/edit_image2"
-            style="@style/ImageView.Hamburger"
-            android:layout_width="44dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:clickable="true"
-            android:src="@drawable/ic_stats_colorful"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/my_name"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.079" />
-
         <TextView
             android:id="@+id/my_score"
             android:layout_width="118dp"
             android:layout_height="38dp"
 
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
 
             android:layout_marginEnd="8dp"
@@ -119,26 +98,25 @@
             android:gravity="center|left"
             android:text="Score: "
             android:textColor="@color/yellow"
-            android:textStyle="bold"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.557"
-            app:layout_constraintStart_toEndOf="@+id/edit_image2"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.08" />
 
         <TextView
             android:id="@+id/attempt"
-            android:layout_width="wrap_content"
+            android:layout_width="16dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif-light"
-            android:rotation="-90"
-            android:text="Attempted"
-
-            android:textColor="@color/yellow"
+            android:rotation="0"
+            android:text="MISS"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/yellow"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/swipe_btn3"
@@ -148,15 +126,15 @@
 
         <TextView
             android:id="@+id/made"
-            android:layout_width="wrap_content"
+            android:layout_width="16dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif-light"
-            android:rotation="90"
-            android:text="Scored"
+            android:rotation="0"
+            android:text="MADE"
             android:textStyle="bold"
             android:textColor="@color/yellow"
             android:textAlignment="center"
@@ -323,8 +301,8 @@
 
         <TextView
             android:id="@+id/opponent_name"
-            android:layout_width="118dp"
-            android:layout_height="62dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -332,31 +310,12 @@
             android:gravity="center|left"
             android:text="Opponent Team"
             android:textColor="@color/classic_white"
-            android:textStyle="bold"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.74" />
-
-        <ImageView
-            android:id="@+id/opponent_image"
-            style="@style/ImageView.Hamburger"
-            android:layout_width="39dp"
-            android:layout_height="38dp"
-
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:clickable="true"
-            android:src="@drawable/ic_stats_colorful"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/opponent_score"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/opponent_name"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.74" />
 
@@ -433,9 +392,9 @@
             android:gravity="center"
             android:text="Last Activity"
             android:textColor="@color/yellow"
-            android:textStyle="bold"
-
             android:textSize="15sp"
+
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/undo"
             app:layout_constraintHorizontal_bias="1.0"
