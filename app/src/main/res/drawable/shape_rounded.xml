@@ -2,7 +2,7 @@
     <item android:state_pressed="false" android:state_selected="false">
         <shape android:shape="rectangle">
             <corners android:radius="150dp" />
-            <solid android:color="#CDDC39" />
+            <solid android:color="@color/fbutton_color_silver" />
         </shape>
     </item>
 </selector>
