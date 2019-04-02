@@ -273,11 +273,12 @@ public class InputActivity extends Activity implements View.OnClickListener {
                 String editTextValue = edittext.getText().toString();
 
                 if(editTextValue.length() > 2){
+                    //limit user input to 2
                     Toast.makeText(InputActivity.this, "Please Enter Name Initial No More Than Two Words", Toast.LENGTH_LONG).show();
                 }
                 else{
-
                     myButton.setText(editTextValue);
+                    players.get(myButton.getId()).setName(editTextValue);
                     Log.e("TEST", editTextValue);
                 }
 
@@ -411,6 +412,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
 //        myButton.setTag(playerUniqueId + playerNo);
         myButton.setId(playerCount++);
         players.add(new Player("P" + playerCount));
+
 
         myButton.setText("P" + playerCount);
 //        myButton.setBackgroundColor(player_button_colors.get(player_num));
