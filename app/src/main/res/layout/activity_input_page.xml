@@ -134,7 +134,7 @@
             android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif-light"
             android:rotation="0"
-            android:text="SCORE"
+            android:text="MADE"
             android:textStyle="bold"
             android:textColor="@color/classic_black"
             android:textAlignment="center"
