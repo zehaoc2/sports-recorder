@@ -425,8 +425,10 @@ public class InputActivity extends Activity implements View.OnClickListener {
             public void onClick(View v) {
                 player = players.get(myButton.getId());
                 if(lastClickedBtnInstance !=null){
+                    //save instance
                     lastClickedBtnInstance.setButtonColor(getResources().getColor(player_button_colors.get(0)));
                 }
+
                 myButton.setButtonColor(getResources().getColor(player_button_colors.get(1)));
                 lastClickedBtnInstance = myButton;
             }
