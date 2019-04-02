@@ -85,6 +85,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private int twoPoint;
     private int threePoint;
 
+    private FButton lastClickedBtnInstance;
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -381,7 +383,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
         if(player_num < 4){
 
         final FButton myButton = new FButton(this );
-        myButton.setButtonColor(getResources().getColor(player_button_colors.get(player_num)));
+        myButton.setButtonColor(getResources().getColor(player_button_colors.get(0)));//player_num
 
         myButton.setMinHeight(R.dimen.button_min_height);
         myButton.setMinWidth(R.dimen.button_min_width);
@@ -422,6 +424,11 @@ public class InputActivity extends Activity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 player = players.get(myButton.getId());
+                if(lastClickedBtnInstance !=null){
+                    lastClickedBtnInstance.setButtonColor(getResources().getColor(player_button_colors.get(0)));
+                }
+                myButton.setButtonColor(getResources().getColor(player_button_colors.get(1)));
+                lastClickedBtnInstance = myButton;
             }
         });
 
