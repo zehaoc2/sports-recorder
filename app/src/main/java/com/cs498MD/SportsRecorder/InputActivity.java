@@ -8,10 +8,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -83,6 +85,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private int twoPoint;
     private int threePoint;
 
+    private FButton lastClickedBtnInstance;
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -116,6 +120,15 @@ public class InputActivity extends Activity implements View.OnClickListener {
         teamBtn = findViewById(R.id.player_head);
         teamBtn.setId(playerNo);
         teamBtn.setOnClickListener(this);
+        teamBtn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                // TODO Auto-generated method stub
+                showNameChangeDialog(v, teamBtn);
+                return true;
+            }
+        });
+
 
         //set end match button onclick listener
         endMatchBtn = findViewById(R.id.end_match);
@@ -246,6 +259,48 @@ public class InputActivity extends Activity implements View.OnClickListener {
         alert.create().show();
     }
 
+    public void showNameChangeDialog (final View v, final FButton myButton){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        final EditText edittext = new EditText(InputActivity.this);
+        alert.setMessage("Enter Player Initial");
+        alert.setTitle("Sports Recorder");
+
+        alert.setView(edittext);
+
+        alert.setPositiveButton("Change Name", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //What ever you want to do with the value
+//                Editable YouEditTextValue = edittext.getText();
+                //OR
+                String editTextValue = edittext.getText().toString();
+
+                if(editTextValue.length() > 2){
+                    //limit user input to 2
+                    Toast.makeText(InputActivity.this, "Please Enter Name Initial No More Than Two Words", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    myButton.setText(editTextValue);
+                    players.get(myButton.getId()).setName(editTextValue);
+                    Log.e("TEST", editTextValue);
+                }
+
+            }
+        });
+
+        alert.setNegativeButton("Delete Player", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                // what ever you want to do with No option.
+                Toast.makeText(getApplicationContext(), "Player Deleted", Toast.LENGTH_LONG).show();
+                ((ViewGroup) myButton.getParent()).removeView(myButton);
+                playerCount--;
+            }
+        });
+
+        alert.show();
+
+    }
+
+
     private void undoLastAction() {
         Action action = history.pop();
         if (action.getType() == Type.Score) {
@@ -328,7 +383,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
         if(player_num < 4){
 
         final FButton myButton = new FButton(this );
-        myButton.setButtonColor(getResources().getColor(player_button_colors.get(player_num)));
+        myButton.setButtonColor(getResources().getColor(player_button_colors.get(0)));//player_num
 
         myButton.setMinHeight(R.dimen.button_min_height);
         myButton.setMinWidth(R.dimen.button_min_width);
@@ -360,6 +415,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
         myButton.setId(playerCount++);
         players.add(new Player("P" + playerCount));
 
+
         myButton.setText("P" + playerCount);
 //        myButton.setBackgroundColor(player_button_colors.get(player_num));
 
@@ -368,6 +424,13 @@ public class InputActivity extends Activity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 player = players.get(myButton.getId());
+                if(lastClickedBtnInstance !=null){
+                    //save instance
+                    lastClickedBtnInstance.setButtonColor(getResources().getColor(player_button_colors.get(0)));
+                }
+
+                myButton.setButtonColor(getResources().getColor(player_button_colors.get(1)));
+                lastClickedBtnInstance = myButton;
             }
         });
 
@@ -375,9 +438,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
             @Override
             public boolean onLongClick(View v) {
                 // TODO Auto-generated method stub
-
-                ((ViewGroup) myButton.getParent()).removeView(myButton);
-                playerCount--;
+                showNameChangeDialog(v, myButton);
                 return true;
             }
         });
