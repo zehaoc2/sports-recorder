@@ -7,4 +7,6 @@
     <string name="opponents">OPPONENTS</string>
     <string name="settings">SETTINGS</string>
     <string name="match">MATCH</string>
+
+    <string name="score_title">Score: 100</string>
 </resources>
