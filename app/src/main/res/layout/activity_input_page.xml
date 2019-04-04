@@ -313,7 +313,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/opponentLayout"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="18dp"
         android:background="@color/fbutton_color_silver">
 
         <info.hoang8f.widget.FButton
@@ -347,7 +347,7 @@
             android:text="Last Activity"
             android:textAppearance="@style/TextAppearance.AppCompat" />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/undo"
 
             android:layout_width="48dp"
@@ -356,7 +356,14 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="16dp"
 
-            android:foreground="@drawable/ic_undo"
+            fbutton:fButtonColor="@color/light_background_gray"
+
+            android:foreground="@drawable/ic_undo_white"
+            android:foregroundGravity="center"
+            android:minWidth="@dimen/button_min_width"
+            android:minHeight="@dimen/button_min_height"
+            android:foregroundTint="@color/classic_white"
+
             android:background="@color/classic_white" />
 
         <info.hoang8f.widget.FButton

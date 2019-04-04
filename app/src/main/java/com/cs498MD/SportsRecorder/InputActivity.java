@@ -62,6 +62,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private ArrayList<Player> players;
     private Player player;
 
+    private Player current_player;
+
     //ArrayList for dynamically assigning color to player
     private ArrayList<Integer> player_button_colors;
     private int playerCount;
@@ -152,6 +154,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
         playerAddBtn = findViewById(R.id.player_add);
         playerAddBtn.setOnClickListener(this);
 
+        teamBtn.setButtonColor(getResources().getColor(player_button_colors.get(0)));
+
 
     }
 
@@ -165,6 +169,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
             totalScore.setText(totalMyScore + " : " + ++totalOpponentScore);
 
             opponentScoreView.setText(String.valueOf("Score: " + ++opponentScore));
+
             setLastAction(new Action(period.getOpponentTeam().getName(), Type.Score, 1));
         } else if (v.getId() == R.id.undo && history.size() >= 1) {
             undoLastAction();
@@ -172,9 +177,17 @@ public class InputActivity extends Activity implements View.OnClickListener {
             if (player != null)
                 player.setFoulCount(player.getFoulCount() + 1);
             foulCount++;
-            setLastAction(new Action(period.getMyTeam().getName(), Type.Foul, null));
+            setLastAction(new Action(player.getName(), Type.Foul, null));
         } else if (v.getId() == R.id.player_head) {
             player = null;
+            teamBtn.setButtonColor(getResources().getColor(player_button_colors.get(1)));
+            if(lastClickedBtnInstance!=null){
+
+                lastClickedBtnInstance.setButtonColor(getResources().getColor(player_button_colors.get(0)));
+
+            }
+
+
         } else if (v.getId() == R.id.end_match){
             showAlertDialog(v);
             Log.e("TEST", "Clicked End Mathc");
@@ -482,7 +495,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
                     myScoreView.setText("Score: " + String.valueOf(++myScore));
                     onePoint++;
-                    setLastAction(new Action(period.getMyTeam().getName(), Type.Score, 1));
+                    setLastAction(new Action(player.getName(), Type.Score, 1));
 
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -504,7 +517,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
                         }
                     }, 400);
-                    setLastAction(new Action(period.getMyTeam().getName(), Type.Attempt, 1));
+                    setLastAction(new Action(player.getName(), Type.Attempt, 1));
                     totalFailAttempts.put(1, totalFailAttempts.get(1) + 1);
                     if (player != null) {
                         player.setOnePointAttempt(player.getOnePointAttempt() + 1);
@@ -524,6 +537,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
                         player.setScore(player.getScore() + 2);
                         player.setTwoPoint(player.getTwoPoint() + 1);
                     }
+                    
 
                     totalMyScore += 2;
 
@@ -532,7 +546,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
                     myScore += 2;
                     twoPoint++;
                     myScoreView.setText("Score: " + String.valueOf(myScore));
-                    setLastAction(new Action(period.getMyTeam().getName(), Type.Score, 2));
+                    setLastAction(new Action(player.getName(), Type.Score, 2));
 
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -553,7 +567,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
                         }
                     }, 400);
-                    setLastAction(new Action(period.getMyTeam().getName(), Type.Attempt, 2));
+                    setLastAction(new Action(player.getName(), Type.Attempt, 2));
                     totalFailAttempts.put(2, totalFailAttempts.get(2) + 1);
                     if (player != null) {
                         player.setTwoPointAttempt(player.getTwoPointAttempt() + 1);
@@ -581,7 +595,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
                     myScore += 3;
                     threePoint++;
                     myScoreView.setText("Score: " + String.valueOf(myScore));
-                    setLastAction(new Action(period.getMyTeam().getName(), Type.Score, 3));
+                    setLastAction(new Action(player.getName(), Type.Score, 3));
 
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -600,7 +614,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
                             swipeAnimationButton3.collapseButton();
                         }
                     }, 400);
-                    setLastAction(new Action(period.getMyTeam().getName(), Type.Attempt, 3));
+                    setLastAction(new Action(player.getName(), Type.Attempt, 3));
                     totalFailAttempts.put(3, totalFailAttempts.get(3) + 1);
                     if (player != null) {
                         player.setThreePointAttempt(player.getThreePointAttempt() + 1);
