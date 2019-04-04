@@ -169,9 +169,10 @@ public class InputActivity extends Activity implements View.OnClickListener {
             totalScore.setText(totalMyScore + " : " + ++totalOpponentScore);
 
             opponentScoreView.setText(String.valueOf("Score: " + ++opponentScore));
-
             setLastAction(new Action(period.getOpponentTeam().getName(), Type.Score, 1));
+
         } else if (v.getId() == R.id.undo && history.size() >= 1) {
+            //TODO: change click to warn user undo need to be onclicked
             undoLastAction();
         } else if (v.getId() == R.id.foul_btn) {
             if (player != null)
@@ -393,72 +394,71 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
 
     private FButton addPlayerButton(int player_num){
+
         if(player_num < 4){
 
-        final FButton myButton = new FButton(this );
-        myButton.setButtonColor(getResources().getColor(player_button_colors.get(0)));//player_num
+            final FButton myButton = new FButton(this );
+            myButton.setButtonColor(getResources().getColor(player_button_colors.get(0)));//player_num
 
-        myButton.setMinHeight(R.dimen.button_min_height);
-        myButton.setMinWidth(R.dimen.button_min_width);
+            myButton.setMinHeight(R.dimen.button_min_height);
+            myButton.setMinWidth(R.dimen.button_min_width);
 
-        myButton.setShadowEnabled(true);
-        myButton.setTextColor(getResources().getColor(R.color.classic_white));
-        myButton.setShadowHeight(12);
-        myButton.setCornerRadius(20);
-        myButton.setText("New");
+            myButton.setShadowEnabled(true);
+            myButton.setTextColor(getResources().getColor(R.color.classic_white));
+            myButton.setShadowHeight(12);
+            myButton.setCornerRadius(20);
+            myButton.setText("New");
 
-        final LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(convertDipToPixels(48,InputActivity.this), convertDipToPixels(48,InputActivity.this) );
-        myButton.setLayoutParams(lp);
+            final LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(convertDipToPixels(48,InputActivity.this), convertDipToPixels(48,InputActivity.this) );
+            myButton.setLayoutParams(lp);
 
-        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) myButton.getLayoutParams();
-        params.width = convertDipToPixels(48,InputActivity.this);
-        params.height = convertDipToPixels(48,InputActivity.this);
-        params.setMarginStart(convertDipToPixels(8,InputActivity.this));
-        params.setMarginEnd(convertDipToPixels(8,InputActivity.this));
-        params.topMargin = convertDipToPixels(8,InputActivity.this);
-        params.bottomMargin = convertDipToPixels(8,InputActivity.this);
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) myButton.getLayoutParams();
+            params.width = convertDipToPixels(48,InputActivity.this);
+            params.height = convertDipToPixels(48,InputActivity.this);
+            params.setMarginStart(convertDipToPixels(8,InputActivity.this));
+            params.setMarginEnd(convertDipToPixels(8,InputActivity.this));
+            params.topMargin = convertDipToPixels(8,InputActivity.this);
+            params.bottomMargin = convertDipToPixels(8,InputActivity.this);
 
-        LinearLayout ll = (LinearLayout)findViewById(R.id.button_player_layout);
+            LinearLayout ll = (LinearLayout)findViewById(R.id.button_player_layout);
 
-        ll.addView(myButton, lp);
-        ll.removeView(playerAddBtn);
-        ll.addView(playerAddBtn, lp);
+            ll.addView(myButton, lp);
+            ll.removeView(playerAddBtn);
+            ll.addView(playerAddBtn, lp);
 
-//        myButton.setTag(playerUniqueId + playerNo);
-        myButton.setId(playerCount++);
-        players.add(new Player("P" + playerCount));
+    //        myButton.setTag(playerUniqueId + playerNo);
+            myButton.setId(playerCount++);
+            players.add(new Player("P" + playerCount));
 
+            myButton.setText("P" + playerCount);
+    //        myButton.setBackgroundColor(player_button_colors.get(player_num));
 
-        myButton.setText("P" + playerCount);
-//        myButton.setBackgroundColor(player_button_colors.get(player_num));
+            myButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    player = players.get(myButton.getId());
+                    if(lastClickedBtnInstance !=null){
+                        //save instance
+                        lastClickedBtnInstance.setButtonColor(getResources().getColor(player_button_colors.get(0)));
+                    }
 
-
-        myButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                player = players.get(myButton.getId());
-                if(lastClickedBtnInstance !=null){
-                    //save instance
-                    lastClickedBtnInstance.setButtonColor(getResources().getColor(player_button_colors.get(0)));
+                    myButton.setButtonColor(getResources().getColor(player_button_colors.get(1)));
+                    lastClickedBtnInstance = myButton;
                 }
+            });
 
-                myButton.setButtonColor(getResources().getColor(player_button_colors.get(1)));
-                lastClickedBtnInstance = myButton;
-            }
-        });
-
-        myButton.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                // TODO Auto-generated method stub
-                showNameChangeDialog(v, myButton);
-                return true;
-            }
-        });
+            myButton.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    // TODO Auto-generated method stub
+                    showNameChangeDialog(v, myButton);
+                    return true;
+                }
+            });
 
 
 
-        return myButton;
+            return myButton;
 
         }
 //        Toast.makeText(getApplicationContext(), "You can only add up to 5 players!", Toast.LENGTH_LONG);
@@ -476,10 +476,21 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private void setMatchUtils() {
         lastAction = findViewById(R.id.last_action);
         findViewById(R.id.undo).setOnClickListener(this);
+
+        findViewById(R.id.undo).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                //TODO: do the undo work here;
+                return false;
+            }
+        });
+
         findViewById(R.id.next_period).setOnClickListener(this);
+
     }
 
     private void setMyTeam() {
+
         swipeAnimationButton = (SwipeAnimationButton) findViewById(R.id.swipe_btn);
         swipeAnimationButton.setPicture(R.drawable.ic_num1);
         swipeAnimationButton.setOnSwipeAnimationListener(new SwipeAnimationListener() {
@@ -495,7 +506,13 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
                     myScoreView.setText("Score: " + String.valueOf(++myScore));
                     onePoint++;
-                    setLastAction(new Action(player.getName(), Type.Score, 1));
+                    if(player == null){
+                        setLastAction(new Action(period.getMyTeam().getName(), Type.Score, 1));
+
+                    }
+                    else{
+                        setLastAction(new Action(player.getName(), Type.Score, 1));
+                    }
 
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -517,7 +534,15 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
                         }
                     }, 400);
-                    setLastAction(new Action(player.getName(), Type.Attempt, 1));
+                    if(player == null){
+                        setLastAction(new Action(period.getMyTeam().getName(), Type.Attempt, 1));
+
+                    }
+                    else{
+                        setLastAction(new Action(player.getName(), Type.Attempt, 1));
+
+                    }
+
                     totalFailAttempts.put(1, totalFailAttempts.get(1) + 1);
                     if (player != null) {
                         player.setOnePointAttempt(player.getOnePointAttempt() + 1);
@@ -546,7 +571,14 @@ public class InputActivity extends Activity implements View.OnClickListener {
                     myScore += 2;
                     twoPoint++;
                     myScoreView.setText("Score: " + String.valueOf(myScore));
-                    setLastAction(new Action(player.getName(), Type.Score, 2));
+                    if(player == null){
+                        setLastAction(new Action(period.getMyTeam().getName(), Type.Score, 2));
+
+                    }
+                    else{
+                        setLastAction(new Action(player.getName(), Type.Score, 2));
+
+                    }
 
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -567,7 +599,14 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
                         }
                     }, 400);
-                    setLastAction(new Action(player.getName(), Type.Attempt, 2));
+                    if(player == null){
+                        setLastAction(new Action(period.getMyTeam().getName(), Type.Attempt, 2));
+
+                    }
+                    else{
+                        setLastAction(new Action(player.getName(), Type.Attempt, 2));
+                    }
+
                     totalFailAttempts.put(2, totalFailAttempts.get(2) + 1);
                     if (player != null) {
                         player.setTwoPointAttempt(player.getTwoPointAttempt() + 1);
@@ -595,7 +634,13 @@ public class InputActivity extends Activity implements View.OnClickListener {
                     myScore += 3;
                     threePoint++;
                     myScoreView.setText("Score: " + String.valueOf(myScore));
-                    setLastAction(new Action(player.getName(), Type.Score, 3));
+                    if(player == null){
+                        setLastAction(new Action(period.getMyTeam().getName(), Type.Score, 3));
+
+                    }
+                    else{
+                        setLastAction(new Action(player.getName(), Type.Score, 3));
+                    }
 
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -614,7 +659,14 @@ public class InputActivity extends Activity implements View.OnClickListener {
                             swipeAnimationButton3.collapseButton();
                         }
                     }, 400);
-                    setLastAction(new Action(player.getName(), Type.Attempt, 3));
+                    if(player == null){
+                        setLastAction(new Action(period.getMyTeam().getName(), Type.Attempt, 3));
+
+                    }
+                    else{
+                        setLastAction(new Action(player.getName(), Type.Attempt, 3));
+                    }
+
                     totalFailAttempts.put(3, totalFailAttempts.get(3) + 1);
                     if (player != null) {
                         player.setThreePointAttempt(player.getThreePointAttempt() + 1);
