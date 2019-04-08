@@ -9,4 +9,18 @@
     <string name="match">MATCH</string>
 
     <string name="score_title">Score: 100</string>
+    
+    <string name="view_matches">View Matches</string>
+    <string name="view_game_stats">View Stats</string>
+    <string name="my_team">My Team</string>
+    <string name="opp_team">Opponent</string>
+    <string name="my_team_score">0</string>
+    <string name="separator">:</string>
+    <string name="opponent_score">0</string>
+    <string name="miss">Miss</string>
+    <string name="made">Made</string>
+
+    <string name="free_throw">Free Throw</string>
+    <string name="two_ptr">2-Ptr</string>
+    <string name="three_ptr">3-Ptr</string>
 </resources>
