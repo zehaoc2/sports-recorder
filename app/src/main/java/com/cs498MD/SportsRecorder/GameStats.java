@@ -272,7 +272,9 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        if (match.isDone()) {
+            startActivity(new Intent(this, MainActivity.class));
+        }
+
     }
 }

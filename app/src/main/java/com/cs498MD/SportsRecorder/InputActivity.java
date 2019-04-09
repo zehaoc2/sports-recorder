@@ -237,14 +237,6 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
 
     public void saveMatchInfo() {
-//        Log.e("blah", "in saveMatchInfo");
-//
-//        if (match == null) {
-//            Log.e("blah", "NULL!!");
-//        } else {
-//            Log.e("blah", "NOT NULL!!");
-//        }
-
         SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -346,9 +338,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
         alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getApplicationContext(), "Match Ended and Saved!", Toast.LENGTH_LONG);
-                Log.e("TEST", "Dialog Yes Clicked");
-
+                match.setDone(true);
                 Intent intent = new Intent(InputActivity.this, GameStats.class);
                 intent.putExtra("matchId", matchId);
                 startActivity(intent);
@@ -358,7 +348,6 @@ public class InputActivity extends Activity implements View.OnClickListener {
         alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Log.e("TEST", "Dialog No Clicked");
 
             }
         });
