@@ -77,14 +77,14 @@
 
             <TextView
                 android:id="@+id/my_team_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/my_team_score"
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
 
-                android:textAlignment="center"
-                android:textSize="24sp"
                 android:gravity="center"
-                android:layout_weight="2"/>
+                android:text="@string/my_team_score"
+                android:textAlignment="center"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/separator"
@@ -98,13 +98,13 @@
 
             <TextView
                 android:id="@+id/opp_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
                 android:text="@string/opponent_score"
                 android:textAlignment="center"
-                android:textSize="24sp"
 
-                android:layout_weight="2"/>
+                android:textSize="24sp" />
         </TableRow>
 
         <TextView
