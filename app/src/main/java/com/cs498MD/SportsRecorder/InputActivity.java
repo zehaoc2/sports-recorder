@@ -8,9 +8,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,13 +31,14 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private TextView lastAction;
 
     // Teams
-    private TextView myScoreView;
+
     private int onePoint;
     private int twoPoint;
     private int threePoint;
     private int onePointAtt;
     private int twoPointAtt;
     private int threePointAtt;
+    private TextView myScoreView;
     private TextView opponentScoreView;
 
     // Active match info
@@ -51,15 +56,27 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
 //    private FButton endMatchBtn;
 
+    private Spinner spinner;
+    private String[] periods = {"Period 1", "Period 2", "Period 3", "Period 4", "Period 4+"};
 
+    private void initSpinnerPeriods() {
+        spinner = (Spinner) findViewById(R.id.period_dropdown);
+
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, periods);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.periods_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_page);
 
-       initViews();
-       initMatchInfo();
+        initSpinnerPeriods();
+        initViews();
+        initMatchInfo();
     }
 
     /* ================================================================================================================================================= */
@@ -87,13 +104,22 @@ public class InputActivity extends Activity implements View.OnClickListener {
         myTwoPointMiss.setOnClickListener(this);
         Button myThreePointMiss = findViewById(R.id.my_miss_three_ptr);
         myThreePointMiss.setOnClickListener(this);
-
-//        myNameView = findViewById(R.id.my_name);
         myScoreView = findViewById(R.id.my_team_score);
 
         // Set Opponent Team Views
         //TODO: add opponent breakdown if time allows
-//        opponentNameView = (TextView) findViewById(R.id.opponent_name);
+        Button oppOnePointMade = findViewById(R.id.opp_made_one_ptr);
+        oppOnePointMade.setOnClickListener(this);
+        Button oppTwoPointMade = findViewById(R.id.opp_made_two_ptr);
+        oppTwoPointMade.setOnClickListener(this);
+        Button oppThreePointMade = findViewById(R.id.opp_made_three_ptr);
+        oppThreePointMade.setOnClickListener(this);
+        Button oppOnePointMiss = findViewById(R.id.opp_miss_one_ptr);
+        oppOnePointMiss.setOnClickListener(this);
+        Button oppTwoPointMiss = findViewById(R.id.opp_miss_two_ptr);
+        oppTwoPointMiss.setOnClickListener(this);
+        Button oppThreePointMiss = findViewById(R.id.opp_miss_three_ptr);
+        oppThreePointMiss.setOnClickListener(this);
         opponentScoreView = (TextView) findViewById(R.id.opp_score);
     }
 
@@ -168,36 +194,48 @@ public class InputActivity extends Activity implements View.OnClickListener {
                 case R.id.my_made_one_ptr:
                     myScore += 1;
                     setLastAction(new Action(period.getMyTeam().getName(), Type.Score, 1));
+                    break;
                 case R.id.my_made_two_ptr:
                     myScore += 2;
                     setLastAction(new Action(period.getMyTeam().getName(), Type.Score, 2));
+                    break;
                 case R.id.my_made_three_ptr:
                     myScore += 3;
                     setLastAction(new Action(period.getMyTeam().getName(), Type.Score, 3));
+                    break;
                 case R.id.my_miss_one_ptr:
                     onePointAtt++;
                     setLastAction(new Action(period.getMyTeam().getName(), Type.Attempt, 1));
+                    break;
                 case R.id.my_miss_two_ptr:
                     twoPointAtt++;
                     setLastAction(new Action(period.getMyTeam().getName(), Type.Attempt, 2));
+                    break;
                 case R.id.my_miss_three_ptr:
                     threePointAtt++;
                     setLastAction(new Action(period.getMyTeam().getName(), Type.Attempt, 3));
+                    break;
                 case R.id.opp_made_one_ptr:
                     opponentScore += 1;
                     setLastAction(new Action(period.getOpponentTeam().getName(), Type.Score, 1));
+                    break;
                 case R.id.opp_made_two_ptr:
                     opponentScore += 2;
                     setLastAction(new Action(period.getOpponentTeam().getName(), Type.Score, 2));
+                    break;
                 case R.id.opp_made_three_ptr:
                     opponentScore += 3;
                     setLastAction(new Action(period.getOpponentTeam().getName(), Type.Score, 3));
+                    break;
                 case R.id.opp_miss_one_ptr:
                     setLastAction(new Action(period.getOpponentTeam().getName(), Type.Attempt, 1));
+                    break;
                 case R.id.opp_miss_two_ptr:
                     setLastAction(new Action(period.getOpponentTeam().getName(), Type.Attempt, 2));
+                    break;
                 case R.id.opp_miss_three_ptr:
                     setLastAction(new Action(period.getOpponentTeam().getName(), Type.Attempt, 3));
+                    break;
             }
             myScoreView.setText(String.valueOf(myScore));
             opponentScoreView.setText(String.valueOf(opponentScore));
@@ -244,7 +282,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
         if (action.getType() == Type.Score) {
             if (action.getTeamName().equals(period.getMyTeam().getName())) {
                 myScore -= action.getPoint();
-                myScoreView.setText(myScore);
+                myScoreView.setText(String.valueOf(myScore));
 
                 switch (action.getPoint()) {
                     case 1:
@@ -257,7 +295,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
             } else {
                 opponentScore -= action.getPoint();
-                opponentScoreView.setText(opponentScore);
+                opponentScoreView.setText(String.valueOf(opponentScore));
             }
         } else if (action.getType() == Type.Attempt && action.getTeamName().equals(period.getMyTeam().getName())) {
             switch (action.getPoint()) {
