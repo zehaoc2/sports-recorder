@@ -202,8 +202,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
                 case R.id.opp_miss_three_ptr:
                     setLastAction(new Action(period.getOpponentTeam().getName(), Type.Attempt, 3));
             }
-            myScoreView.setText(myScore);
-            opponentScoreView.setText(opponentScore);
+            myScoreView.setText(String.valueOf(myScore));
+            opponentScoreView.setText(String.valueOf(opponentScore));
         }
     }
 
