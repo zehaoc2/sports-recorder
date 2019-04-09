@@ -2,13 +2,18 @@ package com.cs498MD.SportsRecorder;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+
+import android.widget.AdapterView;
+
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -17,11 +22,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Stack;
-
-import info.hoang8f.widget.FButton;
 
 public class InputActivity extends Activity implements View.OnClickListener {
 
@@ -41,6 +42,9 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private int threePointAtt;
     private TextView myScoreView;
     private TextView opponentScoreView;
+
+    private int testPrev;
+    private int testPrev2;
 
     // Active match info
     private Match match;
@@ -68,6 +72,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.periods_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new SpinnerActivity());
     }
 
     @Override
@@ -151,6 +157,10 @@ public class InputActivity extends Activity implements View.OnClickListener {
         twoPointAtt = 0;
         threePointAtt = 0;
 
+        // For testing
+        testPrev = 0;
+        testPrev2 = 0;
+
         history = period.getHistory();
 
         if (history.isEmpty()) {
@@ -179,6 +189,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
 //            initPeriodInfo();
 //        }
         else {
+
             switch (v.getId()) {
                 case R.id.my_made_one_ptr:
                     myScore += 1;
@@ -227,7 +238,18 @@ public class InputActivity extends Activity implements View.OnClickListener {
                     break;
             }
             myScoreView.setText(String.valueOf(myScore));
+            Log.e("TEST", "" + myScore);
+            Log.e("TEST", "" + opponentScore);
             opponentScoreView.setText(String.valueOf(opponentScore));
+
+            if(testPrev - myScore != 0 && testPrev2 - opponentScore == 0){
+                RunAnimation(myScoreView);
+            }
+            else if(testPrev - myScore == 0 && testPrev2 - opponentScore != 0){
+                RunAnimation(opponentScoreView);
+            }
+            testPrev = myScore;
+            testPrev2 = opponentScore;
         }
     }
 
@@ -380,6 +402,15 @@ public class InputActivity extends Activity implements View.OnClickListener {
     @Override
     public void onBackPressed() {
         IsFinish("Are you sure you want to end this match?");
+    }
+
+    private void RunAnimation(TextView tv)
+    {
+        Animation a = AnimationUtils.loadAnimation(this, R.anim.vibrate);
+        a.reset();
+
+        tv.clearAnimation();
+        tv.startAnimation(a);
     }
 
 
