@@ -245,6 +245,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
         player_button_colors.add(R.color.fbutton_color_pumpkin);
         player_button_colors.add(R.color.fbutton_color_pomegranate);
     }
+    
 
     public void showAlertDialog (final View v) {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
