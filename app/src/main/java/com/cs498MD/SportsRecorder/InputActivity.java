@@ -9,7 +9,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,15 +57,27 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
 //    private FButton endMatchBtn;
 
+    private Spinner spinner;
+    private String[] periods = {"Period 1", "Period 2", "Period 3", "Period 4", "Period 4+"};
 
+    private void initSpinnerPeriods() {
+        spinner = (Spinner) findViewById(R.id.period_dropdown);
+
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, periods);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.periods_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_page);
 
-       initViews();
-       initMatchInfo();
+        initSpinnerPeriods();
+        initViews();
+        initMatchInfo();
     }
 
     /* ================================================================================================================================================= */
