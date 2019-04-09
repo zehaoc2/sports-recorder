@@ -41,6 +41,9 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private TextView myScoreView;
     private TextView opponentScoreView;
 
+    private int testPrev;
+    private int testPrev2;
+
     // Active match info
     private Match match;
     private int myScore;
@@ -162,6 +165,10 @@ public class InputActivity extends Activity implements View.OnClickListener {
         twoPointAtt = 0;
         threePointAtt = 0;
 
+        // For testing
+        testPrev = 0;
+        testPrev2 = 0;
+
         history = period.getHistory();
 
         if (history.isEmpty()) {
@@ -190,6 +197,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
 //            initPeriodInfo();
 //        }
         else {
+
             switch (v.getId()) {
                 case R.id.my_made_one_ptr:
                     myScore += 1;
@@ -238,7 +246,18 @@ public class InputActivity extends Activity implements View.OnClickListener {
                     break;
             }
             myScoreView.setText(String.valueOf(myScore));
+            Log.e("TEST", "" + myScore);
+            Log.e("TEST", "" + opponentScore);
             opponentScoreView.setText(String.valueOf(opponentScore));
+
+            if(testPrev - myScore != 0 && testPrev2 - opponentScore == 0){
+                RunAnimation(myScoreView);
+            }
+            else if(testPrev - myScore == 0 && testPrev2 - opponentScore != 0){
+                RunAnimation(opponentScoreView);
+            }
+            testPrev = myScore;
+            testPrev2 = opponentScore;
         }
     }
 
