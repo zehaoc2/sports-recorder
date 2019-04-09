@@ -74,39 +74,27 @@ public class InputActivity extends Activity implements View.OnClickListener {
         // Set Game Util Views
         lastAction = findViewById(R.id.last_action);
         findViewById(R.id.undo).setOnClickListener(this);
-
-//        endMatchBtn = findViewById(R.id.end_match);
-//        endMatchBtn.setOnClickListener(this);
+        findViewById(R.id.end_game).setOnClickListener(this);
+        findViewById(R.id.view_game_stats).setOnClickListener(this);
+        findViewById(R.id.view_prev_matches).setOnClickListener(this);
 
         // Set My Team Views
-        Button myOnePointMade = findViewById(R.id.my_made_one_ptr);
-        myOnePointMade.setOnClickListener(this);
-        Button myTwoPointMade = findViewById(R.id.my_made_two_ptr);
-        myTwoPointMade.setOnClickListener(this);
-        Button myThreePointMade = findViewById(R.id.my_made_three_ptr);
-        myThreePointMade.setOnClickListener(this);
-        Button myOnePointMiss = findViewById(R.id.my_miss_one_ptr);
-        myOnePointMiss.setOnClickListener(this);
-        Button myTwoPointMiss = findViewById(R.id.my_miss_two_ptr);
-        myTwoPointMiss.setOnClickListener(this);
-        Button myThreePointMiss = findViewById(R.id.my_miss_three_ptr);
-        myThreePointMiss.setOnClickListener(this);
+        findViewById(R.id.my_made_one_ptr).setOnClickListener(this);
+        findViewById(R.id.my_made_two_ptr).setOnClickListener(this);
+        findViewById(R.id.my_made_three_ptr).setOnClickListener(this);
+        findViewById(R.id.my_miss_one_ptr).setOnClickListener(this);
+        findViewById(R.id.my_miss_two_ptr).setOnClickListener(this);
+        findViewById(R.id.my_miss_three_ptr).setOnClickListener(this);
         myScoreView = findViewById(R.id.my_team_score);
 
         // Set Opponent Team Views
         //TODO: add opponent breakdown if time allows
-        Button oppOnePointMade = findViewById(R.id.opp_made_one_ptr);
-        oppOnePointMade.setOnClickListener(this);
-        Button oppTwoPointMade = findViewById(R.id.opp_made_two_ptr);
-        oppTwoPointMade.setOnClickListener(this);
-        Button oppThreePointMade = findViewById(R.id.opp_made_three_ptr);
-        oppThreePointMade.setOnClickListener(this);
-        Button oppOnePointMiss = findViewById(R.id.opp_miss_one_ptr);
-        oppOnePointMiss.setOnClickListener(this);
-        Button oppTwoPointMiss = findViewById(R.id.opp_miss_two_ptr);
-        oppTwoPointMiss.setOnClickListener(this);
-        Button oppThreePointMiss = findViewById(R.id.opp_miss_three_ptr);
-        oppThreePointMiss.setOnClickListener(this);
+        findViewById(R.id.opp_made_one_ptr).setOnClickListener(this);
+        findViewById(R.id.opp_made_two_ptr).setOnClickListener(this);
+        findViewById(R.id.opp_made_three_ptr).setOnClickListener(this);
+        findViewById(R.id.opp_miss_one_ptr).setOnClickListener(this);
+        findViewById(R.id.opp_miss_two_ptr).setOnClickListener(this);
+        findViewById(R.id.opp_miss_three_ptr).setOnClickListener(this);
         opponentScoreView = (TextView) findViewById(R.id.opp_score);
     }
 
@@ -161,17 +149,17 @@ public class InputActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.view_prev_matches) {
+            startActivity(new Intent(this, MainActivity.class));
+        } else if (v.getId() == R.id.view_game_stats) {
             Intent intent = new Intent(this, GameStats.class);
             intent.putExtra("matchId", matchId);
             startActivity(intent);
-        } else if (v.getId() == R.id.view_game_stats) {
-            startActivity(new Intent(this, MainActivity.class));
         } else if (v.getId() == R.id.undo && history.size() >= 1) {
             undoLastAction();
+        } else if (v.getId() == R.id.end_game){
+            showAlertDialog(v);
         }
-//          else if (v.getId() == R.id.end_match){
-//            showAlertDialog(v);
-//        } else if (v.getId() == R.id.next_period) {
+//      else if (v.getId() == R.id.next_period) {
 //            match.getPeriods().push(new Period());
 //            saveMatchInfo();
 //            initPeriodInfo();
@@ -235,6 +223,14 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
 
     public void saveMatchInfo() {
+//        Log.e("blah", "in saveMatchInfo");
+//
+//        if (match == null) {
+//            Log.e("blah", "NULL!!");
+//        } else {
+//            Log.e("blah", "NOT NULL!!");
+//        }
+
         SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -258,6 +254,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
         editor.putString(matchId, new Gson().toJson(match, Match.class));
 
         editor.commit();
+//        editor.apply();
     }
 
     /* ================================================================================================================================================= */
@@ -327,17 +324,6 @@ public class InputActivity extends Activity implements View.OnClickListener {
                 .setNegativeButton("No", dialogClickListener).show();
 
     }
-
-
-//    public void initPlayerButtonColor(){
-//        player_button_colors = new ArrayList<>();
-//        player_button_colors.add(R.color.yellow);
-//        player_button_colors.add(R.color.fbutton_color_carrot);
-//        player_button_colors.add(R.color.fbutton_color_pumpkin);
-//        player_button_colors.add(R.color.fbutton_color_pomegranate);
-//    }
-    
-
 
     public void showAlertDialog (final View v) {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
