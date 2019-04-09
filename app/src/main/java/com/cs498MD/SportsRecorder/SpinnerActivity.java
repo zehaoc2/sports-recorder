@@ -7,14 +7,21 @@ import android.widget.AdapterView;
 
 public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
 
+    private int selectedPeriod = 0;
+
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         // An item was selected. You can retrieve the selected item using
         // parent.getItemAtPosition(pos)
-        Log.d("SPINNER DEBUG", "GOT HERE");
+        Log.d("SPINNER DEBUG", "" + pos);
+        selectedPeriod = pos;
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
+    }
+
+    public int getSelectedPeriod() {
+        return selectedPeriod;
     }
 }
