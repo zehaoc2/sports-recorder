@@ -154,43 +154,43 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
         int periodCount = 1;
 
-        Stack<Period> periods = match.getPeriods();
-        for (int i = 0; i < periods.size(); i++){
-            Period period = periods.get(i);
+        Period[] periods = match.getPeriods();
+        for (int i = 0; i < periods.length; i++){
+            Period period = periods[i];
 
-            OpponentTeam oppTeam = period.getOpponentTeam();
+            Team oppTeam = period.getOpponent();
             oppPeriodScores[0] += oppTeam.getScore();
             oppPeriodScores[periodCount] += (oppTeam.getScore());
 
-            MyTeam myTeam = period.getMyTeam();
-            periodScores[0] += myTeam.score;
-            periodScores[periodCount++] += myTeam.score;
+            Team myTeam = period.getKid();
+            periodScores[0] += myTeam.getScore();
+            periodScores[periodCount++] += myTeam.getScore();
 
             if (periodCount > 5) {
                 periodCount = 5;
             }
 
-            gameBreakDown[0] += myTeam.score;
-            gameBreakDown[1] += myTeam.getOnePoint();
-            gameBreakDown[2] += myTeam.getTwoPoint();
-            gameBreakDown[3] += myTeam.getThreePoint();
-            gameBreakDown[4] += myTeam.getOnePointAttempt();
-            gameBreakDown[5] += myTeam.getTwoPointAttempt();
-            gameBreakDown[6] += myTeam.getThreePointAttempt();
-            gameBreakDown[7] += myTeam.getFoulCount();
+//            gameBreakDown[0] += myTeam.score;
+//            gameBreakDown[1] += myTeam.getOnePoint();
+//            gameBreakDown[2] += myTeam.getTwoPoint();
+//            gameBreakDown[3] += myTeam.getThreePoint();
+//            gameBreakDown[4] += myTeam.getOnePointAttempt();
+//            gameBreakDown[5] += myTeam.getTwoPointAttempt();
+//            gameBreakDown[6] += myTeam.getThreePointAttempt();
+//            gameBreakDown[7] += myTeam.getFoulCount();
 
             // PLAYER STUFF!!
-            if (i == (periods.size() - 1)) {
-                ArrayList<Player> players = myTeam.getPlayers();
-                Log.d("ARRAY DEBUG", Integer.toString(players.size()));
-
-                for (int p = 0; p < players.size(); p++) {
-                    Player player = players.get(p);
-                    Log.d("MAP DEBUG", player.getName());
-
-                    playerMap.put(player.getName(), player);
-                }
-            }
+//            if (i == (periods.size() - 1)) {
+//                ArrayList<Player> players = myTeam.getPlayers();
+//                Log.d("ARRAY DEBUG", Integer.toString(players.size()));
+//
+//                for (int p = 0; p < players.size(); p++) {
+//                    Player player = players.get(p);
+//                    Log.d("MAP DEBUG", player.getName());
+//
+//                    playerMap.put(player.getName(), player);
+//                }
+//            }
         }
 
         Log.d("TEAM DEBUG", match.getName());

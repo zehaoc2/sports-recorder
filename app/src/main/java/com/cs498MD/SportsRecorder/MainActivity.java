@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText userInputMatchName;
     private EditText userInputKidName;
 
-
-
     private String MATCH = "match";
 
     private boolean isNumeric(String num) {
@@ -66,8 +64,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_match_list);
 
         init_bottomsheet();
-
-//        rellenarListView();
 
         tbUpDown.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

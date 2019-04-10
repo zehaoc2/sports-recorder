@@ -4,14 +4,15 @@ import java.util.Stack;
 public class Match {
     private int id;
     private String name;
-    private Stack<Period> periods;
+    private Period[] periods = new Period[5];
     private boolean isDone;
 
     public Match(int id) {
         this.id = id;
         this.name = "Match " + id;
-        periods = new Stack<>();
-        periods.push(new Period());
+        for (int i = 0; i < periods.length; i++) {
+            periods[i] = new Period();
+        }
     }
 
     public boolean isDone() {
@@ -38,11 +39,11 @@ public class Match {
         this.name = name;
     }
 
-    public Stack<Period> getPeriods() {
+    public Period[] getPeriods() {
         return periods;
     }
 
-    public void setPeriods(Stack<Period> periods) {
+    public void setPeriods(Period[] periods) {
         this.periods = periods;
     }
 }

@@ -12,13 +12,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import android.widget.AdapterView;
-
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -33,33 +27,24 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private TextView lastAction;
 
     // Teams
+    private int kidOne;
+    private int kidTwo;
+    private int kidThree;
+    private int kidMiss;
 
-    private int onePoint;
-    private int twoPoint;
-    private int threePoint;
-    private int onePointAtt;
-    private int twoPointAtt;
-    private int threePointAtt;
     private TextView myScoreView;
     private TextView opponentScoreView;
 
-    private int testPrev;
-    private int testPrev2;
-
     // Active match info
     private Match match;
-    private int myScore;
-    private int prevMyScore;
-    private int opponentScore;
+    private int kidScore;
+    private int othersScore;
+    private int oppScore;
+    private int prevKidScore;
+    private int prevOthersScore;
     private int prevOppScore;
+
     private Stack<Action> history;
-
-//    private TextView myNameView;
-//    private TextView opponentNameView;
-//    private ArrayList<Player> players;
-//    private Player player;
-
-//    private FButton endMatchBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,78 +60,69 @@ public class InputActivity extends Activity implements View.OnClickListener {
     /* ================================================================================================================================================= */
 
     private void initViews() {
-        // Set Game Util Views
+        // Game Util Views
         lastAction = findViewById(R.id.last_action);
         findViewById(R.id.undo).setOnClickListener(this);
         findViewById(R.id.end_game).setOnClickListener(this);
         findViewById(R.id.view_game_stats).setOnClickListener(this);
         findViewById(R.id.view_prev_matches).setOnClickListener(this);
+        myScoreView = findViewById(R.id.my_score);
+        opponentScoreView = findViewById(R.id.opp_score);
 
-        // Set My Team Views
-        findViewById(R.id.my_made_one_ptr).setOnClickListener(this);
-        findViewById(R.id.my_made_two_ptr).setOnClickListener(this);
-        findViewById(R.id.my_made_three_ptr).setOnClickListener(this);
-        findViewById(R.id.my_miss_one_ptr).setOnClickListener(this);
-        findViewById(R.id.my_miss_two_ptr).setOnClickListener(this);
-        findViewById(R.id.my_miss_three_ptr).setOnClickListener(this);
-        myScoreView = findViewById(R.id.my_team_score);
+        // Others Views
+        findViewById(R.id.other_free_throw).setOnClickListener(this);
+        findViewById(R.id.other_two_ptr).setOnClickListener(this);
+        findViewById(R.id.other_three_ptr).setOnClickListener(this);
+        findViewById(R.id.other_miss).setOnClickListener(this);
 
-        // Set Opponent Team Views
-        //TODO: add opponent breakdown if time allows
-        findViewById(R.id.opp_made_one_ptr).setOnClickListener(this);
-        findViewById(R.id.opp_made_two_ptr).setOnClickListener(this);
-        findViewById(R.id.opp_made_three_ptr).setOnClickListener(this);
-        findViewById(R.id.opp_miss_one_ptr).setOnClickListener(this);
-        findViewById(R.id.opp_miss_two_ptr).setOnClickListener(this);
-        findViewById(R.id.opp_miss_three_ptr).setOnClickListener(this);
-        opponentScoreView = (TextView) findViewById(R.id.opp_score);
+        // Kid Views
+        findViewById(R.id.myKid_free_throw).setOnClickListener(this);
+        findViewById(R.id.myKid_two_ptr).setOnClickListener(this);
+        findViewById(R.id.myKid_three_ptr).setOnClickListener(this);
+        findViewById(R.id.myKid_free_throw).setOnClickListener(this);
+
+        // Opponent Views
+        findViewById(R.id.opp_free_throw).setOnClickListener(this);
+        findViewById(R.id.opp_two_ptr).setOnClickListener(this);
+        findViewById(R.id.opp_three_ptr).setOnClickListener(this);
+        findViewById(R.id.opp_miss).setOnClickListener(this);
     }
 
     private void initMatchInfo() {
         matchId = getIntent().getStringExtra("matchId");
+        match = new Match(Integer.parseInt(matchId));
+        initPeriodInfo(0);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
-        Gson gson = new Gson();
+        /* Assume we only enter inputActivity by clicking add button in mainActivity */
 
-        String matchJson = sharedPreferences.getString(matchId, "");
-
-        if (matchJson == null || matchJson.equals("")) {
-            match = new Match(Integer.parseInt(matchId));
-        } else {
-            match = gson.fromJson(matchJson, Match.class);
-        }
-
-//        TextView matchName = findViewById(R.id.match_name);
-//        matchName.setText(match.getName() + " : Period" + (match.getPeriods().size() + 1));
-
-        initPeriodInfo();
+//        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
+//        Gson gson = new Gson();
+//
+//        String matchJson = sharedPreferences.getString(matchId, "");
+//
+//        if (matchJson == null || matchJson.equals("")) {
+//            match = new Match(Integer.parseInt(matchId));
+//        } else {
+//            match = gson.fromJson(matchJson, Match.class);
+//        }
     }
 
-    private void initPeriodInfo() {
-        period = match.getPeriods().peek();
+    private void initPeriodInfo(int idx) {
+        Team kid = period.getKid();
+        kid.setMiss(kidMiss);
+        kid.setScore(kidScore - prevKidScore);
+        kid.setOnePoint(kidOne);
+        kid.setTwoPoint(kidTwo);
+        kid.setThreePoint(kidThree);
 
-//        TextView matchName = findViewById(R.id.match_name);
-//        matchName.setText(match.getName() + " : Period " + (match.getPeriods().size()));
+        period.getOpponent().setScore(oppScore - prevOppScore);
+        period.getOthers().setScore(othersScore - prevOthersScore);
 
-        MyTeam myTeam = period.getMyTeam();
-        OpponentTeam opponentTeam = period.getOpponentTeam();
-//        if (players == null) {
-//            players = myTeam.getPlayers();
-//        }
-
-        onePoint = 0;
-        twoPoint = 0;
-        threePoint = 0;
-        onePointAtt = 0;
-        twoPointAtt = 0;
-        threePointAtt = 0;
-
-        // For testing
-        testPrev = 0;
-        testPrev2 = 0;
+        period = match.getPeriods()[idx];
+        prevOppScore = oppScore; prevKidScore = kidScore; prevOthersScore = othersScore;
+        kidOne = 0; kidTwo = 0; kidThree = 0; kidMiss = 0;
 
         history = period.getHistory();
-
         if (history.isEmpty()) {
             lastAction.setText("");
         } else {
@@ -164,145 +140,103 @@ public class InputActivity extends Activity implements View.OnClickListener {
             startActivity(intent);
         } else if (v.getId() == R.id.undo && history.size() >= 1) {
             undoLastAction();
-        } else if (v.getId() == R.id.end_game){
+        } else if (v.getId() == R.id.end_game) {
             showAlertDialog(v);
-        }
-//      else if (v.getId() == R.id.next_period) {
-//            match.getPeriods().push(new Period());
-//            saveMatchInfo();
-//            initPeriodInfo();
-//        }
-        else {
-
+        } else if (v.getId() == R.id.period_one) {
+            initPeriodInfo(0);
+        } else if (v.getId() == R.id.period_two) {
+            initPeriodInfo(1);
+        } else if (v.getId() == R.id.period_three) {
+            initPeriodInfo(2);
+        } else if (v.getId() == R.id.period_four) {
+            initPeriodInfo(3);
+        } else if (v.getId() == R.id.period_fourPlus) {
+            initPeriodInfo(4);
+        } else {
             switch (v.getId()) {
-                case R.id.my_made_one_ptr:
-                    myScore += 1;
-                    setLastAction(new Action(period.getMyTeam().getName(), Type.Score, 1));
+                case R.id.opp_free_throw:
+                    oppScore += 1;
+                    setLastAction(new Action(period.getOpponent().getName(), Type.Score, 1));
                     break;
-                case R.id.my_made_two_ptr:
-                    myScore += 2;
-                    setLastAction(new Action(period.getMyTeam().getName(), Type.Score, 2));
+                case R.id.opp_two_ptr:
+                    oppScore += 2;
+                    setLastAction(new Action(period.getOpponent().getName(), Type.Score, 2));
                     break;
-                case R.id.my_made_three_ptr:
-                    myScore += 3;
-                    setLastAction(new Action(period.getMyTeam().getName(), Type.Score, 3));
+                case R.id.opp_three_ptr:
+                    oppScore += 3;
+                    setLastAction(new Action(period.getOpponent().getName(), Type.Score, 3));
                     break;
-                case R.id.my_miss_one_ptr:
-                    onePointAtt++;
-                    setLastAction(new Action(period.getMyTeam().getName(), Type.Attempt, 1));
+                case R.id.opp_miss:
+                    setLastAction(new Action(period.getOpponent().getName(), Type.Attempt, 1));
                     break;
-                case R.id.my_miss_two_ptr:
-                    twoPointAtt++;
-                    setLastAction(new Action(period.getMyTeam().getName(), Type.Attempt, 2));
+                case R.id.other_free_throw:
+                    othersScore += 1;
+                    setLastAction(new Action(period.getOthers().getName(), Type.Score, 1));
                     break;
-                case R.id.my_miss_three_ptr:
-                    threePointAtt++;
-                    setLastAction(new Action(period.getMyTeam().getName(), Type.Attempt, 3));
+                case R.id.other_two_ptr:
+                    othersScore += 2;
+                    setLastAction(new Action(period.getOthers().getName(), Type.Score, 2));
                     break;
-                case R.id.opp_made_one_ptr:
-                    opponentScore += 1;
-                    setLastAction(new Action(period.getOpponentTeam().getName(), Type.Score, 1));
+                case R.id.other_three_ptr:
+                    othersScore += 3;
+                    setLastAction(new Action(period.getOthers().getName(), Type.Score, 3));
                     break;
-                case R.id.opp_made_two_ptr:
-                    opponentScore += 2;
-                    setLastAction(new Action(period.getOpponentTeam().getName(), Type.Score, 2));
+                case R.id.other_miss:
+                    setLastAction(new Action(period.getOthers().getName(), Type.Attempt, 1));
                     break;
-                case R.id.opp_made_three_ptr:
-                    opponentScore += 3;
-                    setLastAction(new Action(period.getOpponentTeam().getName(), Type.Score, 3));
+                case R.id.myKid_free_throw:
+                    kidOne += 1;
+                    kidScore += 1;
+                    setLastAction(new Action(period.getKid().getName(), Type.Score, 1));
                     break;
-                case R.id.opp_miss_one_ptr:
-                    setLastAction(new Action(period.getOpponentTeam().getName(), Type.Attempt, 1));
+                case R.id.myKid_two_ptr:
+                    kidTwo += 2;
+                    kidScore += 2;
+                    setLastAction(new Action(period.getKid().getName(), Type.Score, 2));
                     break;
-                case R.id.opp_miss_two_ptr:
-                    setLastAction(new Action(period.getOpponentTeam().getName(), Type.Attempt, 2));
+                case R.id.myKid_three_ptr:
+                    kidThree += 3;
+                    kidScore += 3;
+                    setLastAction(new Action(period.getKid().getName(), Type.Score, 3));
                     break;
-                case R.id.opp_miss_three_ptr:
-                    setLastAction(new Action(period.getOpponentTeam().getName(), Type.Attempt, 3));
+                case R.id.myKid_miss:
+                    kidMiss += 1;
+                    setLastAction(new Action(period.getKid().getName(), Type.Attempt, 1));
                     break;
             }
-            myScoreView.setText(String.valueOf(myScore));
-            Log.e("TEST", "" + myScore);
-            Log.e("TEST", "" + opponentScore);
-            opponentScoreView.setText(String.valueOf(opponentScore));
 
-            if(testPrev - myScore != 0 && testPrev2 - opponentScore == 0){
-                RunAnimation(myScoreView);
-            }
-            else if(testPrev - myScore == 0 && testPrev2 - opponentScore != 0){
-                RunAnimation(opponentScoreView);
-            }
-            testPrev = myScore;
-            testPrev2 = opponentScore;
+            myScoreView.setText(String.valueOf(kidScore + othersScore));
+            opponentScoreView.setText(String.valueOf(oppScore));
         }
-    }
-
-    /* ================================================================================================================================================= */
-    /* ================================================================== SAVE MATCH =================================================================== */
-    /* ================================================================================================================================================= */
-
-
-    public void saveMatchInfo() {
-        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        period.setHistory(history);
-        MyTeam myTeam = period.getMyTeam();
-
-        myTeam.setScore(myScore - prevMyScore);
-        myTeam.setOnePoint(onePoint);
-        myTeam.setTwoPoint(twoPoint);
-        myTeam.setThreePoint(threePoint);
-
-        myTeam.setOnePointAttempt(onePointAtt - prevOppScore);
-        myTeam.setTwoPointAttempt(twoPointAtt);
-        myTeam.setThreePointAttempt(threePointAtt);
-
-//        myTeam.setPlayers(players);
-
-        OpponentTeam opponentTeam = period.getOpponentTeam();
-        opponentTeam.setScore(opponentScore);
-
-        editor.putString(matchId, new Gson().toJson(match, Match.class));
-
-        editor.commit();
-//        editor.apply();
     }
 
     /* ================================================================================================================================================= */
     /* ==================================================================== Actions ==================================================================== */
     /* ================================================================================================================================================= */
-    //TODO: Add opponent team if time allows.
     private void undoLastAction() {
         Action action = history.pop();
         if (action.getType() == Type.Score) {
-            if (action.getTeamName().equals(period.getMyTeam().getName())) {
-                myScore -= action.getPoint();
-                myScoreView.setText(String.valueOf(myScore));
+            if (action.getTeamName().equals(period.getOthers().getName())) {
+                othersScore -= action.getPoint();
+                myScoreView.setText(String.valueOf(othersScore + kidScore));
+            } else if (action.getTeamName().equals(period.getOpponent().getName())) {
+                oppScore -= action.getPoint();
+                opponentScoreView.setText(String.valueOf(oppScore));
+            } else {
+                kidScore -= action.getPoint();
+                myScoreView.setText(String.valueOf(othersScore + kidScore));
 
                 switch (action.getPoint()) {
                     case 1:
-                        onePoint--;
+                        kidOne--;
                     case 2:
-                        twoPoint--;
+                        kidTwo--;
                     case 3:
-                        threePoint--;
+                        kidThree--;
                 }
-
-            } else {
-                opponentScore -= action.getPoint();
-                opponentScoreView.setText(String.valueOf(opponentScore));
             }
-        } else if (action.getType() == Type.Attempt && action.getTeamName().equals(period.getMyTeam().getName())) {
-            switch (action.getPoint()) {
-                case 1:
-                    onePointAtt--;
-                case 2:
-                    twoPointAtt--;
-                case 3:
-                    threePointAtt--;
-
-            }
+        } else if (action.getType() == Type.Attempt && action.getTeamName().equals(period.getKid().getName())) {
+            kidMiss--;
         }
         lastAction.setText(history.isEmpty() ? "" : history.peek().getMessage());
     }
@@ -362,20 +296,22 @@ public class InputActivity extends Activity implements View.OnClickListener {
     }
 
     /* ================================================================================================================================================= */
-    /* ============================================================== ANDROID LIFE CYCLE =============================================================== */
+    /* ================================================================== SAVE MATCH =================================================================== */
     /* ================================================================================================================================================= */
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        saveMatchInfo();
+
+    public void saveMatchInfo() {
+        SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(matchId, new Gson().toJson(match, Match.class));
+
+        editor.commit();
+//        editor.apply();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        saveMatchInfo();
-    }
+    /* ================================================================================================================================================= */
+    /* ============================================================== ANDROID LIFE CYCLE =============================================================== */
+    /* ================================================================================================================================================= */
 
     @Override
     protected void onPause() {
@@ -387,15 +323,4 @@ public class InputActivity extends Activity implements View.OnClickListener {
     public void onBackPressed() {
         IsFinish("Are you sure you want to end this match?");
     }
-
-    private void RunAnimation(TextView tv)
-    {
-        Animation a = AnimationUtils.loadAnimation(this, R.anim.vibrate);
-        a.reset();
-
-        tv.clearAnimation();
-        tv.startAnimation(a);
-    }
-
-
 }

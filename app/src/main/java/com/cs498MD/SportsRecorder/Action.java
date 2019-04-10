@@ -18,7 +18,7 @@ public class Action {
         this.point = point;
 
         if (type == Type.Attempt) {
-            this.message = teamName + " missed " + point + " point" + (point == 1 ? "!" : "s!");
+            this.message = teamName + " missed!";
         } else if (type == Type.Score) {
             this.message = teamName + " got " + point + " point" + (point == 1 ? "!" : "s!");
         } else {
