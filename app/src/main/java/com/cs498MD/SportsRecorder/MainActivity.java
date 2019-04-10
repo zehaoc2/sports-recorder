@@ -27,6 +27,9 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -99,19 +102,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Gson gson = new Gson();
 
         Map<String, ?> allEntries = sharedPreferences.getAll();
-        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-            String matchId = entry.getKey();
+        SortedSet<Integer> keys = new TreeSet<>();
 
-            if (!isNumeric(matchId)) {
+        for (String key : allEntries.keySet()) {
+            if (!isNumeric(key)) {
                 continue;
             }
 
-            String matchJson = sharedPreferences.getString(matchId, "");
+            keys.add(Integer.valueOf(key));
+        }
+
+        Log.d("KEYS", keys.toString());
+
+        for (Integer matchId : keys) {
+            String matchJson = sharedPreferences.getString(matchId.toString(), "");
             Match match = gson.fromJson(matchJson, Match.class);
 
             matchNameArray.add(match.getName());
-            matchIdArray.add(matchId);
+            matchIdArray.add(matchId.toString());            // do something
         }
+
+//        for (Map.Entry<String, ?> entry : sorted.entrySet()) {
+//            String matchId = entry.getKey();
+//
+//            if (!isNumeric(matchId)) {
+//                continue;
+//            }
+//
+//            String matchJson = sharedPreferences.getString(matchId, "");
+//            Match match = gson.fromJson(matchJson, Match.class);
+//
+//            matchNameArray.add(match.getName());
+//            matchIdArray.add(matchId);
+//        }
 
         adapter = new MyCustomAdapter(matchNameArray, matchIdArray, this, MainActivity.this);
 
@@ -135,8 +158,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editor.putString("matchId", matchName);
         editor.apply();
 
-
-
         if(v.getId() == R.id.btnCreate){
 
             Log.e("TEST_SHEET", "Create Match Clicked");
@@ -157,8 +178,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
-
     //bottom sheet
     private void init_bottomsheet() {
         this.linearLayoutBSheet = findViewById(R.id.bottomSheet);
@@ -174,9 +193,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.userInputMatchName = findViewById(R.id.matchNameText);
 
     }
-
-
-
 
     private SimpleAdapter getAdapterListViewCT(ArrayList<Map<String, Object>> lista) {
         return new SimpleAdapter(this, lista,
@@ -195,7 +211,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 return view;
             }
-
         };
     }
 
