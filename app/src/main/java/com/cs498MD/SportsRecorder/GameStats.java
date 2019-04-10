@@ -3,10 +3,13 @@ package com.cs498MD.SportsRecorder;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -18,6 +21,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class GameStats extends AppCompatActivity implements View.OnClickListener {
 
@@ -33,10 +39,12 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
     private static TextView scores;
     private String matchJson;
     private Match match;
+    private String matchName;
 
     private TableLayout scoreTable;
     private TableLayout teamTable;
     private TableLayout playerTable;
+
 
     private static String[] SCORE_HEADER = {"Team", "Total", "QTR 1", "QTR 2", "QTR 3", "QTR 4", "QTR 4+"};
     private static String[] TEAM_HEADER = {"Total", "1 PT", "2 PT", "3 PT", "1 PT Miss", "2 PT Miss", "3 PT Miss", "Foul"};
@@ -100,6 +108,12 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
                 break;
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.stats_menu, menu);
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,12 +132,25 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
         String matchId = getIntent().getStringExtra("matchId");
         SharedPreferences sharedPreferences = getSharedPreferences("match", MODE_PRIVATE);
 
-        Log.e("dsfasdsdfsdaf", matchId + "");
-
         matchJson = sharedPreferences.getString(matchId, "");
 
         Gson gson = new Gson();
         match = gson.fromJson(matchJson, Match.class);
+
+        matchName = match.getName();
+
+//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME |
+//                ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_USE_LOGO);
+//        android.support.v7.app.ActionBar bar = getSupportActionBar();
+//        bar.setTitle(matchName);
+//        bar.setIcon(R.drawable.ic_back);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+
+        actionBar.setTitle(matchName);
+
+
+
 
         int periodCount = 1;
 
@@ -171,6 +198,15 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
         populateScoreTable();
         populateTeamTable();
         populatePlayerTable();
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.stats_menu_id) {
+            Log.e("TEST", "clicked");
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -274,7 +310,9 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        if (match.isDone()) {
+            startActivity(new Intent(this, MainActivity.class));
+        }
+
     }
 }

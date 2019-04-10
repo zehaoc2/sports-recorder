@@ -7,9 +7,10 @@
         android:allowBackup="true"
         android:label="@string/sports_recorder"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/BarTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".GameStats" />
+        <activity android:name=".GameStats"
+                  android:theme="@style/AppTheme"/>
         <activity android:name=".MatchList" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -18,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InputActivity" />
+        <activity android:name=".InputActivity" android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

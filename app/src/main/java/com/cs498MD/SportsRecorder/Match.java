@@ -5,12 +5,21 @@ public class Match {
     private int id;
     private String name;
     private Stack<Period> periods;
+    private boolean isDone;
 
     public Match(int id) {
         this.id = id;
         this.name = "Match " + id;
         periods = new Stack<>();
         periods.push(new Period());
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
     }
 
     public int getId() {
