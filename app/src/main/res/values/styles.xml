@@ -6,6 +6,15 @@
         <item name="colorPrimary">@color/fbutton_color_clouds</item>
         <item name="colorPrimaryDark">@color/fbutton_color_midnight_blue</item>
         <item name="colorAccent">@color/fbutton_color_carrot</item>
+
+
+    </style>
+
+    <style name="BarTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+
+        <item name="colorPrimaryDark">@color/fbutton_color_midnight_blue</item>
+
     </style>
 
 
