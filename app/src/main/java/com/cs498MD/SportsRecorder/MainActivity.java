@@ -32,7 +32,7 @@ import java.util.Map;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.ContentLoadingProgressBar;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -45,9 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private BottomSheetBehavior bottomSheetBehavior;
     private LinearLayout linearLayoutBSheet;
     private ToggleButton tbUpDown;
-    private ListView listView;
-    private TextView txtCantante, txtCancion;
-    private ContentLoadingProgressBar progbar;
+
 
     private Button createBtn;
     private EditText userInputMatchName;
@@ -176,10 +174,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.linearLayoutBSheet = findViewById(R.id.bottomSheet);
         this.bottomSheetBehavior = BottomSheetBehavior.from(linearLayoutBSheet);
         this.tbUpDown = findViewById(R.id.toggleButton);
-
-        this.txtCantante = findViewById(R.id.txtCantante);
-        this.txtCancion = findViewById(R.id.txtCancion);
-        this.progbar = findViewById(R.id.progbar);
 
         this.createBtn = findViewById(R.id.btnCreate);
         this.userInputKidName = findViewById(R.id.kidNameText);
