@@ -29,7 +29,8 @@
         android:layout_alignParentTop="true"
         android:text="Match Name"
         android:gravity="center"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:textColor="@color/classic_black"/>
 
     <Button
         android:id="@+id/view_game_stats"
@@ -43,8 +44,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_below="@id/view_prev_matches"
-        android:layout_above="@id/end_game"
+        android:layout_alignTop="@id/opp_team"
+        android:layout_alignBottom="@id/miss"
         android:gravity="center">
 
         <Button
@@ -85,14 +86,18 @@
     <TextView
         android:id="@+id/opp_team"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/view_game_stats"
 
+        android:layout_alignTop="@id/score"
+        android:layout_alignBottom="@id/score"
         android:layout_toStartOf="@id/free_throw_title"
         android:layout_toEndOf="@id/view_prev_matches"
         android:gravity="center"
         android:text="Opponents"
-        android:textStyle="bold" />
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/classic_black"/>
 
     <RelativeLayout
         android:id="@+id/score"
@@ -107,32 +112,37 @@
             android:id="@+id/opp_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:text="0"/>
+            android:textSize="36sp"
+            android:text="0"
+            android:textColor="@color/classic_black"/>
 
         <TextView
             android:id="@+id/separator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="36sp"
             android:text=":"
 
-            android:layout_toEndOf="@id/opp_score"/>
+            android:layout_toEndOf="@id/opp_score"
+            android:textColor="@color/classic_black"/>
 
         <TextView
             android:id="@+id/my_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="36sp"
             android:text="0"
 
-            android:layout_toEndOf="@id/separator"/>
+            android:layout_toEndOf="@id/separator"
+            android:textColor="@color/classic_black"/>
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
 
+        android:layout_alignTop="@id/score"
+        android:layout_alignBottom="@id/score"
         android:layout_below="@id/view_prev_matches"
         android:layout_toEndOf="@id/free_throw_title"
         android:layout_alignParentEnd="true"
@@ -146,7 +156,9 @@
 
             android:gravity="center"
             android:text="My Team"
-            android:textStyle="bold" />
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/classic_black"/>
 
         <TableRow
             android:layout_width="match_parent"
@@ -159,16 +171,21 @@
                 android:id="@+id/other_kids"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Others"
                 android:layout_weight="1"
-                android:gravity="center" />
+                android:gravity="center"
+                android:text="Others"
+                android:textSize="18sp"
+                android:textColor="@color/classic_black"/>
+
             <TextView
                 android:id="@+id/my_kid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="My Kid"
                 android:layout_weight="1"
-                android:gravity="center" />
+                android:gravity="center"
+                android:text="My Kid"
+                android:textSize="18sp"
+                android:textColor="@color/classic_black"/>
         </TableRow>
     </RelativeLayout>
 
@@ -452,30 +469,33 @@
 
         android:layout_centerHorizontal="true"
         android:layout_below="@id/score"
-        android:textSize="22dp"
-        android:layout_marginTop="28dp"/>
+        android:textSize="24dp"
+        android:layout_marginTop="28dp"
+        android:textColor="@color/classic_black"/>
 
     <TextView
         android:id="@+id/two_ptr_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Two-Ptr"
+        android:text="2 Pts"
 
         android:layout_centerHorizontal="true"
         android:layout_below="@id/free_throw_title"
         android:textSize="24dp"
-        android:layout_marginTop="28dp"/>
+        android:layout_marginTop="28dp"
+        android:textColor="@color/classic_black"/>
 
     <TextView
         android:id="@+id/three_ptr_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3-Ptr"
+        android:text="3 Pts"
 
         android:layout_centerHorizontal="true"
         android:layout_below="@id/two_ptr_title"
         android:textSize="24dp"
-        android:layout_marginTop="28dp"/>
+        android:layout_marginTop="28dp"
+        android:textColor="@color/classic_black"/>
 
     <TextView
         android:id="@+id/miss_title"
@@ -486,43 +506,60 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/three_ptr_title"
         android:textSize="24dp"
-        android:layout_marginTop="28dp"/>
+        android:layout_marginTop="28dp"
+        android:textColor="@color/classic_black"/>
 
-    <Button
-        android:id="@+id/end_game"
-        android:layout_width="100dp"
+    <RelativeLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:text="End Game" />
+        android:layout_below="@id/miss">
 
-    <TextView
-        android:id="@+id/last_action"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        <View
+            android:background="#000"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@id/end_game"
+            android:layout_alignEnd="@id/undo"/>
 
-        android:layout_alignBottom="@id/undo"
-        android:layout_toEndOf="@id/end_game"
-        android:layout_toStartOf="@id/undo"
+        <Button
+            android:id="@+id/end_game"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:text="End Game"/>
 
-        android:layout_weight="1"
+        <TextView
+            android:id="@+id/last_action"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
 
-        android:background="@color/classic_white"
-        android:backgroundTint="@color/classic_white"
-        android:fontFamily="sans-serif-light"
-        android:gravity="center"
-        android:text="Last Activity"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+            android:layout_alignTop="@+id/undo"
+            android:layout_alignBottom="@id/undo"
+            android:layout_toEndOf="@id/end_game"
+            android:layout_toStartOf="@id/undo"
+            android:drawableTop="@color/classic_black"
 
-    <Button
-        android:id="@+id/undo"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+            android:background="@color/classic_white"
+            android:backgroundTint="@color/classic_white"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:text="Last Activity"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/light_background_gray"/>
 
-        android:layout_alignParentBottom="true"
-        android:text="Undo" />
+        <Button
+            android:id="@+id/undo"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
 
+            android:layout_alignParentBottom="true"
+            android:text="Undo" />
+    </RelativeLayout>
 </RelativeLayout>
