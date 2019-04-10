@@ -84,11 +84,10 @@
         android:id="@+id/match_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/periods"
         android:layout_toStartOf="@id/view_game_stats"
+        android:layout_toEndOf="@id/periods"
+        android:layout_alignBottom="@id/view_game_stats"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="0dp"
         android:text="Match Name"
         android:gravity="center"
         android:textSize="30sp"
@@ -97,7 +96,7 @@
     <Button
         android:id="@+id/view_game_stats"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="8dp"
@@ -108,7 +107,7 @@
         android:id="@+id/opp_team"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/match_name"
+        android:layout_below="@id/view_game_stats"
 
         android:layout_marginStart="52dp"
         android:layout_alignTop="@id/score"
@@ -127,7 +126,7 @@
 
         android:layout_toEndOf="@id/periods"
         android:layout_toStartOf="@id/view_game_stats"
-        android:layout_below="@id/match_name"
+        android:layout_below="@id/view_game_stats"
         android:gravity="center">
 
         <TextView
@@ -538,27 +537,7 @@
         android:layout_alignParentBottom="true"
         android:layout_below="@id/miss"
         android:layout_toEndOf="@id/periods"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_alignParentTop="true"
-            android:background="@color/classic_black"
-            android:layout_marginStart="4dp"
-            />
-
-        <Button
-            android:id="@+id/undo"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
-
-            android:layout_alignParentBottom="true"
-            android:background="@android:drawable/ic_menu_close_clear_cancel"
-            android:backgroundTint="@android:color/holo_red_dark" />
+        android:layout_marginEnd="8dp">
 
         <TextView
             android:id="@+id/last_action"
@@ -580,15 +559,16 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/light_background_gray"/>
-        <!--<Button-->
-            <!--android:id="@+id/undo"-->
-            <!--style="@style/Widget.AppCompat.Button.Colored"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentEnd="true"-->
 
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:backgroundTint="@color/undo"-->
-            <!--android:text="Undo" />-->
+        <Button
+            android:id="@+id/undo"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+
+            android:layout_alignParentBottom="true"
+            android:backgroundTint="@color/undo"
+            android:text="Undo" />
     </RelativeLayout>
 </RelativeLayout>

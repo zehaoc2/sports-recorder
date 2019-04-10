@@ -10,85 +10,23 @@
     android:background="@color/classic_white"
     android:orientation="horizontal">
 
-    <LinearLayout
-        android:id="@+id/periods"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+    <Button
+        android:id="@+id/view_prev_matches"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/view_matches"
 
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginStart="8dp">
-
-        <Button
-            android:id="@+id/period_one"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/periods"
-            android:text="Period 1"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/period_two"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/periods"
-            android:text="Period 2"
-            android:textSize="16sp"/>
-
-        <Button
-            android:id="@+id/period_three"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/periods"
-            android:text="Period 3"
-            android:textSize="16sp"/>
-
-        <Button
-            android:id="@+id/period_four"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/periods"
-            android:text="Period 4"
-            android:textSize="16sp"/>
-
-        <Button
-            android:id="@+id/period_fourPlus"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/periods"
-            android:text="Period 4+"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/end_game"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/end_game"
-            android:text="End Game"
-            android:textSize="16sp" />
-    </LinearLayout>
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/match_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/periods"
         android:layout_toStartOf="@id/view_game_stats"
+        android:layout_toEndOf="@id/view_prev_matches"
+        android:layout_alignBottom="@id/view_prev_matches"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="0dp"
         android:text="Match Name"
         android:gravity="center"
         android:textSize="30sp"
@@ -96,24 +34,70 @@
 
     <Button
         android:id="@+id/view_game_stats"
-        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/view_game_stats"
+        android:layout_alignParentEnd="true"/>
+
+    <RelativeLayout
+        android:id="@+id/periods"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="8dp"
-        android:backgroundTint="@color/view_stats"
-        android:text="@string/view_game_stats" />
+
+        android:layout_alignTop="@id/opp_team"
+        android:layout_alignBottom="@id/miss"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/period_one"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Period 1" />
+        <Button
+            android:id="@+id/period_two"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Period 2"
+
+            android:layout_below="@id/period_one"/>
+        <Button
+            android:id="@+id/period_three"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Period 3"
+
+            android:layout_below="@id/period_two"/>
+        <Button
+            android:id="@+id/period_four"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Period 4"
+
+            android:layout_below="@id/period_three"/>
+        <Button
+            android:id="@+id/period_fourPlus"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Period 4+"
+
+            android:layout_below="@id/period_four"/>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/opp_team"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/match_name"
+        android:layout_below="@id/view_game_stats"
 
-        android:layout_marginStart="52dp"
         android:layout_alignTop="@id/score"
         android:layout_alignBottom="@id/score"
-        android:layout_toEndOf="@id/periods"
+        android:layout_toStartOf="@id/free_throw_title"
+        android:layout_toEndOf="@id/view_prev_matches"
         android:gravity="center"
         android:text="Opponents"
         android:textSize="20sp"
@@ -122,12 +106,11 @@
 
     <RelativeLayout
         android:id="@+id/score"
-        android:layout_width="10dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
 
-        android:layout_toEndOf="@id/periods"
-        android:layout_toStartOf="@id/view_game_stats"
-        android:layout_below="@id/match_name"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/view_game_stats"
         android:gravity="center">
 
         <TextView
@@ -232,11 +215,11 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
 
-            android:layout_weight="1"
-            android:backgroundTint="@color/add_buttons"
+            android:backgroundTint="@color/design_default_color_primary"
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
-            android:gravity="center" />
+            android:gravity="center"
+            android:layout_weight="1"/>
 
         <View
             android:layout_width="210dp"
@@ -250,7 +233,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
 
-            android:backgroundTint="@color/add_buttons"
+            android:backgroundTint="@color/design_default_color_primary"
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
             android:gravity="center"
@@ -267,7 +250,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
 
-            android:backgroundTint="@color/add_buttons"
+            android:backgroundTint="@color/design_default_color_primary"
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
             android:gravity="center"
@@ -300,7 +283,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
 
-            android:backgroundTint="@color/add_buttons"
+            android:backgroundTint="@color/design_default_color_primary"
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
             android:gravity="center"
@@ -318,7 +301,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
 
-            android:backgroundTint="@color/add_buttons"
+            android:backgroundTint="@color/design_default_color_primary"
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
             android:gravity="center"
@@ -335,7 +318,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
 
-            android:backgroundTint="@color/add_buttons"
+            android:backgroundTint="@color/design_default_color_primary"
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
             android:gravity="center"
@@ -368,7 +351,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
 
-            android:backgroundTint="@color/add_buttons"
+            android:backgroundTint="@color/design_default_color_primary"
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
             android:gravity="center"
@@ -386,7 +369,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
 
-            android:backgroundTint="@color/add_buttons"
+            android:backgroundTint="@color/design_default_color_primary"
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
             android:gravity="center"
@@ -403,7 +386,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
 
-            android:backgroundTint="@color/add_buttons"
+            android:backgroundTint="@color/design_default_color_primary"
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
             android:gravity="center"
@@ -436,7 +419,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
 
-            android:backgroundTint="@color/add_buttons"
+            android:backgroundTint="@color/design_default_color_primary"
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
             android:gravity="center"
@@ -454,7 +437,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
 
-            android:backgroundTint="@color/add_buttons"
+            android:backgroundTint="@color/design_default_color_primary"
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
             android:gravity="center"
@@ -471,7 +454,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
 
-            android:backgroundTint="@color/add_buttons"
+            android:backgroundTint="@color/design_default_color_primary"
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
             android:gravity="center"
@@ -536,38 +519,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_below="@id/miss"
-        android:layout_toEndOf="@id/periods"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_alignParentTop="true"
-            android:background="@color/classic_black"
-            android:layout_marginStart="4dp"
-            />
+        android:layout_below="@id/miss">
 
         <Button
-            android:id="@+id/undo"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
-
+            android:id="@+id/end_game"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:background="@android:drawable/ic_menu_close_clear_cancel"
-            android:backgroundTint="@android:color/holo_red_dark" />
+            android:text="End Game"/>
 
         <TextView
             android:id="@+id/last_action"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
 
-            android:layout_alignParentStart="true"
             android:layout_alignTop="@+id/undo"
             android:layout_alignBottom="@id/undo"
+            android:layout_toEndOf="@id/end_game"
             android:layout_toStartOf="@id/undo"
             android:drawableTop="@color/classic_black"
 
@@ -580,15 +549,14 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/light_background_gray"/>
-        <!--<Button-->
-            <!--android:id="@+id/undo"-->
-            <!--style="@style/Widget.AppCompat.Button.Colored"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentEnd="true"-->
 
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:backgroundTint="@color/undo"-->
-            <!--android:text="Undo" />-->
+        <Button
+            android:id="@+id/undo"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+
+            android:layout_alignParentBottom="true"
+            android:text="Undo" />
     </RelativeLayout>
 </RelativeLayout>
