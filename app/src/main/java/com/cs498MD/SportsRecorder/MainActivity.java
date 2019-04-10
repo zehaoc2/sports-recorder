@@ -35,7 +35,7 @@ import androidx.core.widget.ContentLoadingProgressBar;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static FloatingActionButton newMatch;
+
     private ArrayList<String> matchNameArray = new ArrayList<>();
     private ArrayList<String> matchIdArray = new ArrayList<>();
     private MyCustomAdapter adapter;
@@ -95,9 +95,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ActionBar bar = getSupportActionBar();
         bar.setTitle("Matches");
 
-        newMatch = (FloatingActionButton) findViewById(R.id.newMatch);
-        newMatch.setOnClickListener(this);
-
         SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
         Gson gson = new Gson();
 
@@ -138,7 +135,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editor.putString("matchId", matchName);
         editor.apply();
 
-        if (v.getId() == R.id.newMatch) {
+
+
+        if(v.getId() == R.id.btnCreate){
+
+            Log.e("TEST_SHEET", "Create Match Clicked");
+            Log.e("TEST_SHEET", "Match: " +userInputMatchName.getText().toString());
+            Log.e("TEST_SHEET", "Kid: " + userInputKidName.getText().toString());
+
+            //TODO: Change match info details. But right now can be used for testing purpose
             matchNameArray.add(matchName);
 
             matchIdArray.add("" + matchCount);
@@ -146,13 +151,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(this, InputActivity.class);
             intent.putExtra("matchId", Integer.toString(matchCount));
             startActivity(intent);
-        }
-
-        if(v.getId() == R.id.btnCreate){
-            //TODO: Jump to the input activity
-            Log.e("TEST_SHEET", "Create Match Clicked");
-            Log.e("TEST_SHEET", "Match: " +userInputMatchName.getText().toString());
-            Log.e("TEST_SHEET", "Kid: " + userInputKidName.getText().toString());
         }
     }
 

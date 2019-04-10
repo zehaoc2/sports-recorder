@@ -34,7 +34,7 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
     private Integer[] periodScores = {0, 0, 0, 0, 0, 0};
     private Integer[] gameBreakDown = {0, 0, 0, 0, 0, 0, 0, 0};
     private Integer[] oppPeriodScores = {0, 0, 0, 0, 0, 0};
-    private Map<String, Player> playerMap = new HashMap<>();
+//    private Map<String, Player> playerMap = new HashMap<>();
 
     private static TextView scores;
     private String matchJson;
@@ -197,7 +197,7 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
         populateScoreTable();
         populateTeamTable();
-        populatePlayerTable();
+//        populatePlayerTable();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -264,48 +264,48 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
         teamTable.addView(row);
     }
 
-    private void populatePlayerTable() {
-        // Only create Players Table if there are players to keep track of
-        if (playerMap.isEmpty()) {
-            TextView playerStatsTitle = findViewById(R.id.playerStatsTitle);
-            playerStatsTitle.setText("");
-            return;
-        }
-
-        createHeaderRow(PLAYER_TABLE);
-        for (Map.Entry<String, Player> entry : playerMap.entrySet()) {
-            Log.d("DEBUG PLAYER", "Key = " + entry.getKey() + ", Value = " + entry.getValue());
-
-            String playerName = entry.getKey();
-            Player player = entry.getValue();
-
-            Integer[] values = { player.getScore(),
-                    player.getOnePoint(),
-                    player.getTwoPoint(),
-                    player.getThreePoint(),
-                    player.getOnePointAttempt(),
-                    player.getTwoPointAttempt(),
-                    player.getThreePointAttempt(),
-                    player.getFoulCount()
-            };
-
-            TableRow row = new TableRow(GameStats.this);
-            TextView tv = new TextView(GameStats.this);
-            formatTableText(tv);
-            tv.setText(playerName);
-            row.addView(tv);
-
-            for (int i = 0; i < values.length; i++) {
-                tv = new TextView(GameStats.this);
-                formatTableText(tv);
-                tv.setText(values[i].toString());
-
-                row.addView(tv);
-            }
-
-            playerTable.addView(row);
-        }
-    }
+//    private void populatePlayerTable() {
+//        // Only create Players Table if there are players to keep track of
+//        if (playerMap.isEmpty()) {
+//            TextView playerStatsTitle = findViewById(R.id.playerStatsTitle);
+//            playerStatsTitle.setText("");
+//            return;
+//        }
+//
+//        createHeaderRow(PLAYER_TABLE);
+//        for (Map.Entry<String, Player> entry : playerMap.entrySet()) {
+//            Log.d("DEBUG PLAYER", "Key = " + entry.getKey() + ", Value = " + entry.getValue());
+//
+//            String playerName = entry.getKey();
+//            Player player = entry.getValue();
+//
+//            Integer[] values = { player.getScore(),
+//                    player.getOnePoint(),
+//                    player.getTwoPoint(),
+//                    player.getThreePoint(),
+//                    player.getOnePointAttempt(),
+//                    player.getTwoPointAttempt(),
+//                    player.getThreePointAttempt(),
+//                    player.getFoulCount()
+//            };
+//
+//            TableRow row = new TableRow(GameStats.this);
+//            TextView tv = new TextView(GameStats.this);
+//            formatTableText(tv);
+//            tv.setText(playerName);
+//            row.addView(tv);
+//
+//            for (int i = 0; i < values.length; i++) {
+//                tv = new TextView(GameStats.this);
+//                formatTableText(tv);
+//                tv.setText(values[i].toString());
+//
+//                row.addView(tv);
+//            }
+//
+//            playerTable.addView(row);
+//        }
+//    }
 
     @Override
     public void onBackPressed() {
