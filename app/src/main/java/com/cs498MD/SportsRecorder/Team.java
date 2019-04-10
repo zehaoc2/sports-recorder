@@ -10,6 +10,10 @@ public class Team {
     private int threePoint;
     private int miss;
 
+    public Team(String name) {
+        this.name = name;
+    }
+
     public int getScore() {
         return score;
     }

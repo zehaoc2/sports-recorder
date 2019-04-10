@@ -65,7 +65,6 @@ public class InputActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.undo).setOnClickListener(this);
         findViewById(R.id.end_game).setOnClickListener(this);
         findViewById(R.id.view_game_stats).setOnClickListener(this);
-        findViewById(R.id.view_prev_matches).setOnClickListener(this);
         myScoreView = findViewById(R.id.my_score);
         opponentScoreView = findViewById(R.id.opp_score);
 
@@ -79,7 +78,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.myKid_free_throw).setOnClickListener(this);
         findViewById(R.id.myKid_two_ptr).setOnClickListener(this);
         findViewById(R.id.myKid_three_ptr).setOnClickListener(this);
-        findViewById(R.id.myKid_free_throw).setOnClickListener(this);
+        findViewById(R.id.myKid_miss).setOnClickListener(this);
 
         // Opponent Views
         findViewById(R.id.opp_free_throw).setOnClickListener(this);
@@ -91,6 +90,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private void initMatchInfo() {
         matchId = getIntent().getStringExtra("matchId");
         match = new Match(Integer.parseInt(matchId));
+        match.setName(getIntent().getStringExtra("matchName"));
+
         initPeriodInfo(0);
 
         /* Assume we only enter inputActivity by clicking add button in mainActivity */
@@ -108,17 +109,20 @@ public class InputActivity extends Activity implements View.OnClickListener {
     }
 
     private void initPeriodInfo(int idx) {
-        Team kid = period.getKid();
-        kid.setMiss(kidMiss);
-        kid.setScore(kidScore - prevKidScore);
-        kid.setOnePoint(kidOne);
-        kid.setTwoPoint(kidTwo);
-        kid.setThreePoint(kidThree);
+        if (idx > 0) {
+            Team kid = period.getKid();
+            kid.setMiss(kidMiss);
+            kid.setScore(kidScore - prevKidScore);
+            kid.setOnePoint(kidOne);
+            kid.setTwoPoint(kidTwo);
+            kid.setThreePoint(kidThree);
 
-        period.getOpponent().setScore(oppScore - prevOppScore);
-        period.getOthers().setScore(othersScore - prevOthersScore);
+            period.getOpponent().setScore(oppScore - prevOppScore);
+            period.getOthers().setScore(othersScore - prevOthersScore);
+        }
 
         period = match.getPeriods()[idx];
+        period.getKid().setName(getIntent().getStringExtra("kidName"));
         prevOppScore = oppScore; prevKidScore = kidScore; prevOthersScore = othersScore;
         kidOne = 0; kidTwo = 0; kidThree = 0; kidMiss = 0;
 
