@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -142,15 +143,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.e("TEST_SHEET", "Create Match Clicked");
             Log.e("TEST_SHEET", "Match: " +userInputMatchName.getText().toString());
             Log.e("TEST_SHEET", "Kid: " + userInputKidName.getText().toString());
+            if(userInputMatchName.getText().toString().equals("")){
+                //user did not enter match name
+                Toast.makeText(this, "Please Enter a Match Name", Toast.LENGTH_SHORT).show();
+
+            }
+            if(userInputKidName.getText().toString().equals("")){
+                //user did not enter kid name
+
+            }
 
             //TODO: Change match info details. But right now can be used for testing purpose
-            matchNameArray.add(matchName);
+            matchNameArray.add(userInputMatchName.getText().toString());
 
             matchIdArray.add("" + matchCount);
             adapter.notifyDataSetChanged();
             Intent intent = new Intent(this, InputActivity.class);
             intent.putExtra("matchId", Integer.toString(matchCount));
             startActivity(intent);
+
+
         }
     }
 
