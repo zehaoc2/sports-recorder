@@ -148,8 +148,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             matchIdArray.add("" + matchCount);
             adapter.notifyDataSetChanged();
+
             Intent intent = new Intent(this, InputActivity.class);
             intent.putExtra("matchId", Integer.toString(matchCount));
+            intent.putExtra("matchName", userInputMatchName.getText().toString());
+            intent.putExtra("kidName", userInputKidName.getText().toString());
             startActivity(intent);
         }
     }
