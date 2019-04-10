@@ -86,12 +86,13 @@
         android:id="@+id/opp_team"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="Opponents"
-
-        android:layout_toEndOf="@id/view_prev_matches"
-        android:layout_toStartOf="@id/free_throw_title"
         android:layout_below="@id/view_game_stats"
-        android:gravity="center"/>
+
+        android:layout_toStartOf="@id/free_throw_title"
+        android:layout_toEndOf="@id/view_prev_matches"
+        android:gravity="center"
+        android:text="Opponents"
+        android:textStyle="bold" />
 
     <RelativeLayout
         android:id="@+id/score"
@@ -130,7 +131,7 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
 
         android:layout_below="@id/view_prev_matches"
         android:layout_toEndOf="@id/free_throw_title"
@@ -141,10 +142,11 @@
             android:id="@+id/my_team"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="My Team"
-
             android:layout_marginEnd="16dp"
-            android:gravity="center"/>
+
+            android:gravity="center"
+            android:text="My Team"
+            android:textStyle="bold" />
 
         <TableRow
             android:layout_width="match_parent"
@@ -213,11 +215,7 @@
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
             android:gravity="center"
-            android:layout_weight="1"
-
-            android:layout_alignTop="@id/free_throw"
-            android:layout_below="@id/opp_team"
-            android:layout_toEndOf="@id/periods"/>
+            android:layout_weight="1"/>
 
         <View
             android:layout_width="65dp"
@@ -234,11 +232,7 @@
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
             android:gravity="center"
-            android:layout_weight="1"
-
-            android:layout_alignTop="@id/free_throw"
-            android:layout_below="@id/opp_team"
-            android:layout_toEndOf="@id/periods"/>
+            android:layout_weight="1"/>
 
         <View
             android:layout_width="35dp"
@@ -289,11 +283,7 @@
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
             android:gravity="center"
-            android:layout_weight="1"
-
-            android:layout_alignTop="@id/free_throw"
-            android:layout_below="@id/opp_team"
-            android:layout_toEndOf="@id/periods"/>
+            android:layout_weight="1"/>
 
         <View
             android:layout_width="65dp"
@@ -310,11 +300,7 @@
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
             android:gravity="center"
-            android:layout_weight="1"
-
-            android:layout_alignTop="@id/free_throw"
-            android:layout_below="@id/opp_team"
-            android:layout_toEndOf="@id/periods"/>
+            android:layout_weight="1"/>
 
         <View
             android:layout_width="35dp"
@@ -365,11 +351,7 @@
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
             android:gravity="center"
-            android:layout_weight="1"
-
-            android:layout_alignTop="@id/free_throw"
-            android:layout_below="@id/opp_team"
-            android:layout_toEndOf="@id/periods"/>
+            android:layout_weight="1"/>
 
         <View
             android:layout_width="65dp"
@@ -386,11 +368,7 @@
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
             android:gravity="center"
-            android:layout_weight="1"
-
-            android:layout_alignTop="@id/free_throw"
-            android:layout_below="@id/opp_team"
-            android:layout_toEndOf="@id/periods"/>
+            android:layout_weight="1"/>
 
         <View
             android:layout_width="35dp"
@@ -441,11 +419,7 @@
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
             android:gravity="center"
-            android:layout_weight="1"
-
-            android:layout_alignTop="@id/free_throw"
-            android:layout_below="@id/opp_team"
-            android:layout_toEndOf="@id/periods"/>
+            android:layout_weight="1"/>
 
         <View
             android:layout_width="65dp"
@@ -462,11 +436,7 @@
             android:drawableTop="@android:drawable/ic_input_add"
             android:drawableTint="@color/classic_white"
             android:gravity="center"
-            android:layout_weight="1"
-
-            android:layout_alignTop="@id/free_throw"
-            android:layout_below="@id/opp_team"
-            android:layout_toEndOf="@id/periods"/>
+            android:layout_weight="1" />
 
         <View
             android:layout_width="35dp"
@@ -518,441 +488,27 @@
         android:textSize="24dp"
         android:layout_marginTop="28dp"/>
 
-
-
-
-    <!--<TableRow-->
-        <!--android:id="@+id/teams"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/view_prev_matches"-->
-        <!--android:weightSum="2"-->
-
-        <!--android:layout_marginHorizontal="16dp">-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/opp_team"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:text="@string/opp_team"-->
-            <!--android:textAlignment="center"-->
-            <!--android:textStyle="bold"-->
-            <!--android:layout_weight="1"-->
-            <!--android:gravity="center"/>-->
-
-        <!--<TableRow-->
-            <!--android:id="@+id/score"-->
-            <!--android:layout_width="64dp"-->
-            <!--android:layout_height="wrap_content"-->
-
-            <!--android:weightSum="5">-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/my_team_score"-->
-                <!--android:layout_width="35dp"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_weight="2"-->
-
-                <!--android:gravity="center"-->
-                <!--android:text="@string/my_team_score"-->
-                <!--android:textAlignment="center"-->
-                <!--android:textSize="24sp" />-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/separator"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-
-                <!--android:gravity="center"-->
-                <!--android:text="@string/separator"-->
-                <!--android:textSize="24sp"-->
-                <!--android:layout_weight="1"/>-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/opp_score"-->
-                <!--android:layout_width="35dp"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_weight="2"-->
-                <!--android:text="@string/opponent_score"-->
-                <!--android:textAlignment="center"-->
-
-                <!--android:textSize="24sp" />-->
-        <!--</TableRow>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/my_team"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:text="@string/my_team"-->
-            <!--android:textAlignment="center"-->
-            <!--android:textStyle="bold"-->
-            <!--android:layout_weight="1"-->
-            <!--android:gravity="center"/>-->
-    <!--</TableRow>-->
-
-    <!--<TableRow-->
-        <!--android:id="@+id/team_players"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/teams"-->
-        <!--android:weightSum="2"-->
-
-        <!--android:layout_marginStart="398dp"-->
-        <!--android:layout_marginEnd="16dp">-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/others"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:text="Others"-->
-            <!--android:textAlignment="center"-->
-            <!--android:layout_weight="1"-->
-            <!--android:gravity="center"/>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/my_kid"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:text="My Kid"-->
-            <!--android:textAlignment="center"-->
-            <!--android:layout_weight="1"-->
-            <!--android:gravity="center"/>-->
-    <!--</TableRow>-->
-
-    <!--<RelativeLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!---->
-        <!--android:layout_below="@id/team_players"-->
-        <!--android:layout_toEndOf="@id/periods">-->
-        <!---->
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-        <!---->
-    <!--</RelativeLayout>-->
-
-    <!--<TableRow-->
-        <!--android:id="@+id/team_players"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/teams"-->
-        <!--android:weightSum="12"-->
-
-        <!--android:layout_alignStart="@id/my_team"-->
-        <!--android:layout_marginHorizontal="16dp">-->
-
-        <!--<View-->
-            <!--android:id="@+id/score_space"-->
-            <!--android:layout_width="64dp"-->
-            <!--android:layout_height="10dp"/>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/made_opp"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/made"-->
-            <!--android:textAlignment="center"-->
-
-            <!--android:layout_weight="3"/>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/miss_opp"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/miss"-->
-            <!--android:textAlignment="center"-->
-
-            <!--android:layout_weight="3"/>-->
-    <!--</TableRow>-->
-
-    <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/team_players">-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/free_throw"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/free_throw"-->
-            <!--android:textAlignment="center"-->
-            <!--android:layout_centerHorizontal="true"-->
-
-            <!--android:textSize="18sp"-->
-            <!--android:layout_marginTop="20dp"/>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/two_ptr"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/two_ptr"-->
-            <!--android:textAlignment="center"-->
-            <!--android:layout_below="@id/free_throw"-->
-            <!--android:layout_centerHorizontal="true"-->
-
-            <!--android:textSize="18sp"-->
-            <!--android:layout_marginTop="34dp"/>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/three_ptr"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/three_ptr"-->
-            <!--android:textAlignment="center"-->
-            <!--android:layout_below="@id/two_ptr"-->
-            <!--android:layout_centerHorizontal="true"-->
-
-            <!--android:textSize="18sp"-->
-            <!--android:layout_marginTop="35dp"/>-->
-
-    <!--</RelativeLayout>-->
-
-    <!--<TableRow-->
-        <!--android:id="@+id/row1"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/team_players"-->
-        <!--android:weightSum="4"-->
-
-        <!--android:layout_marginTop="8dp"-->
-        <!--android:layout_marginHorizontal="16dp">-->
-
-        <!--<View-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-        <!--<View-->
-            <!--android:layout_width="64dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-        <!--<Button-->
-            <!--android:id="@+id/my_made_one_ptr"-->
-            <!--style="@style/Widget.AppCompat.Button"-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="50dp"-->
-
-            <!--android:backgroundTint="@color/design_default_color_primary"-->
-            <!--android:drawableTop="@android:drawable/ic_input_add"-->
-            <!--android:drawableTint="@color/classic_white"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_weight="1"/>-->
-
-        <!--<View-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-        <!--<View-->
-            <!--android:layout_width="64dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-        <!--<View-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-        <!--<Button-->
-            <!--android:id="@+id/opp_made_one_ptr"-->
-            <!--style="@style/Widget.AppCompat.Button"-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="50dp"-->
-
-            <!--android:backgroundTint="@color/design_default_color_primary"-->
-            <!--android:drawableTop="@android:drawable/ic_input_add"-->
-            <!--android:drawableTint="@color/classic_white"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_weight="1"/>-->
-
-        <!--<View-->
-            <!--android:layout_width="64dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-        <!--<Button-->
-            <!--android:id="@+id/opp_miss_one_ptr"-->
-            <!--style="@style/Widget.AppCompat.Button"-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="50dp"-->
-
-            <!--android:backgroundTint="@color/design_default_color_primary"-->
-            <!--android:drawableTop="@android:drawable/ic_input_add"-->
-            <!--android:drawableTint="@color/classic_white"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_weight="1"/>-->
-        <!--<View-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="50dp"/>-->
-    <!--</TableRow>-->
-
-    <!--<TableRow-->
-        <!--android:id="@+id/row2"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/row1"-->
-        <!--android:weightSum="4"-->
-
-        <!--android:layout_marginTop="8dp"-->
-        <!--android:layout_marginHorizontal="16dp">-->
-
-        <!--<View-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-        <!--<View-->
-            <!--android:layout_width="64dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-        <!--<Button-->
-            <!--android:id="@+id/my_made_two_ptr"-->
-            <!--style="@style/Widget.AppCompat.Button"-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="50dp"-->
-
-            <!--android:backgroundTint="@color/design_default_color_primary"-->
-            <!--android:drawableTop="@android:drawable/ic_input_add"-->
-            <!--android:drawableTint="@color/classic_white"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_weight="1"/>-->
-
-        <!--<View-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-        <!--<View-->
-            <!--android:layout_width="64dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-        <!--<View-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-        <!--<Button-->
-            <!--android:id="@+id/opp_made_two_ptr"-->
-            <!--style="@style/Widget.AppCompat.Button"-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="50dp"-->
-
-            <!--android:backgroundTint="@color/design_default_color_primary"-->
-            <!--android:drawableTop="@android:drawable/ic_input_add"-->
-            <!--android:drawableTint="@color/classic_white"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_weight="1"/>-->
-
-        <!--<View-->
-            <!--android:layout_width="64dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-        <!--<Button-->
-            <!--android:id="@+id/opp_miss_two_ptr"-->
-            <!--style="@style/Widget.AppCompat.Button"-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="50dp"-->
-
-            <!--android:backgroundTint="@color/design_default_color_primary"-->
-            <!--android:drawableTop="@android:drawable/ic_input_add"-->
-            <!--android:drawableTint="@color/classic_white"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_weight="1"/>-->
-        <!--<View-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-    <!--</TableRow>-->
-
-    <!--<TableRow-->
-        <!--android:id="@+id/row3"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/row2"-->
-        <!--android:weightSum="4"-->
-
-        <!--android:layout_marginTop="8dp"-->
-        <!--android:layout_marginHorizontal="16dp">-->
-
-        <!--<View-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-        <!--<View-->
-            <!--android:layout_width="64dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-        <!--<Button-->
-            <!--android:id="@+id/my_made_three_ptr"-->
-            <!--style="@style/Widget.AppCompat.Button"-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="50dp"-->
-
-            <!--android:backgroundTint="@color/design_default_color_primary"-->
-            <!--android:drawableTop="@android:drawable/ic_input_add"-->
-            <!--android:drawableTint="@color/classic_white"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_weight="1"/>-->
-
-        <!--<View-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-        <!--<View-->
-            <!--android:layout_width="64dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-        <!--<View-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-        <!--<Button-->
-            <!--android:id="@+id/opp_made_three_ptr"-->
-            <!--style="@style/Widget.AppCompat.Button"-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="50dp"-->
-
-            <!--android:backgroundTint="@color/design_default_color_primary"-->
-            <!--android:drawableTop="@android:drawable/ic_input_add"-->
-            <!--android:drawableTint="@color/classic_white"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_weight="1"/>-->
-
-        <!--<View-->
-            <!--android:layout_width="64dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-        <!--<Button-->
-            <!--android:id="@+id/opp_miss_three_ptr"-->
-            <!--style="@style/Widget.AppCompat.Button"-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="50dp"-->
-
-            <!--android:backgroundTint="@color/design_default_color_primary"-->
-            <!--android:drawableTop="@android:drawable/ic_input_add"-->
-            <!--android:drawableTint="@color/classic_white"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_weight="1"/>-->
-        <!--<View-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="50dp"/>-->
-
-    <!--</TableRow>-->
-
     <Button
         android:id="@+id/end_game"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="End Game"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"/>
+        android:text="End Game" />
 
     <TextView
         android:id="@+id/last_action"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
 
-        android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@id/undo"
         android:layout_toEndOf="@id/end_game"
         android:layout_toStartOf="@id/undo"
 
         android:layout_weight="1"
 
         android:background="@color/classic_white"
-        android:backgroundTint="@color/table_color"
+        android:backgroundTint="@color/classic_white"
         android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:text="Last Activity"
@@ -962,11 +518,11 @@
 
     <Button
         android:id="@+id/undo"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="Undo"
+        android:layout_alignParentEnd="true"
 
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"/>
+        android:text="Undo" />
 
 </RelativeLayout>
