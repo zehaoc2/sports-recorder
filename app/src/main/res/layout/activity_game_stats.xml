@@ -17,155 +17,162 @@
         android:layout_marginBottom="8dp"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp">
+        android:layout_marginBottom="32dp"
+        android:layout_marginTop="16dp">
 
-        <Space
+        <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="8dp">
 
-        <TextView
-            android:id="@+id/score"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border_bottom"
-            android:fontFamily="sans-serif-condensed-light"
-            android:lineSpacingExtra="14sp"
-            android:text="Score Breakdown"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@color/classic_black"
-            android:textSize="30sp"
-            android:typeface="sans" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="16dp" />
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TableLayout
-                    android:id="@+id/overallStats"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:divider="#030300"
-                    android:gravity="center"
-                    android:showDividers="middle"
-                    android:stretchColumns="*">
-                    <!--android:background="@color/table_color"-->
-
-                </TableLayout>
-            </LinearLayout>
-        </HorizontalScrollView>
-
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="36dp" />
-
-        <TextView
-            android:id="@+id/teamStatsTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border_bottom"
-            android:fontFamily="sans-serif-condensed-light"
-            android:lineSpacingExtra="14sp"
-            android:text="My Team Stats"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@color/classic_black"
-            android:textSize="30sp"
-            android:typeface="sans" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="16dp" />
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TableLayout
-                    android:id="@+id/teamStats"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:divider="#030300"
-                    android:gravity="center"
-                    android:showDividers="middle"
-                    android:stretchColumns="*">
-
-                </TableLayout>
-            </LinearLayout>
-        </HorizontalScrollView>
-
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="36dp" />
-
-        <TextView
-            android:id="@+id/playerStatsTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed-light"
-            android:text="Player Stats"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/classic_black"
-            android:textSize="30sp"
-            android:typeface="sans" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="16dp" />
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/score"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:background="@drawable/border_bottom"
+                android:fontFamily="sans-serif-condensed-light"
+                android:lineSpacingExtra="14sp"
+                android:text="Score Breakdown"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/classic_black"
+                android:textSize="30sp"
+                android:typeface="sans"/>
 
-                <TableLayout
-                    android:id="@+id/playerStats"
-                    android:layout_width="match_parent"
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_gravity="bottom"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:divider="#030300"
-                    android:gravity="bottom"
-                    android:showDividers="middle"
-                    android:stretchColumns="*"></TableLayout>
-            </LinearLayout>
-        </HorizontalScrollView>
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-    </LinearLayout>
+                    <TableLayout
+                        android:id="@+id/overallStats"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:divider="#030300"
+                        android:gravity="center"
+                        android:showDividers="middle"
+                        android:stretchColumns="*">
+                        <!--android:background="@color/table_color"-->
+
+                    </TableLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="36dp" />
+
+            <TextView
+                android:id="@+id/teamStatsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_bottom"
+                android:fontFamily="sans-serif-condensed-light"
+                android:lineSpacingExtra="14sp"
+                android:text="My Team Stats"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@color/classic_black"
+                android:textSize="30sp"
+                android:typeface="sans" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TableLayout
+                        android:id="@+id/teamStats"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:divider="#030300"
+                        android:gravity="center"
+                        android:showDividers="middle"
+                        android:stretchColumns="*">
+
+                    </TableLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="36dp" />
+
+            <TextView
+                android:id="@+id/playerStatsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-light"
+                android:text="Player Stats"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/classic_black"
+                android:textSize="30sp"
+                android:typeface="sans" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TableLayout
+                        android:id="@+id/playerStats"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="bottom"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:divider="#030300"
+                        android:gravity="bottom"
+                        android:showDividers="middle"
+                        android:stretchColumns="*" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

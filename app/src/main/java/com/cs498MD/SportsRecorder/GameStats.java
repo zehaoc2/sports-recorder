@@ -17,11 +17,6 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,7 +26,7 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
     private static final Integer TEAM_TABLE = 1;
     private static final Integer PLAYER_TABLE = 2;
 
-    private Integer[] periodScores = {0, 0, 0, 0, 0, 0}; // 0th Period is the Total Game Score
+    private Integer[] teamPeriodScores = {0, 0, 0, 0, 0, 0}; // 0th Period is the Total Game Score
     private Integer[] oppPeriodScores = {0, 0, 0, 0, 0, 0};
     private Integer[] gameBreakDown = {0, 0, 0, 0, 0};
     private Integer[] myKidBreakDown = {0, 0, 0, 0, 0};
@@ -158,19 +153,34 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
             oppPeriodScores[0] += oppTeam.getScore();
             oppPeriodScores[periodCount] += (oppTeam.getScore());
 
-            Team myTeam = period.getKid();
-            periodScores[0] += myTeam.getScore();
-            periodScores[periodCount++] += myTeam.getScore();
+            Team myKid = period.getKid();
+            Team others = period.getOthers();
+            teamPeriodScores[0] += myKid.getScore() + others.getScore();
+            teamPeriodScores[periodCount++] += myKid.getScore() + others.getScore();
+
+            myKidBreakDown[0] += myKid.getScore();
+            myKidBreakDown[1] += myKid.getOnePoint();
+            myKidBreakDown[2] += myKid.getTwoPoint();
+            myKidBreakDown[3] += myKid.getThreePoint();
+            myKidBreakDown[4] += myKid.getMiss();
+
+            othersBreakDown[0] += others.getScore();
+            othersBreakDown[1] += others.getOnePoint();
+            othersBreakDown[2] += others.getTwoPoint();
+            othersBreakDown[3] += others.getThreePoint();
+            othersBreakDown[4] += others.getMiss();
+
+            myKidName = myKid.getName();
 
             if (periodCount > 5) {
                 periodCount = 5;
             }
 
-            gameBreakDown[0] += myTeam.getScore();
-            gameBreakDown[1] += myTeam.getOnePoint();
-            gameBreakDown[2] += myTeam.getTwoPoint();
-            gameBreakDown[3] += myTeam.getThreePoint();
-            gameBreakDown[4] += myTeam.getMiss();
+            gameBreakDown[0] += myKid.getScore() + others.getScore();
+            gameBreakDown[1] += myKid.getOnePoint() + others.getOnePoint();
+            gameBreakDown[2] += myKid.getTwoPoint() + others.getTwoPoint();
+            gameBreakDown[3] += myKid.getThreePoint() + others.getThreePoint();
+            gameBreakDown[4] += myKid.getMiss() + others.getMiss();
 
             // PLAYER STUFF!!
 //            if (i == (periods.size() - 1)) {
@@ -190,7 +200,7 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
         populateScoreTable();
         populateTeamTable();
-//        populatePlayerTable();
+        populatePlayerTable();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -232,10 +242,10 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
             tv.setText(teams[i]);
             row.addView(tv);
 
-            for (int j = 0; j < periodScores.length; j++) {
+            for (int j = 0; j < teamPeriodScores.length; j++) {
                 tv = new TextView(GameStats.this);
                 formatTableText(tv);
-                tv.setText(i == 0 ? periodScores[j].toString() : oppPeriodScores[j].toString());
+                tv.setText(i == 0 ? teamPeriodScores[j].toString() : oppPeriodScores[j].toString());
                 row.addView(tv);
             }
 
@@ -255,6 +265,31 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
         }
 
         teamTable.addView(row);
+    }
+
+    private void populatePlayerTable() {
+        // Only create Players Table if there are players to keep track of
+        String[] players = {myKidName, "Others"};
+
+        createHeaderRow(PLAYER_TABLE);
+
+        for (String player : players) {
+            TableRow row = new TableRow(GameStats.this);
+
+            TextView tv = new TextView(GameStats.this);
+            formatTableText(tv);
+            tv.setText(player);
+            row.addView(tv);
+
+            for (int i = 0; i < PLAYER_HEADER.length - 1; i++) {
+                tv = new TextView(GameStats.this);
+                formatTableText(tv);
+                tv.setText(player.equals("Others") ? othersBreakDown[i].toString() : myKidBreakDown[i].toString());
+                row.addView(tv);
+            }
+
+            playerTable.addView(row);
+        }
     }
 
 //    private void populatePlayerTable() {
@@ -306,6 +341,5 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
         if (match.isDone()) {
             startActivity(new Intent(this, MainActivity.class));
         }
-
     }
 }
