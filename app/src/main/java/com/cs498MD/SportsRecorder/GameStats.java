@@ -158,6 +158,7 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
             teamPeriodScores[0] += myKid.getScore() + others.getScore();
             teamPeriodScores[periodCount++] += myKid.getScore() + others.getScore();
 
+            // PLAYER STUFF!!
             myKidBreakDown[0] += myKid.getScore();
             myKidBreakDown[1] += myKid.getOnePoint();
             myKidBreakDown[2] += myKid.getTwoPoint();
@@ -181,19 +182,6 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
             gameBreakDown[2] += myKid.getTwoPoint() + others.getTwoPoint();
             gameBreakDown[3] += myKid.getThreePoint() + others.getThreePoint();
             gameBreakDown[4] += myKid.getMiss() + others.getMiss();
-
-            // PLAYER STUFF!!
-//            if (i == (periods.size() - 1)) {
-//                ArrayList<Player> players = myTeam.getPlayers();
-//                Log.d("ARRAY DEBUG", Integer.toString(players.size()));
-//
-//                for (int p = 0; p < players.size(); p++) {
-//                    Player player = players.get(p);
-//                    Log.d("MAP DEBUG", player.getName());
-//
-//                    playerMap.put(player.getName(), player);
-//                }
-//            }
         }
 
         Log.d("TEAM DEBUG", match.getName());
@@ -291,49 +279,6 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
             playerTable.addView(row);
         }
     }
-
-//    private void populatePlayerTable() {
-//        // Only create Players Table if there are players to keep track of
-//        if (playerMap.isEmpty()) {
-//            TextView playerStatsTitle = findViewById(R.id.playerStatsTitle);
-//            playerStatsTitle.setText("");
-//            return;
-//        }
-//
-//        createHeaderRow(PLAYER_TABLE);
-//        for (Map.Entry<String, Player> entry : playerMap.entrySet()) {
-//            Log.d("DEBUG PLAYER", "Key = " + entry.getKey() + ", Value = " + entry.getValue());
-//
-//            String playerName = entry.getKey();
-//            Player player = entry.getValue();
-//
-//            Integer[] values = { player.getScore(),
-//                    player.getOnePoint(),
-//                    player.getTwoPoint(),
-//                    player.getThreePoint(),
-//                    player.getOnePointAttempt(),
-//                    player.getTwoPointAttempt(),
-//                    player.getThreePointAttempt(),
-//                    player.getFoulCount()
-//            };
-//
-//            TableRow row = new TableRow(GameStats.this);
-//            TextView tv = new TextView(GameStats.this);
-//            formatTableText(tv);
-//            tv.setText(playerName);
-//            row.addView(tv);
-//
-//            for (int i = 0; i < values.length; i++) {
-//                tv = new TextView(GameStats.this);
-//                formatTableText(tv);
-//                tv.setText(values[i].toString());
-//
-//                row.addView(tv);
-//            }
-//
-//            playerTable.addView(row);
-//        }
-//    }
 
     @Override
     public void onBackPressed() {
