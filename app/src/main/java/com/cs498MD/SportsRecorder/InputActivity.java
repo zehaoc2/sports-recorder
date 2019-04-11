@@ -126,8 +126,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
 //        }
     }
 
-    private void initPeriodInfo(int idx) {
-        if (idx > 0) {
+    private void savePeriodInfo() {
             Team kid = period.getKid();
             kid.setMiss(kidMiss);
             kid.setScore(kidScore - prevKidScore);
@@ -137,6 +136,11 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
             period.getOpponent().setScore(oppScore - prevOppScore);
             period.getOthers().setScore(othersScore - prevOthersScore);
+    }
+
+    private void initPeriodInfo(int idx) {
+        if (idx > 0) {
+            savePeriodInfo();
         }
 
         // SET BUTTON COLOR
@@ -201,18 +205,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
         } else if (v.getId() == R.id.period_fourPlus) {
             findViewById(currPeriod).setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.periods)));
             initPeriodInfo(4);
-        } else if (v.getId() == R.id.period_one) {
-
-        } else if (v.getId() == R.id.period_two) {
-
-        } else if (v.getId() == R.id.period_three) {
-
-        } else if (v.getId() == R.id.period_four) {
-
-        } else if (v.getId() == R.id.period_fourPlus) {
-
         }
-
 
         else {
             switch (v.getId()) {
@@ -365,6 +358,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
     public void saveMatchInfo() {
         SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        savePeriodInfo();
         editor.putString(matchId, new Gson().toJson(match, Match.class));
 
         editor.commit();
