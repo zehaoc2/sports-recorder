@@ -34,8 +34,6 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
     private String myKidName;
 
-//    private Map<String, Player> playerMap = new HashMap<>();
-
     private static TextView scores;
     private String matchJson;
     private Match match;

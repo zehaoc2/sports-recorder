@@ -145,9 +145,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.view_prev_matches) {
-            startActivity(new Intent(this, MainActivity.class));
-        } else if (v.getId() == R.id.view_game_stats) {
+        if (v.getId() == R.id.view_game_stats) {
             Intent intent = new Intent(this, GameStats.class);
             intent.putExtra("matchId", matchId);
             startActivity(intent);
