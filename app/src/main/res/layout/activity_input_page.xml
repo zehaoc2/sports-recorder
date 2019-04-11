@@ -111,13 +111,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/match_name"
 
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="38dp"
         android:textAlignment="gravity"
         android:layout_alignTop="@id/score"
         android:layout_alignBottom="@id/score"
         android:layout_toEndOf="@id/periods"
-        android:gravity="top"
-        android:text="Opponents"
+        android:gravity="center"
+        android:text="Opponent Team"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/classic_black"/>
@@ -220,7 +220,7 @@
         android:layout_below="@id/score"
 
         android:layout_toEndOf="@id/periods"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="@dimen/tablerow_margin"
         android:layout_marginTop="10dp">
 
         <View
@@ -288,7 +288,7 @@
         android:layout_below="@id/free_throw"
 
         android:layout_toEndOf="@id/periods"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="@dimen/tablerow_margin"
         android:layout_marginTop="12dp">
 
         <View
@@ -356,7 +356,7 @@
         android:layout_below="@id/two_ptr"
 
         android:layout_toEndOf="@id/periods"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="@dimen/tablerow_margin"
         android:layout_marginTop="12dp">
 
         <View
@@ -424,7 +424,7 @@
         android:layout_below="@id/three_ptr"
 
         android:layout_toEndOf="@id/periods"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="@dimen/tablerow_margin"
         android:layout_marginTop="12dp">
 
         <View
