@@ -26,7 +26,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/periods"
+            android:backgroundTint="@color/fbutton_color_midnight_blue"
             android:text="Period 1"
             android:textSize="14sp" />
 
@@ -36,7 +36,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/periods"
+            android:backgroundTint="@color/fbutton_color_midnight_blue"
             android:text="Period 2"
             android:textSize="14sp"/>
 
@@ -46,7 +46,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/periods"
+            android:backgroundTint="@color/fbutton_color_midnight_blue"
             android:text="Period 3"
             android:textSize="14sp"/>
 
@@ -56,7 +56,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/periods"
+            android:backgroundTint="@color/fbutton_color_midnight_blue"
             android:text="Period 4"
             android:textSize="14sp"/>
 
@@ -66,7 +66,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/periods"
+            android:backgroundTint="@color/fbutton_color_midnight_blue"
             android:text="Period 4+"
             android:textSize="14sp" />
 
@@ -95,14 +95,14 @@
         android:textColor="@color/classic_black"
         android:textSize="24sp" />
 
-    <Button
+    <info.hoang8f.widget.FButton
         android:id="@+id/view_game_stats"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="2dp"
-        android:backgroundTint="@color/view_stats"
+        android:backgroundTint="@color/fbutton_color_midnight_blue"
         android:text="@string/view_game_stats" />
 
     <TextView
@@ -228,11 +228,11 @@
             android:layout_height="50dp"
             />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/opp_free_throw"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
 
             android:layout_weight="1"
             android:backgroundTint="@color/add_buttons"
@@ -246,11 +246,11 @@
             />
 
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/other_free_throw"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
 
             android:backgroundTint="@color/add_buttons"
             android:drawableTop="@android:drawable/ic_input_add"
@@ -263,11 +263,11 @@
             android:layout_height="50dp"
             />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/myKid_free_throw"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
 
             android:backgroundTint="@color/add_buttons"
             android:drawableTop="@android:drawable/ic_input_add"
@@ -296,11 +296,11 @@
             android:layout_height="50dp"
             />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/opp_two_ptr"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
 
             android:backgroundTint="@color/add_buttons"
             android:drawableTop="@android:drawable/ic_input_add"
@@ -314,11 +314,11 @@
             />
 
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/other_two_ptr"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
 
             android:backgroundTint="@color/add_buttons"
             android:drawableTop="@android:drawable/ic_input_add"
@@ -331,11 +331,11 @@
             android:layout_height="50dp"
             />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/myKid_two_ptr"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
 
             android:backgroundTint="@color/add_buttons"
             android:drawableTop="@android:drawable/ic_input_add"
@@ -364,11 +364,11 @@
             android:layout_height="50dp"
             />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/opp_three_ptr"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
 
             android:backgroundTint="@color/add_buttons"
             android:drawableTop="@android:drawable/ic_input_add"
@@ -382,11 +382,11 @@
             />
 
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/other_three_ptr"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
 
             android:backgroundTint="@color/add_buttons"
             android:drawableTop="@android:drawable/ic_input_add"
@@ -399,11 +399,11 @@
             android:layout_height="50dp"
             />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/myKid_three_ptr"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
 
             android:backgroundTint="@color/add_buttons"
             android:drawableTop="@android:drawable/ic_input_add"
@@ -432,11 +432,11 @@
             android:layout_height="50dp"
             />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/opp_miss"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
 
             android:backgroundTint="@color/add_buttons"
             android:drawableTop="@android:drawable/ic_input_add"
@@ -450,11 +450,11 @@
             />
 
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/other_miss"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
 
             android:backgroundTint="@color/add_buttons"
             android:drawableTop="@android:drawable/ic_input_add"
@@ -467,11 +467,11 @@
             android:layout_height="50dp"
             />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/myKid_miss"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
 
             android:backgroundTint="@color/add_buttons"
             android:drawableTop="@android:drawable/ic_input_add"
