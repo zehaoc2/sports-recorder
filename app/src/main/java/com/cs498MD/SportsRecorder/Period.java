@@ -9,9 +9,9 @@ public class Period {
     private Stack<Action> history;
 
     public Period() {
-        this.others = new Team("Others");
+        this.others = new Team("My Team (Others)");
         this.kid = new Team("My Kid");
-        this.opponent = new Team("Opponent");
+        this.opponent = new Team("Opponent Team");
         this.history = new Stack<>();
     }
 

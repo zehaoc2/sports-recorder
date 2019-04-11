@@ -25,6 +25,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private Period period;
     private final String MATCH = "match";
     private TextView lastAction;
+    private TextView matchName;
+    private TextView myKid;
 
     // Teams
     private int kidOne;
@@ -65,8 +67,11 @@ public class InputActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.undo).setOnClickListener(this);
         findViewById(R.id.end_game).setOnClickListener(this);
         findViewById(R.id.view_game_stats).setOnClickListener(this);
+
+        matchName = findViewById(R.id.match_name);
         myScoreView = findViewById(R.id.my_score);
         opponentScoreView = findViewById(R.id.opp_score);
+        myKid = findViewById(R.id.my_kid);
 
         // Others Views
         findViewById(R.id.other_free_throw).setOnClickListener(this);
@@ -91,6 +96,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
         matchId = getIntent().getStringExtra("matchId");
         match = new Match(Integer.parseInt(matchId));
         match.setName(getIntent().getStringExtra("matchName"));
+        matchName.setText(getIntent().getStringExtra("matchName"));
+
 
         initPeriodInfo(0);
 
@@ -122,7 +129,9 @@ public class InputActivity extends Activity implements View.OnClickListener {
         }
 
         period = match.getPeriods()[idx];
-        period.getKid().setName(getIntent().getStringExtra("kidName"));
+        period.getKid().setName("My Team (" + getIntent().getStringExtra("kidName") + ")");
+        myKid.setText(getIntent().getStringExtra("kidName"));
+
         prevOppScore = oppScore; prevKidScore = kidScore; prevOthersScore = othersScore;
         kidOne = 0; kidTwo = 0; kidThree = 0; kidMiss = 0;
 
@@ -156,7 +165,20 @@ public class InputActivity extends Activity implements View.OnClickListener {
             initPeriodInfo(3);
         } else if (v.getId() == R.id.period_fourPlus) {
             initPeriodInfo(4);
-        } else {
+        } else if (v.getId() == R.id.period_one) {
+            
+        } else if (v.getId() == R.id.period_two) {
+
+        } else if (v.getId() == R.id.period_three) {
+
+        } else if (v.getId() == R.id.period_four) {
+
+        } else if (v.getId() == R.id.period_fourPlus) {
+
+        }
+
+
+        else {
             switch (v.getId()) {
                 case R.id.opp_free_throw:
                     oppScore += 1;
