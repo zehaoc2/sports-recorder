@@ -18,7 +18,7 @@
         android:layout_height="fill_parent"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_marginStart="8dp">
+        android:layout_marginStart="2dp">
 
         <Button
             android:id="@+id/period_one"
@@ -28,7 +28,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/periods"
             android:text="Period 1"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/period_two"
@@ -38,7 +38,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/periods"
             android:text="Period 2"
-            android:textSize="16sp"/>
+            android:textSize="14sp"/>
 
         <Button
             android:id="@+id/period_three"
@@ -48,7 +48,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/periods"
             android:text="Period 3"
-            android:textSize="16sp"/>
+            android:textSize="14sp"/>
 
         <Button
             android:id="@+id/period_four"
@@ -58,7 +58,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/periods"
             android:text="Period 4"
-            android:textSize="16sp"/>
+            android:textSize="14sp"/>
 
         <Button
             android:id="@+id/period_fourPlus"
@@ -68,7 +68,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/periods"
             android:text="Period 4+"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/end_game"
@@ -85,15 +85,15 @@
         android:id="@+id/match_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/periods"
-        android:layout_toStartOf="@id/view_game_stats"
         android:layout_alignParentTop="true"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="0dp"
-        android:text="Match Name"
+        android:layout_toStartOf="@id/view_game_stats"
+        android:layout_toEndOf="@id/periods"
         android:gravity="center"
-        android:textSize="30sp"
-        android:textColor="@color/classic_black"/>
+        android:text="Match Name"
+        android:textColor="@color/classic_black"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/view_game_stats"
@@ -101,7 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="2dp"
         android:backgroundTint="@color/view_stats"
         android:text="@string/view_game_stats" />
 
@@ -111,13 +111,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/match_name"
 
-        android:layout_marginStart="52dp"
+        android:layout_marginStart="60dp"
+        android:textAlignment="gravity"
         android:layout_alignTop="@id/score"
         android:layout_alignBottom="@id/score"
         android:layout_toEndOf="@id/periods"
-        android:gravity="center"
+        android:gravity="top"
         android:text="Opponents"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/classic_black"/>
 
@@ -126,6 +127,7 @@
         android:layout_width="10dp"
         android:layout_height="wrap_content"
 
+        android:layout_marginTop="8dp"
         android:layout_toEndOf="@id/periods"
         android:layout_toStartOf="@id/view_game_stats"
         android:layout_below="@id/match_name"
@@ -135,7 +137,7 @@
             android:id="@+id/opp_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="36sp"
+            android:textSize="32sp"
             android:text="0"
             android:textColor="@color/classic_black"/>
 
@@ -143,7 +145,7 @@
             android:id="@+id/separator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="36sp"
+            android:textSize="32sp"
             android:text=":"
 
             android:layout_toEndOf="@id/opp_score"
@@ -153,7 +155,7 @@
             android:id="@+id/my_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="36sp"
+            android:textSize="32sp"
             android:text="0"
 
             android:layout_toEndOf="@id/separator"
@@ -166,7 +168,6 @@
 
         android:layout_alignTop="@id/score"
         android:layout_alignBottom="@id/score"
-        android:layout_below="@id/view_prev_matches"
         android:layout_toEndOf="@id/free_throw_title"
         android:layout_alignParentEnd="true"
         android:gravity="center_horizontal">
@@ -179,7 +180,7 @@
 
             android:gravity="center"
             android:text="My Team"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/classic_black"/>
 
@@ -197,7 +198,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Others"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="@color/classic_black"/>
 
             <TextView
@@ -207,7 +208,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="My Kid"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="@color/classic_black"/>
         </TableRow>
     </RelativeLayout>
@@ -220,7 +221,7 @@
 
         android:layout_toEndOf="@id/periods"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="18dp">
+        android:layout_marginTop="10dp">
 
         <View
             android:layout_width="65dp"
@@ -493,7 +494,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/score"
         android:textSize="24dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="15dp"
         android:textColor="@color/classic_black"/>
 
     <TextView
@@ -524,13 +525,13 @@
         android:id="@+id/miss_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Miss"
+        android:layout_below="@id/three_ptr_title"
 
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/three_ptr_title"
-        android:textSize="24dp"
         android:layout_marginTop="28dp"
-        android:textColor="@color/classic_black"/>
+        android:text="Foul"
+        android:textColor="@color/classic_black"
+        android:textSize="24dp" />
 
     <RelativeLayout
         android:id="@+id/bottom_bar"
@@ -548,6 +549,7 @@
             android:layout_alignParentTop="true"
             android:background="@color/classic_black"
             android:layout_marginStart="4dp"
+            android:translationZ="100dp"
             />
 
         <Button
@@ -581,15 +583,5 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/light_background_gray"/>
-        <!--<Button-->
-            <!--android:id="@+id/undo"-->
-            <!--style="@style/Widget.AppCompat.Button.Colored"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentEnd="true"-->
-
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:backgroundTint="@color/undo"-->
-            <!--android:text="Undo" />-->
     </RelativeLayout>
 </RelativeLayout>
