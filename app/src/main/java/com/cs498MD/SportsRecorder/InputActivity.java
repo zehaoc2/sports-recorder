@@ -166,7 +166,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
         // END OF SET BUTTON COLOR
 
         period = match.getPeriods()[idx];
-        period.getKid().setName("My Team (" + getIntent().getStringExtra("kidName") + ")");
+        period.getKid().setName(getIntent().getStringExtra("kidName"));
         myKid.setText(getIntent().getStringExtra("kidName"));
 
         prevOppScore = oppScore; prevKidScore = kidScore; prevOthersScore = othersScore;
@@ -222,7 +222,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
                     setLastAction(new Action(period.getOpponent().getName(), Type.Score, 3));
                     break;
                 case R.id.opp_miss:
-                    setLastAction(new Action(period.getOpponent().getName(), Type.Attempt, 1));
+                    setLastAction(new Action(period.getOpponent().getName(), Type.Foul, 1));
                     break;
                 case R.id.other_free_throw:
                     othersScore += 1;
@@ -237,7 +237,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
                     setLastAction(new Action(period.getOthers().getName(), Type.Score, 3));
                     break;
                 case R.id.other_miss:
-                    setLastAction(new Action(period.getOthers().getName(), Type.Attempt, 1));
+                    setLastAction(new Action(period.getOthers().getName(), Type.Foul, 1));
                     break;
                 case R.id.myKid_free_throw:
                     kidOne += 1;
@@ -256,7 +256,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
                     break;
                 case R.id.myKid_miss:
                     kidMiss += 1;
-                    setLastAction(new Action(period.getKid().getName(), Type.Attempt, 1));
+                    setLastAction(new Action(period.getKid().getName(), Type.Foul, 1));
                     break;
             }
 

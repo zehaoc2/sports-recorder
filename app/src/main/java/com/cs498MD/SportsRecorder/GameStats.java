@@ -44,8 +44,8 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
     private TableLayout playerTable;
 
     private static String[] SCORE_HEADER = {"Team", "Total", "QTR 1", "QTR 2", "QTR 3", "QTR 4", "QTR 4+"};
-    private static String[] TEAM_HEADER = {"Total", "1 PT", "2 PT", "3 PT", "Miss"};
-    private static String[] PLAYER_HEADER = {"Player", "Total", "1 PT", "2 PT", "3 PT", "Miss"};
+    private static String[] TEAM_HEADER = {"Total", "1 PT", "2 PT", "3 PT", "Foul"};
+    private static String[] PLAYER_HEADER = {"Player", "Total", "1 PT", "2 PT", "3 PT", "Foul"};
 
     private void formatHeaderText(TextView tv, String text) {
         tv.setText(text);
@@ -107,8 +107,8 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.stats_menu, menu);
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.stats_menu, menu);
         return true;
     }
 

@@ -524,13 +524,13 @@
         android:id="@+id/miss_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Miss"
+        android:layout_below="@id/three_ptr_title"
 
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/three_ptr_title"
-        android:textSize="24dp"
         android:layout_marginTop="28dp"
-        android:textColor="@color/classic_black"/>
+        android:text="Foul"
+        android:textColor="@color/classic_black"
+        android:textSize="24dp" />
 
     <RelativeLayout
         android:id="@+id/bottom_bar"
