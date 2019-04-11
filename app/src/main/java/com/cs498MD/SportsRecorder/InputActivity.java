@@ -166,7 +166,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
         } else if (v.getId() == R.id.period_fourPlus) {
             initPeriodInfo(4);
         } else if (v.getId() == R.id.period_one) {
-            
+
         } else if (v.getId() == R.id.period_two) {
 
         } else if (v.getId() == R.id.period_three) {
