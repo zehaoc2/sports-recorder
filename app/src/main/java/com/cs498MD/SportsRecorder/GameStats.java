@@ -31,9 +31,14 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
     private static final Integer TEAM_TABLE = 1;
     private static final Integer PLAYER_TABLE = 2;
 
-    private Integer[] periodScores = {0, 0, 0, 0, 0, 0};
-    private Integer[] gameBreakDown = {0, 0, 0, 0, 0, 0, 0, 0};
+    private Integer[] periodScores = {0, 0, 0, 0, 0, 0}; // 0th Period is the Total Game Score
     private Integer[] oppPeriodScores = {0, 0, 0, 0, 0, 0};
+    private Integer[] gameBreakDown = {0, 0, 0, 0, 0};
+    private Integer[] myKidBreakDown = {0, 0, 0, 0, 0};
+    private Integer[] othersBreakDown = {0, 0, 0, 0, 0};
+
+    private String myKidName;
+
 //    private Map<String, Player> playerMap = new HashMap<>();
 
     private static TextView scores;
@@ -45,10 +50,9 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
     private TableLayout teamTable;
     private TableLayout playerTable;
 
-
     private static String[] SCORE_HEADER = {"Team", "Total", "QTR 1", "QTR 2", "QTR 3", "QTR 4", "QTR 4+"};
-    private static String[] TEAM_HEADER = {"Total", "1 PT", "2 PT", "3 PT", "1 PT Miss", "2 PT Miss", "3 PT Miss", "Foul"};
-    private static String[] PLAYER_HEADER = {"Player", "Total", "1 PT", "2 PT", "3 PT", "1 PT Miss", "2 PT Miss", "3 PT Miss", "Foul"};
+    private static String[] TEAM_HEADER = {"Total", "1 PT", "2 PT", "3 PT", "Miss"};
+    private static String[] PLAYER_HEADER = {"Player", "Total", "1 PT", "2 PT", "3 PT", "Miss"};
 
     private void formatHeaderText(TextView tv, String text) {
         tv.setText(text);
@@ -139,18 +143,10 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
         matchName = match.getName();
 
-//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME |
-//                ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_USE_LOGO);
-//        android.support.v7.app.ActionBar bar = getSupportActionBar();
-//        bar.setTitle(matchName);
-//        bar.setIcon(R.drawable.ic_back);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowHomeEnabled(true);
 
         actionBar.setTitle(matchName);
-
-
-
 
         int periodCount = 1;
 
@@ -170,14 +166,11 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
                 periodCount = 5;
             }
 
-//            gameBreakDown[0] += myTeam.score;
-//            gameBreakDown[1] += myTeam.getOnePoint();
-//            gameBreakDown[2] += myTeam.getTwoPoint();
-//            gameBreakDown[3] += myTeam.getThreePoint();
-//            gameBreakDown[4] += myTeam.getOnePointAttempt();
-//            gameBreakDown[5] += myTeam.getTwoPointAttempt();
-//            gameBreakDown[6] += myTeam.getThreePointAttempt();
-//            gameBreakDown[7] += myTeam.getFoulCount();
+            gameBreakDown[0] += myTeam.getScore();
+            gameBreakDown[1] += myTeam.getOnePoint();
+            gameBreakDown[2] += myTeam.getTwoPoint();
+            gameBreakDown[3] += myTeam.getThreePoint();
+            gameBreakDown[4] += myTeam.getMiss();
 
             // PLAYER STUFF!!
 //            if (i == (periods.size() - 1)) {
