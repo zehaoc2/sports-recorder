@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,6 +34,9 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private int kidTwo;
     private int kidThree;
     private int kidMiss;
+
+    // Period
+    private int currPeriod;
 
     private TextView myScoreView;
     private TextView opponentScoreView;
@@ -90,6 +94,13 @@ public class InputActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.opp_two_ptr).setOnClickListener(this);
         findViewById(R.id.opp_three_ptr).setOnClickListener(this);
         findViewById(R.id.opp_miss).setOnClickListener(this);
+
+        // Periods
+        findViewById(R.id.period_one).setOnClickListener(this);
+        findViewById(R.id.period_two).setOnClickListener(this);
+        findViewById(R.id.period_three).setOnClickListener(this);
+        findViewById(R.id.period_four).setOnClickListener(this);
+        findViewById(R.id.period_fourPlus).setOnClickListener(this);
     }
 
     private void initMatchInfo() {
@@ -128,6 +139,28 @@ public class InputActivity extends Activity implements View.OnClickListener {
             period.getOthers().setScore(othersScore - prevOthersScore);
         }
 
+        // SET BUTTON COLOR
+        switch (idx) {
+            case 0:
+                currPeriod = R.id.period_one;
+                break;
+            case 1:
+                currPeriod = R.id.period_two;
+                break;
+            case 2:
+                currPeriod = R.id.period_three;
+                break;
+            case 3:
+                currPeriod = R.id.period_four;
+                break;
+            case 4:
+                currPeriod = R.id.period_fourPlus;
+                break;
+        }
+
+        findViewById(currPeriod).setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.selected_period)));
+        // END OF SET BUTTON COLOR
+
         period = match.getPeriods()[idx];
         period.getKid().setName("My Team (" + getIntent().getStringExtra("kidName") + ")");
         myKid.setText(getIntent().getStringExtra("kidName"));
@@ -154,14 +187,19 @@ public class InputActivity extends Activity implements View.OnClickListener {
         } else if (v.getId() == R.id.end_game) {
             showAlertDialog(v);
         } else if (v.getId() == R.id.period_one) {
+            findViewById(currPeriod).setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.periods)));
             initPeriodInfo(0);
         } else if (v.getId() == R.id.period_two) {
+            findViewById(currPeriod).setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.periods)));
             initPeriodInfo(1);
         } else if (v.getId() == R.id.period_three) {
+            findViewById(currPeriod).setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.periods)));
             initPeriodInfo(2);
         } else if (v.getId() == R.id.period_four) {
+            findViewById(currPeriod).setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.periods)));
             initPeriodInfo(3);
         } else if (v.getId() == R.id.period_fourPlus) {
+            findViewById(currPeriod).setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.periods)));
             initPeriodInfo(4);
         } else if (v.getId() == R.id.period_one) {
             

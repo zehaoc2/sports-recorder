@@ -36,7 +36,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
@@ -120,20 +119,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             matchNameArray.add(match.getName());
             matchIdArray.add(matchId.toString());            // do something
         }
-
-//        for (Map.Entry<String, ?> entry : sorted.entrySet()) {
-//            String matchId = entry.getKey();
-//
-//            if (!isNumeric(matchId)) {
-//                continue;
-//            }
-//
-//            String matchJson = sharedPreferences.getString(matchId, "");
-//            Match match = gson.fromJson(matchJson, Match.class);
-//
-//            matchNameArray.add(match.getName());
-//            matchIdArray.add(matchId);
-//        }
 
         adapter = new MyCustomAdapter(matchNameArray, matchIdArray, this, MainActivity.this);
 
