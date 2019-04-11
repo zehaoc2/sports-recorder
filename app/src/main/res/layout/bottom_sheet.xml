@@ -4,15 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottomSheet"
     android:layout_width="match_parent"
-    android:layout_height="500dp"
+    android:layout_height="350dp"
     android:background="@android:color/white"
     android:orientation="vertical"
     app:behavior_peekHeight="?actionBarSize"
     app:layout_behavior="@string/bottom_sheet_behavior">
 
     <!--expand to top android:layout_height="match_parent"-->
-
-
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -44,11 +42,12 @@
                 android:id="@+id/txtCantante"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Create Match"
+                android:text="New Match"
                 android:textColor="@color/fbutton_color_orange"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:textAllCaps="true"/>
 
         </LinearLayout>
 
@@ -87,7 +86,10 @@
 
                 android:orientation="vertical"
                 android:padding="10dip" >
-
+                
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"/>
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -102,6 +104,9 @@
                     android:layout_marginTop="5dip"
                     android:singleLine="true" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -115,15 +120,17 @@
                     android:layout_marginTop="5dip"
 
                     android:singleLine="true" />
-
-
+                
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"/>
 
                 <info.hoang8f.widget.FButton
                     android:id="@+id/btnCreate"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
-                    android:text="Create"
+                    android:text="Start Match"
                     android:textColor="@color/fbutton_color_orange"
                     fbutton:fButtonColor="@color/fbutton_color_midnight_blue"
                     />
