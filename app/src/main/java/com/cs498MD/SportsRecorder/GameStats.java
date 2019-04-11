@@ -185,8 +185,11 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
         Log.d("TEAM DEBUG", match.getName());
 
         populateScoreTable();
-        populateTeamTable();
+//        populateTeamTable();
         populatePlayerTable();
+
+        // Hiding Text for Team Table
+//        ((TextView) findViewById(R.id.teamStatsTitle)).setText("");
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -255,27 +258,75 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
     private void populatePlayerTable() {
         // Only create Players Table if there are players to keep track of
-        String[] players = {myKidName, "Others"};
+        String[] players = {myKidName, "Others", "Overall"};
 
         createHeaderRow(PLAYER_TABLE);
 
-        for (String player : players) {
-            TableRow row = new TableRow(GameStats.this);
+        TableRow kidRow = new TableRow(GameStats.this);
+        TableRow otherRow = new TableRow(GameStats.this);
+        TableRow overallRow = new TableRow(GameStats.this);
 
+        for (int i = 0; i < players.length; i++) {
             TextView tv = new TextView(GameStats.this);
             formatTableText(tv);
-            tv.setText(player);
-            row.addView(tv);
-
-            for (int i = 0; i < PLAYER_HEADER.length - 1; i++) {
-                tv = new TextView(GameStats.this);
-                formatTableText(tv);
-                tv.setText(player.equals("Others") ? othersBreakDown[i].toString() : myKidBreakDown[i].toString());
-                row.addView(tv);
+            switch (i) {
+                case 0:
+                    tv.setText(players[i]);
+                    kidRow.addView(tv);
+                    break;
+                case 1:
+                    tv.setText(players[i]);
+                    otherRow.addView(tv);
+                    break;
+                case 2:
+                    tv.setText(players[i]);
+                    overallRow.addView(tv);
+                    break;
             }
-
-            playerTable.addView(row);
         }
+
+        for (int i = 0; i < PLAYER_HEADER.length - 1; i++) {
+            TextView kid = new TextView(GameStats.this);
+            TextView other = new TextView(GameStats.this);
+            TextView overall = new TextView(GameStats.this);
+
+            formatTableText(kid);
+            formatTableText(other);
+            formatTableText(overall);
+
+            int kidScore = myKidBreakDown[i];
+            int otherScore = othersBreakDown[i];
+
+            kid.setText(Integer.toString(kidScore));
+            other.setText(Integer.toString(otherScore));
+            overall.setText(Integer.toString(kidScore + otherScore));
+
+            kidRow.addView(kid);
+            otherRow.addView(other);
+            overallRow.addView(overall);
+        }
+
+        playerTable.addView(kidRow);
+        playerTable.addView(otherRow);
+        playerTable.addView(overallRow);
+
+//        for (String player : players) {
+//            TableRow row = new TableRow(GameStats.this);
+
+//            TextView tv = new TextView(GameStats.this);
+//            formatTableText(tv);
+//            tv.setText(player);
+//            row.addView(tv);
+//
+//            for (int i = 0; i < PLAYER_HEADER.length - 1; i++) {
+//                tv = new TextView(GameStats.this);
+//                formatTableText(tv);
+//                tv.setText(player.equals("Others") ? othersBreakDown[i].toString() : myKidBreakDown[i].toString());
+//                row.addView(tv);
+//            }
+//
+//            playerTable.addView(row);
+//        }
     }
 
     @Override

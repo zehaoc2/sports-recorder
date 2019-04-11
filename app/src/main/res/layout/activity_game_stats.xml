@@ -84,20 +84,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="36dp" />
 
-            <TextView
-                android:id="@+id/teamStatsTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_bottom"
-                android:fontFamily="sans-serif-condensed-light"
-                android:lineSpacingExtra="14sp"
-                android:text="My Team Stats"
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/classic_black"
-                android:textSize="30sp"
-                android:typeface="sans" />
-
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="16dp" />
@@ -128,10 +114,6 @@
                 </LinearLayout>
             </HorizontalScrollView>
 
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="36dp" />
 
             <TextView
                 android:id="@+id/playerStatsTitle"
