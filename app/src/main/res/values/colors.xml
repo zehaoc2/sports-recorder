@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="periods">#0D1B2A</color>
+    <color name="end_game">#2A4E54</color>
+    <color name="add_buttons">#4EA5D9</color>
+    <color name="undo">#596475</color>
+    <color name="view_stats">#596475</color>
+    <color name="selected_period">#F2C100</color>
+
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#007E67</color>
     <color name="colorAccent">#D81B60</color>
@@ -18,16 +25,15 @@
 
     <color name="regular_button_color">#16a085</color>
 
-
     <color name="fbutton_color_green_sea">#16a085</color>
     <color name="fbutton_color_emerald">#2ecc71</color>
     <color name="fbutton_color_nephritis">#27ae60</color>
     <color name="fbutton_color_peter_river">#3498db</color>
-    <color name="fbutton_color_belize_hole">#2980b9</color>
+    <color name="fbutton_color_belize_hole">#2980B9</color>
     <color name="fbutton_color_amethyst">#9b59b6</color>
     <color name="fbutton_color_wisteria">#8e44ad</color>
     <color name="fbutton_color_wet_asphalt">#34495e</color>
-    <color name="fbutton_color_midnight_blue">#2c3e50</color>
+    <color name="fbutton_color_midnight_blue">#2C3E50</color>
     <color name="fbutton_color_sun_flower">#f1c40f</color>
     <color name="fbutton_color_orange">#f39c12</color>
     <color name="fbutton_color_carrot">#e67e22</color>
@@ -41,19 +47,12 @@
     <color name="fbutton_color_transparent">@android:color/transparent</color>
 
     //home page
-
     <color name="guillotine_background">#444153</color>
     <color name="guillotine_background_dark">#383547</color>
     <color name="selected_item_color">#30d1d5</color>
-
 
     <color name="med_background_gray">#344955</color>
     <color name="dark_background_gray">#232F34</color>
     <color name="light_background_gray">#4A6572</color>
     <color name="yellow"> #F9AA33</color>
-
-
-
-
-
 </resources>

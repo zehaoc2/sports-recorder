@@ -1,32 +1,42 @@
 package com.cs498MD.SportsRecorder;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
-
-import com.google.gson.Gson;
-
-import java.util.ArrayList;
 import java.util.Stack;
 
-import static android.content.Context.MODE_PRIVATE;
-
 public class Period {
-    private MyTeam myTeam;
-    private OpponentTeam opponentTeam;
+    private Team others;
+    private Team kid;
+    private Team opponent;
     private Stack<Action> history;
 
     public Period() {
-        this.myTeam = new MyTeam();
-        this.opponentTeam = new OpponentTeam();
+        this.others = new Team("My Team (Others)");
+        this.kid = new Team("My Kid");
+        this.opponent = new Team("Opponent Team");
         this.history = new Stack<>();
     }
 
-    public MyTeam getMyTeam() {
-        return myTeam;
+    public Team getOthers() {
+        return others;
     }
 
-    public OpponentTeam getOpponentTeam() {
-        return opponentTeam;
+    public void setOthers(Team others) {
+        this.others = others;
+    }
+
+    public Team getKid() {
+        return kid;
+    }
+
+    public void setKid(Team kid) {
+        this.kid = kid;
+    }
+
+    public Team getOpponent() {
+        return opponent;
+    }
+
+    public void setOpponent(Team opponent) {
+        this.opponent = opponent;
     }
 
     public Stack<Action> getHistory() {

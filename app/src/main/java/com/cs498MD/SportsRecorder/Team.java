@@ -1,14 +1,16 @@
 package com.cs498MD.SportsRecorder;
 
-public abstract class Team {
-    String name;
-    int score;
+import java.util.ArrayList;
 
-    public String getName() {
-        return name;
-    }
+public class Team {
+    private String name;
+    private int score;
+    private int onePoint;
+    private int twoPoint;
+    private int threePoint;
+    private int miss;
 
-    public void setName(String name) {
+    public Team(String name) {
         this.name = name;
     }
 
@@ -18,5 +20,45 @@ public abstract class Team {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getOnePoint() {
+        return onePoint;
+    }
+
+    public void setOnePoint(int onePoint) {
+        this.onePoint = onePoint;
+    }
+
+    public int getTwoPoint() {
+        return twoPoint;
+    }
+
+    public void setTwoPoint(int twoPoint) {
+        this.twoPoint = twoPoint;
+    }
+
+    public int getThreePoint() {
+        return threePoint;
+    }
+
+    public void setThreePoint(int threePoint) {
+        this.threePoint = threePoint;
+    }
+
+    public int getMiss() {
+        return miss;
+    }
+
+    public void setMiss(int miss) {
+        this.miss = miss;
     }
 }

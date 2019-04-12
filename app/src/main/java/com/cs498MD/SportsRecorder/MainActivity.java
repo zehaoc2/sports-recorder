@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -27,15 +28,17 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.ContentLoadingProgressBar;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static FloatingActionButton newMatch;
+
     private ArrayList<String> matchNameArray = new ArrayList<>();
     private ArrayList<String> matchIdArray = new ArrayList<>();
     private MyCustomAdapter adapter;
@@ -44,15 +47,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private BottomSheetBehavior bottomSheetBehavior;
     private LinearLayout linearLayoutBSheet;
     private ToggleButton tbUpDown;
-    private ListView listView;
-    private TextView txtCantante, txtCancion;
-    private ContentLoadingProgressBar progbar;
+
 
     private Button createBtn;
     private EditText userInputMatchName;
     private EditText userInputKidName;
-
-
 
     private String MATCH = "match";
 
@@ -66,8 +65,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_match_list);
 
         init_bottomsheet();
-
-//        rellenarListView();
 
         tbUpDown.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -99,25 +96,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ActionBar bar = getSupportActionBar();
         bar.setTitle("Matches");
 
-        newMatch = (FloatingActionButton) findViewById(R.id.newMatch);
-        newMatch.setOnClickListener(this);
-
         SharedPreferences sharedPreferences = getSharedPreferences(MATCH, MODE_PRIVATE);
         Gson gson = new Gson();
 
         Map<String, ?> allEntries = sharedPreferences.getAll();
-        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-            String matchId = entry.getKey();
+        SortedSet<Integer> keys = new TreeSet<>();
 
-            if (!isNumeric(matchId)) {
+        for (String key : allEntries.keySet()) {
+            if (!isNumeric(key)) {
                 continue;
             }
 
-            String matchJson = sharedPreferences.getString(matchId, "");
+            keys.add(Integer.valueOf(key));
+        }
+
+        Log.d("KEYS", keys.toString());
+
+        for (Integer matchId : keys) {
+            String matchJson = sharedPreferences.getString(matchId.toString(), "");
             Match match = gson.fromJson(matchJson, Match.class);
 
             matchNameArray.add(match.getName());
-            matchIdArray.add(matchId);
+            matchIdArray.add(matchId.toString());            // do something
         }
 
         adapter = new MyCustomAdapter(matchNameArray, matchIdArray, this, MainActivity.this);
@@ -142,25 +142,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editor.putString("matchId", matchName);
         editor.apply();
 
-        if (v.getId() == R.id.newMatch) {
-            matchNameArray.add(matchName);
-
-            matchIdArray.add("" + matchCount);
-            adapter.notifyDataSetChanged();
-            Intent intent = new Intent(this, InputActivity.class);
-            intent.putExtra("matchId", Integer.toString(matchCount));
-            startActivity(intent);
-        }
-
         if(v.getId() == R.id.btnCreate){
-            //TODO: Jump to the input activity
+
             Log.e("TEST_SHEET", "Create Match Clicked");
             Log.e("TEST_SHEET", "Match: " +userInputMatchName.getText().toString());
             Log.e("TEST_SHEET", "Kid: " + userInputKidName.getText().toString());
+            if(userInputMatchName.getText().toString().equals("")){
+                //user did not enter match name
+                Toast.makeText(this, "Please Enter a Match Name", Toast.LENGTH_SHORT).show();
+
+            }
+            if(userInputKidName.getText().toString().equals("")){
+                //user did not enter kid name
+
+            }
+
+            //TODO: Change match info details. But right now can be used for testing purpose
+            matchNameArray.add(userInputMatchName.getText().toString());
+
+            matchIdArray.add("" + matchCount);
+            adapter.notifyDataSetChanged();
+
+            Intent intent = new Intent(this, InputActivity.class);
+            intent.putExtra("matchId", Integer.toString(matchCount));
+            intent.putExtra("matchName", userInputMatchName.getText().toString());
+            intent.putExtra("kidName", userInputKidName.getText().toString());
+            startActivity(intent);
+
+
         }
     }
-
-
 
     //bottom sheet
     private void init_bottomsheet() {
@@ -168,18 +179,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.bottomSheetBehavior = BottomSheetBehavior.from(linearLayoutBSheet);
         this.tbUpDown = findViewById(R.id.toggleButton);
 
-        this.txtCantante = findViewById(R.id.txtCantante);
-        this.txtCancion = findViewById(R.id.txtCancion);
-        this.progbar = findViewById(R.id.progbar);
-
         this.createBtn = findViewById(R.id.btnCreate);
         this.userInputKidName = findViewById(R.id.kidNameText);
         this.userInputMatchName = findViewById(R.id.matchNameText);
 
     }
-
-
-
 
     private SimpleAdapter getAdapterListViewCT(ArrayList<Map<String, Object>> lista) {
         return new SimpleAdapter(this, lista,
@@ -198,7 +202,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 return view;
             }
-
         };
     }
 

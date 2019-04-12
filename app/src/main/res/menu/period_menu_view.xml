@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/period_one_menu"
+            android:title="Period 1"
+            android:checkableBehavior="single"/>
+        <item
+            android:id="@+id/period_two_menu"
+            android:title="Period 2"
+            android:checkableBehavior="single"/>
+        <item
+            android:id="@+id/peirod_three_menu"
+            android:title="Period 3"
+            android:checkableBehavior="single"/>
+        <item
+            android:id="@+id/period_four_menu"
+            android:title="Period 4"
+            android:checkableBehavior="single"/>
+        <item
+            android:id="@+id/period_four_plus_menu"
+            android:title="Period 4+"
+            android:checkableBehavior="single"/>
+    </group>
+</menu>

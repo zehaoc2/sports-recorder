@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottomSheet"
     android:layout_width="match_parent"
-    android:layout_height="500dp"
+    android:layout_height="350dp"
     android:background="@android:color/white"
     android:orientation="vertical"
     app:behavior_peekHeight="?actionBarSize"
@@ -11,18 +12,10 @@
 
     <!--expand to top android:layout_height="match_parent"-->
 
-    <androidx.core.widget.ContentLoadingProgressBar
-        android:id="@+id/progbar"
-        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="@android:color/darker_gray"
-        android:progress="70" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@color/design_default_color_primary_dark"
+        android:background="@color/fbutton_color_midnight_blue"
         android:paddingEnd="8dp"
         android:paddingStart="8dp">
 
@@ -39,10 +32,9 @@
             android:textOn="" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@id/toggleButton"
             android:layout_toStartOf="@id/linearButtons"
             android:orientation="vertical">
 
@@ -50,20 +42,12 @@
                 android:id="@+id/txtCantante"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sports Recorder"
-                android:textColor="@android:color/white"
+                android:text="New Match"
+                android:textColor="@color/fbutton_color_orange"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_gravity="center"/>
-
-            <TextView
-                android:id="@+id/txtCancion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:text="Create A Match"
-                android:textColor="@android:color/white"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:textAllCaps="true"/>
 
         </LinearLayout>
 
@@ -93,26 +77,24 @@
             android:layout_height="wrap_content" >
 
 
-            <ImageView
-                android:id="@+id/logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_basketball" />
+
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/logo"
+
                 android:orientation="vertical"
                 android:padding="10dip" >
-
+                
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"/>
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="MatchName" />
+                    android:text="Match Name" />
 
                 <EditText
                     android:id="@+id/matchNameText"
@@ -122,11 +104,14 @@
                     android:layout_marginTop="5dip"
                     android:singleLine="true" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Kid Name" />
+                    android:text="My Kid Name" />
 
                 <EditText
                     android:id="@+id/kidNameText"
@@ -135,15 +120,20 @@
                     android:layout_marginTop="5dip"
 
                     android:singleLine="true" />
+                
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"/>
 
-
-
-                <Button
+                <info.hoang8f.widget.FButton
                     android:id="@+id/btnCreate"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
-                    android:text="Create" />
+                    android:text="Start Match"
+                    android:textColor="@color/fbutton_color_orange"
+                    fbutton:fButtonColor="@color/fbutton_color_midnight_blue"
+                    />
             </LinearLayout>
 
 
