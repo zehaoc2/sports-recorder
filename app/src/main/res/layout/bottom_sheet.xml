@@ -98,6 +98,7 @@
 
                 <EditText
                     android:id="@+id/matchNameText"
+                    android:text="New Match"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dip"
@@ -115,6 +116,7 @@
 
                 <EditText
                     android:id="@+id/kidNameText"
+                    android:text="My Kid"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dip"
