@@ -15,9 +15,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@color/fbutton_color_midnight_blue"
+        android:background="@drawable/layout_bg"
         android:paddingEnd="8dp"
         android:paddingStart="8dp">
+
+        <!--android:background="@color/fbutton_color_midnight_blue"-->
 
         <ToggleButton
             android:id="@+id/toggleButton"
@@ -75,9 +77,6 @@
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" >
-
-
-
 
 
             <LinearLayout
