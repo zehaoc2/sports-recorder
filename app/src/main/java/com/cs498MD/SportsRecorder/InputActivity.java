@@ -323,7 +323,6 @@ public class InputActivity extends Activity implements View.OnClickListener {
         builder.setMessage(alertmessage)
                 .setPositiveButton("Yes", dialogClickListener)
                 .setNegativeButton("No", dialogClickListener).show();
-
     }
 
     public void showAlertDialog (final View v) {
@@ -378,6 +377,6 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-        IsFinish("Are you sure you want to end this match?");
+        IsFinish("Are you sure you want to end this match? \nYour game will not be saved.");
     }
 }
