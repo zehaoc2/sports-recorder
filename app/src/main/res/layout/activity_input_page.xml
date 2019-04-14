@@ -26,7 +26,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/fbutton_color_midnight_blue"
+            android:backgroundTint="@color/periods"
             android:text="Period 1"
             android:textSize="14sp" />
 
@@ -36,7 +36,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/fbutton_color_midnight_blue"
+            android:backgroundTint="@color/periods"
             android:text="Period 2"
             android:textSize="14sp"/>
 
@@ -46,7 +46,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/fbutton_color_midnight_blue"
+            android:backgroundTint="@color/periods"
             android:text="Period 3"
             android:textSize="14sp"/>
 
@@ -56,7 +56,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/fbutton_color_midnight_blue"
+            android:backgroundTint="@color/periods"
             android:text="Period 4"
             android:textSize="14sp"/>
 
@@ -66,7 +66,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="@color/fbutton_color_midnight_blue"
+            android:backgroundTint="@color/periods"
             android:text="Period 4+"
             android:textSize="14sp" />
 
@@ -101,9 +101,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="2dp"
-        android:backgroundTint="@color/fbutton_color_midnight_blue"
-        android:text="@string/view_game_stats" />
+        android:layout_marginEnd="4dp"
+        android:backgroundTint="@color/periods"
+        android:text="@string/view_game_stats"
+        android:layout_marginTop="4dp"/>
 
     <TextView
         android:id="@+id/opp_team"
@@ -145,11 +146,11 @@
             android:id="@+id/separator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="32sp"
-            android:text=":"
-
             android:layout_toEndOf="@id/opp_score"
-            android:textColor="@color/classic_black"/>
+            android:text="-"
+
+            android:textColor="@color/classic_black"
+            android:textSize="32sp" />
 
         <TextView
             android:id="@+id/my_score"
@@ -574,8 +575,8 @@
             android:layout_toStartOf="@id/undo"
             android:drawableTop="@color/classic_black"
 
-            android:background="@color/classic_white"
-            android:backgroundTint="@color/classic_white"
+            android:background="@color/fbutton_color_transparent"
+            android:backgroundTint="@color/fbutton_color_transparent"
             android:fontFamily="sans-serif-light"
             android:gravity="center"
             android:text="Last Activity"

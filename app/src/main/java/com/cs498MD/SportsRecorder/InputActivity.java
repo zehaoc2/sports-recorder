@@ -127,15 +127,15 @@ public class InputActivity extends Activity implements View.OnClickListener {
     }
 
     private void savePeriodInfo() {
-            Team kid = period.getKid();
-            kid.setMiss(kidMiss);
-            kid.setScore(kidScore - prevKidScore);
-            kid.setOnePoint(kidOne);
-            kid.setTwoPoint(kidTwo);
-            kid.setThreePoint(kidThree);
+        Team kid = period.getKid();
+        kid.setMiss(kidMiss);
+        kid.setScore(kidScore - prevKidScore);
+        kid.setOnePoint(kidOne);
+        kid.setTwoPoint(kidTwo);
+        kid.setThreePoint(kidThree);
 
-            period.getOpponent().setScore(oppScore - prevOppScore);
-            period.getOthers().setScore(othersScore - prevOthersScore);
+        period.getOpponent().setScore(oppScore - prevOppScore);
+        period.getOthers().setScore(othersScore - prevOthersScore);
     }
 
     private void initPeriodInfo(int idx) {
@@ -174,7 +174,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
         history = period.getHistory();
         if (history.isEmpty()) {
-            lastAction.setText("");
+            lastAction.setText("Tap a button to create a new action");
         } else {
             lastAction.setText(history.peek().getMessage());
         }
@@ -293,7 +293,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
         } else if (action.getType() == Type.Attempt && action.getTeamName().equals(period.getKid().getName())) {
             kidMiss--;
         }
-        lastAction.setText(history.isEmpty() ? "" : history.peek().getMessage());
+        lastAction.setText(history.isEmpty() ? "Tap a button to create a new action" : history.peek().getMessage());
     }
 
     private void setLastAction(Action action) {
