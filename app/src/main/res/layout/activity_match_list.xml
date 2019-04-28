@@ -22,7 +22,7 @@
             android:fontFamily="sans-serif-condensed-light"
             android:gravity="center_vertical"
             android:lineSpacingExtra="36sp"
-            android:text="Tap the New Match button to start a game"
+            android:text="@string/no_matches"
             android:textAlignment="center"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
             android:textColor="@color/classic_black"

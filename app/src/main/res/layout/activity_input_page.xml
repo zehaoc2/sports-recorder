@@ -16,6 +16,7 @@
         android:background="@color/classic_white"
         android:orientation="horizontal">
 
+
         <LinearLayout
             android:id="@+id/periods"
             android:layout_width="wrap_content"
@@ -23,6 +24,7 @@
             android:orientation="vertical"
             android:layout_gravity="center"
             android:layout_marginStart="2dp">
+
 
 
             <Button
@@ -542,6 +544,7 @@
         <RelativeLayout
             android:id="@+id/bottom_bar"
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_below="@id/miss"
@@ -558,16 +561,18 @@
                 <!--android:translationZ="100dp"-->
                 <!--/>-->
 
-            <Button
-                android:id="@+id/undo"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentEnd="true"
+    <info.hoang8f.widget.FButton
+        android:id="@+id/undo"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
 
-                android:layout_alignParentBottom="true"
-                android:background="@android:drawable/ic_menu_close_clear_cancel"
-                android:backgroundTint="@android:color/holo_red_dark" />
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/periods"
+        android:text="Undo" />
 
             <!--<TextView-->
                 <!--android:id="@+id/last_action"-->
@@ -590,6 +595,7 @@
                 <!--android:textStyle="bold"-->
                 <!--android:textColor="@color/light_background_gray"/>-->
         </RelativeLayout>
+
 
 
     </RelativeLayout>
