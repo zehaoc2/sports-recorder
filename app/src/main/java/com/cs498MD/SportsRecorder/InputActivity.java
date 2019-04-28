@@ -19,6 +19,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Stack;
 
@@ -319,10 +320,12 @@ public class InputActivity extends Activity implements View.OnClickListener {
         }
 
         actions.clear();
+
         for(Action action : period.getHistory())
         {
             actions.add(action.message);
         }
+        Collections.reverse(actions);
         adapter.notifyDataSetChanged();
     }
 
