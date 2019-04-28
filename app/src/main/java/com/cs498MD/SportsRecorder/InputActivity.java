@@ -123,7 +123,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private void initViews() {
         // Game Util Views
         lastAction = findViewById(R.id.txtCantante);
-        findViewById(R.id.undo).setOnClickListener(this);
+//        findViewById(R.id.undo).setOnClickListener(this);
         findViewById(R.id.end_game).setOnClickListener(this);
         findViewById(R.id.view_game_stats).setOnClickListener(this);
 
@@ -241,9 +241,11 @@ public class InputActivity extends Activity implements View.OnClickListener {
             Intent intent = new Intent(this, GameStats.class);
             intent.putExtra("matchId", matchId);
             startActivity(intent);
-        } else if (v.getId() == R.id.undo && history.size() >= 1) {
-            undoLastAction();
-        } else if (v.getId() == R.id.end_game) {
+        }
+//        else if (v.getId() == R.id.undo && history.size() >= 1) {
+//            undoLastAction();
+//        }
+        else if (v.getId() == R.id.end_game) {
             showAlertDialog(v);
         } else if (v.getId() == R.id.period_one) {
             findViewById(currPeriod).setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.periods)));

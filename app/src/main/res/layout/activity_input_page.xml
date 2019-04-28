@@ -561,18 +561,7 @@
                 <!--android:translationZ="100dp"-->
                 <!--/>-->
 
-    <info.hoang8f.widget.FButton
-        android:id="@+id/undo"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="4dp"
-        android:layout_marginTop="4dp"
 
-        android:layout_alignParentBottom="true"
-        android:backgroundTint="@color/periods"
-        android:text="Undo" />
 
             <!--<TextView-->
                 <!--android:id="@+id/last_action"-->
