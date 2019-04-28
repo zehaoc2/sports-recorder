@@ -170,7 +170,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
         history = period.getHistory();
         if (history.isEmpty()) {
-            lastAction.setText("Tap a button to create a new action");
+            lastAction.setText(getString(R.string.action_description));
         } else {
             lastAction.setText(history.peek().getMessage());
         }
@@ -289,7 +289,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
         } else if (action.getType() == Type.Attempt && action.getTeamName().equals(period.getKid().getName())) {
             kidMiss--;
         }
-        lastAction.setText(history.isEmpty() ? "Tap a button to create a new action" : history.peek().getMessage());
+        lastAction.setText(history.isEmpty() ? getString(R.string.action_description) : history.peek().getMessage());
     }
 
     private void setLastAction(Action action) {
