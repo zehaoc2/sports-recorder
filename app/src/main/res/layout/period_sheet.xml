@@ -5,7 +5,9 @@
     android:id="@+id/periodSheet"
     android:layout_width="400dp"
     android:layout_height="350dp"
-    android:background="@android:color/white"
+
+    android:background="@drawable/histories_bg"
+
     android:orientation="vertical"
     android:layout_gravity="top|center"
 

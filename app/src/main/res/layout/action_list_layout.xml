@@ -22,12 +22,31 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Menu"
         android:textColor="@color/classic_black"
         android:textSize="18sp"
-
+        app:layout_constraintEnd_toStartOf="@+id/action_delete_btn"
         app:layout_constraintHorizontal_bias="0.085"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/action_delete_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="0dp"
+        android:background="@drawable/ic_icons8_trash_can"
 
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <!--android:background="@color/fbutton_color_pomegranate"-->
     <!--android:background="@color/fbutton_color_pomegranate"-->
     <!--android:backgroundTint="@drawable/ic_icons8_trash_can"-->

@@ -81,6 +81,29 @@ public class ActionListAdapter extends BaseAdapter {
         listItemText.setText(list.get(position));
 
         //Handle buttons and add onClickListeners
+        Button delete_btn = (Button)view.findViewById(R.id.action_delete_btn);
+
+        delete_btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //do something
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+
+                                list.remove(position); //delete action
+                                notifyDataSetChanged();
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                break;
+                        }
+                    }
+                };
+
+            }
+        });
         return view;
     }
 
