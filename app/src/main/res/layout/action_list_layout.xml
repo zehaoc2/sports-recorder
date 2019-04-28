@@ -29,8 +29,8 @@
 
     <Button
         android:id="@+id/action_delete_btn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="4dp"
