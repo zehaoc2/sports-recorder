@@ -89,6 +89,9 @@ public class ActionListAdapter extends BaseAdapter {
                 //do something
                 list.remove(position); //delete action
                 notifyDataSetChanged();
+
+
+
             }
         });
         return view;

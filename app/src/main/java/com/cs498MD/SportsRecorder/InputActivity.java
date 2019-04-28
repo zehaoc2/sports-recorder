@@ -61,7 +61,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private LinearLayout linearLayoutBSheet;
     private ToggleButton tbUpDown;
 
-    private ArrayList<String> actions = new ArrayList<>();
+    public ArrayList<String> actions = new ArrayList<>();
     private ArrayList<String> actionID = new ArrayList<>();
     private ActionListAdapter adapter;
 
