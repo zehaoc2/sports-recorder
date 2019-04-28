@@ -30,6 +30,23 @@
             android:typeface="sans"
             app:layout_constraintBottom_toBottomOf="@+id/matchLayout"
             app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/noActions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-condensed-light"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="36sp"
+            android:text="No Actions"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:textColor="@color/classic_black"
+            android:textSize="18sp"
+            android:typeface="sans"
+            app:layout_constraintBottom_toBottomOf="@+id/matchLayout"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/matchLayout"

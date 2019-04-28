@@ -1,588 +1,598 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
-
-    android:id="@+id/setting_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/classic_white"
-    android:orientation="horizontal">
-
-    <LinearLayout
-        android:id="@+id/periods"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginStart="2dp">
-
-        <Button
-            android:id="@+id/period_one"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/periods"
-            android:text="Period 1"
-            android:textSize="14sp" />
-
-        <Button
-            android:id="@+id/period_two"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/periods"
-            android:text="Period 2"
-            android:textSize="14sp"/>
-
-        <Button
-            android:id="@+id/period_three"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/periods"
-            android:text="Period 3"
-            android:textSize="14sp"/>
-
-        <Button
-            android:id="@+id/period_four"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/periods"
-            android:text="Period 4"
-            android:textSize="14sp"/>
-
-        <Button
-            android:id="@+id/period_fourPlus"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/periods"
-            android:text="Period 4+"
-            android:textSize="14sp" />
-
-        <Button
-            android:id="@+id/end_game"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/end_game"
-            android:text="End Game"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/match_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="0dp"
-        android:layout_toStartOf="@id/view_game_stats"
-        android:layout_toEndOf="@id/periods"
-        android:gravity="center"
-        android:text="Match Name"
-        android:textColor="@color/classic_black"
-        android:textSize="24sp" />
-
-    <info.hoang8f.widget.FButton
-        android:id="@+id/view_game_stats"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="4dp"
-        android:backgroundTint="@color/periods"
-        android:text="@string/view_game_stats"
-        android:layout_marginTop="4dp"/>
-
-    <TextView
-        android:id="@+id/opp_team"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/match_name"
-
-        android:layout_marginStart="38dp"
-        android:textAlignment="gravity"
-        android:layout_alignTop="@id/score"
-        android:layout_alignBottom="@id/score"
-        android:layout_toEndOf="@id/periods"
-        android:gravity="center"
-        android:text="Opponent Team"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/classic_black"/>
+    tools:context=".InputActivity">
 
     <RelativeLayout
-        android:id="@+id/score"
-        android:layout_width="10dp"
-        android:layout_height="wrap_content"
 
-        android:layout_marginTop="8dp"
-        android:layout_toEndOf="@id/periods"
-        android:layout_toStartOf="@id/view_game_stats"
-        android:layout_below="@id/match_name"
-        android:gravity="center">
+
+        android:id="@+id/setting_page"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/classic_white"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/periods"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginStart="2dp">
+
+
+            <Button
+                android:id="@+id/period_one"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/periods"
+                android:text="Period 1"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/period_two"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/periods"
+                android:text="Period 2"
+                android:textSize="14sp"/>
+
+            <Button
+                android:id="@+id/period_three"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/periods"
+                android:text="Period 3"
+                android:textSize="14sp"/>
+
+            <Button
+                android:id="@+id/period_four"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/periods"
+                android:text="Period 4"
+                android:textSize="14sp"/>
+
+            <Button
+                android:id="@+id/period_fourPlus"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/periods"
+                android:text="Period 4+"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/end_game"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/end_game"
+                android:text="End Game"
+                android:textSize="16sp" />
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/opp_score"
+            android:id="@+id/match_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="32sp"
-            android:text="0"
-            android:textColor="@color/classic_black"/>
-
-        <TextView
-            android:id="@+id/separator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/opp_score"
-            android:text="-"
-
-            android:textColor="@color/classic_black"
-            android:textSize="32sp" />
-
-        <TextView
-            android:id="@+id/my_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="32sp"
-            android:text="0"
-
-            android:layout_toEndOf="@id/separator"
-            android:textColor="@color/classic_black"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignTop="@id/score"
-        android:layout_alignBottom="@id/score"
-        android:layout_toEndOf="@id/free_throw_title"
-        android:layout_alignParentEnd="true"
-        android:gravity="center_horizontal">
-
-        <TextView
-            android:id="@+id/my_team"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="0dp"
+            android:layout_toStartOf="@id/view_game_stats"
+            android:layout_toEndOf="@id/periods"
             android:gravity="center"
-            android:text="My Team"
+            android:text="Match Name"
+            android:textColor="@color/classic_black"
+            android:textSize="24sp" />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/view_game_stats"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="4dp"
+            android:backgroundTint="@color/periods"
+            android:text="@string/view_game_stats"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/opp_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/match_name"
+
+            android:layout_marginStart="38dp"
+            android:textAlignment="gravity"
+            android:layout_alignTop="@id/score"
+            android:layout_alignBottom="@id/score"
+            android:layout_toEndOf="@id/periods"
+            android:gravity="center"
+            android:text="Opponent Team"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/classic_black"/>
+
+        <RelativeLayout
+            android:id="@+id/score"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/periods"
+            android:layout_toStartOf="@id/view_game_stats"
+            android:layout_below="@id/match_name"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/opp_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="32sp"
+                android:text="0"
+                android:textColor="@color/classic_black"/>
+
+            <TextView
+                android:id="@+id/separator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/opp_score"
+                android:text="-"
+
+                android:textColor="@color/classic_black"
+                android:textSize="32sp" />
+
+            <TextView
+                android:id="@+id/my_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="32sp"
+                android:text="0"
+
+                android:layout_toEndOf="@id/separator"
+                android:textColor="@color/classic_black"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignTop="@id/score"
+            android:layout_alignBottom="@id/score"
+            android:layout_toEndOf="@id/free_throw_title"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/my_team"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+
+                android:gravity="center"
+                android:text="My Team"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/classic_black"/>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/my_team"
+                android:layout_marginEnd="16dp"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/other_kids"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Others"
+                    android:textSize="16sp"
+                    android:textColor="@color/classic_black"/>
+
+                <TextView
+                    android:id="@+id/my_kid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="My Kid"
+                    android:textSize="16sp"
+                    android:textColor="@color/classic_black"/>
+            </TableRow>
+        </RelativeLayout>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/my_team"
-            android:layout_marginEnd="16dp"
-            android:weightSum="2">
+            android:id="@+id/free_throw"
+            android:layout_below="@id/score"
 
-            <TextView
-                android:id="@+id/other_kids"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Others"
-                android:textSize="16sp"
-                android:textColor="@color/classic_black"/>
+            android:layout_toEndOf="@id/periods"
+            android:layout_marginEnd="@dimen/tablerow_margin"
+            android:layout_marginTop="10dp">
 
-            <TextView
-                android:id="@+id/my_kid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <View
+                android:layout_width="65dp"
+                android:layout_height="50dp"
+                />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/opp_free_throw"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
                 android:layout_weight="1"
+                android:backgroundTint="@color/add_buttons"
+                android:drawableTop="@android:drawable/ic_input_add"
+                android:drawableTint="@color/classic_white"
+                android:gravity="center" />
+
+            <View
+                android:layout_width="210dp"
+                android:layout_height="50dp"
+                />
+
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/other_free_throw"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
+                android:backgroundTint="@color/add_buttons"
+                android:drawableTop="@android:drawable/ic_input_add"
+                android:drawableTint="@color/classic_white"
                 android:gravity="center"
-                android:text="My Kid"
-                android:textSize="16sp"
-                android:textColor="@color/classic_black"/>
+                android:layout_weight="1"/>
+
+            <View
+                android:layout_width="65dp"
+                android:layout_height="50dp"
+                />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/myKid_free_throw"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
+                android:backgroundTint="@color/add_buttons"
+                android:drawableTop="@android:drawable/ic_input_add"
+                android:drawableTint="@color/classic_white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <View
+                android:layout_width="35dp"
+                android:layout_height="50dp"
+                />
         </TableRow>
-    </RelativeLayout>
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/free_throw"
-        android:layout_below="@id/score"
-
-        android:layout_toEndOf="@id/periods"
-        android:layout_marginEnd="@dimen/tablerow_margin"
-        android:layout_marginTop="10dp">
-
-        <View
-            android:layout_width="65dp"
-            android:layout_height="50dp"
-            />
-
-        <info.hoang8f.widget.FButton
-            android:id="@+id/opp_free_throw"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:layout_weight="1"
-            android:backgroundTint="@color/add_buttons"
-            android:drawableTop="@android:drawable/ic_input_add"
-            android:drawableTint="@color/classic_white"
-            android:gravity="center" />
-
-        <View
-            android:layout_width="210dp"
-            android:layout_height="50dp"
-            />
-
-
-        <info.hoang8f.widget.FButton
-            android:id="@+id/other_free_throw"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:backgroundTint="@color/add_buttons"
-            android:drawableTop="@android:drawable/ic_input_add"
-            android:drawableTint="@color/classic_white"
-            android:gravity="center"
-            android:layout_weight="1"/>
-
-        <View
-            android:layout_width="65dp"
-            android:layout_height="50dp"
-            />
-
-        <info.hoang8f.widget.FButton
-            android:id="@+id/myKid_free_throw"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:backgroundTint="@color/add_buttons"
-            android:drawableTop="@android:drawable/ic_input_add"
-            android:drawableTint="@color/classic_white"
-            android:gravity="center"
-            android:layout_weight="1"/>
-
-        <View
-            android:layout_width="35dp"
-            android:layout_height="50dp"
-            />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/two_ptr"
-        android:layout_below="@id/free_throw"
-
-        android:layout_toEndOf="@id/periods"
-        android:layout_marginEnd="@dimen/tablerow_margin"
-        android:layout_marginTop="12dp">
-
-        <View
-            android:layout_width="65dp"
-            android:layout_height="50dp"
-            />
-
-        <info.hoang8f.widget.FButton
-            android:id="@+id/opp_two_ptr"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:backgroundTint="@color/add_buttons"
-            android:drawableTop="@android:drawable/ic_input_add"
-            android:drawableTint="@color/classic_white"
-            android:gravity="center"
-            android:layout_weight="1"/>
-
-        <View
-            android:layout_width="210dp"
-            android:layout_height="50dp"
-            />
-
-
-        <info.hoang8f.widget.FButton
-            android:id="@+id/other_two_ptr"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:backgroundTint="@color/add_buttons"
-            android:drawableTop="@android:drawable/ic_input_add"
-            android:drawableTint="@color/classic_white"
-            android:gravity="center"
-            android:layout_weight="1"/>
-
-        <View
-            android:layout_width="65dp"
-            android:layout_height="50dp"
-            />
-
-        <info.hoang8f.widget.FButton
-            android:id="@+id/myKid_two_ptr"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:backgroundTint="@color/add_buttons"
-            android:drawableTop="@android:drawable/ic_input_add"
-            android:drawableTint="@color/classic_white"
-            android:gravity="center"
-            android:layout_weight="1"/>
-
-        <View
-            android:layout_width="35dp"
-            android:layout_height="50dp"
-            />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/three_ptr"
-        android:layout_below="@id/two_ptr"
-
-        android:layout_toEndOf="@id/periods"
-        android:layout_marginEnd="@dimen/tablerow_margin"
-        android:layout_marginTop="12dp">
-
-        <View
-            android:layout_width="65dp"
-            android:layout_height="50dp"
-            />
-
-        <info.hoang8f.widget.FButton
-            android:id="@+id/opp_three_ptr"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:backgroundTint="@color/add_buttons"
-            android:drawableTop="@android:drawable/ic_input_add"
-            android:drawableTint="@color/classic_white"
-            android:gravity="center"
-            android:layout_weight="1"/>
-
-        <View
-            android:layout_width="210dp"
-            android:layout_height="50dp"
-            />
-
-
-        <info.hoang8f.widget.FButton
-            android:id="@+id/other_three_ptr"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:backgroundTint="@color/add_buttons"
-            android:drawableTop="@android:drawable/ic_input_add"
-            android:drawableTint="@color/classic_white"
-            android:gravity="center"
-            android:layout_weight="1"/>
-
-        <View
-            android:layout_width="65dp"
-            android:layout_height="50dp"
-            />
-
-        <info.hoang8f.widget.FButton
-            android:id="@+id/myKid_three_ptr"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:backgroundTint="@color/add_buttons"
-            android:drawableTop="@android:drawable/ic_input_add"
-            android:drawableTint="@color/classic_white"
-            android:gravity="center"
-            android:layout_weight="1"/>
-
-        <View
-            android:layout_width="35dp"
-            android:layout_height="50dp"
-            />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/miss"
-        android:layout_below="@id/three_ptr"
-
-        android:layout_toEndOf="@id/periods"
-        android:layout_marginEnd="@dimen/tablerow_margin"
-        android:layout_marginTop="12dp">
-
-        <View
-            android:layout_width="65dp"
-            android:layout_height="50dp"
-            />
-
-        <info.hoang8f.widget.FButton
-            android:id="@+id/opp_miss"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:backgroundTint="@color/add_buttons"
-            android:drawableTop="@android:drawable/ic_input_add"
-            android:drawableTint="@color/classic_white"
-            android:gravity="center"
-            android:layout_weight="1"/>
-
-        <View
-            android:layout_width="210dp"
-            android:layout_height="50dp"
-            />
-
-
-        <info.hoang8f.widget.FButton
-            android:id="@+id/other_miss"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:backgroundTint="@color/add_buttons"
-            android:drawableTop="@android:drawable/ic_input_add"
-            android:drawableTint="@color/classic_white"
-            android:gravity="center"
-            android:layout_weight="1"/>
-
-        <View
-            android:layout_width="65dp"
-            android:layout_height="50dp"
-            />
-
-        <info.hoang8f.widget.FButton
-            android:id="@+id/myKid_miss"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:backgroundTint="@color/add_buttons"
-            android:drawableTop="@android:drawable/ic_input_add"
-            android:drawableTint="@color/classic_white"
-            android:gravity="center"
-            android:layout_weight="1" />
-
-        <View
-            android:layout_width="35dp"
-            android:layout_height="50dp"
-            />
-    </TableRow>
-
-    <TextView
-        android:id="@+id/free_throw_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Free Throw"
-
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/score"
-        android:textSize="24dp"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/classic_black"/>
-
-    <TextView
-        android:id="@+id/two_ptr_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2 Pts"
-
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/free_throw_title"
-        android:textSize="24dp"
-        android:layout_marginTop="28dp"
-        android:textColor="@color/classic_black"/>
-
-    <TextView
-        android:id="@+id/three_ptr_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="3 Pts"
-
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/two_ptr_title"
-        android:textSize="24dp"
-        android:layout_marginTop="28dp"
-        android:textColor="@color/classic_black"/>
-
-    <TextView
-        android:id="@+id/miss_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/three_ptr_title"
-
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
-        android:text="Foul"
-        android:textColor="@color/classic_black"
-        android:textSize="24dp" />
-
-    <RelativeLayout
-        android:id="@+id/bottom_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@id/miss"
-        android:layout_toEndOf="@id/periods"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp">
-
-        <View
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_alignParentTop="true"
-            android:background="@color/classic_black"
-            android:layout_marginStart="4dp"
-            android:translationZ="100dp"
-            />
+            android:layout_height="wrap_content"
+            android:id="@+id/two_ptr"
+            android:layout_below="@id/free_throw"
 
-        <Button
-            android:id="@+id/undo"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@id/periods"
+            android:layout_marginEnd="@dimen/tablerow_margin"
+            android:layout_marginTop="12dp">
 
-            android:layout_alignParentBottom="true"
-            android:background="@android:drawable/ic_menu_close_clear_cancel"
-            android:backgroundTint="@android:color/holo_red_dark" />
+            <View
+                android:layout_width="65dp"
+                android:layout_height="50dp"
+                />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/opp_two_ptr"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
+                android:backgroundTint="@color/add_buttons"
+                android:drawableTop="@android:drawable/ic_input_add"
+                android:drawableTint="@color/classic_white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <View
+                android:layout_width="210dp"
+                android:layout_height="50dp"
+                />
+
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/other_two_ptr"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
+                android:backgroundTint="@color/add_buttons"
+                android:drawableTop="@android:drawable/ic_input_add"
+                android:drawableTint="@color/classic_white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <View
+                android:layout_width="65dp"
+                android:layout_height="50dp"
+                />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/myKid_two_ptr"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
+                android:backgroundTint="@color/add_buttons"
+                android:drawableTop="@android:drawable/ic_input_add"
+                android:drawableTint="@color/classic_white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <View
+                android:layout_width="35dp"
+                android:layout_height="50dp"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/three_ptr"
+            android:layout_below="@id/two_ptr"
+
+            android:layout_toEndOf="@id/periods"
+            android:layout_marginEnd="@dimen/tablerow_margin"
+            android:layout_marginTop="12dp">
+
+            <View
+                android:layout_width="65dp"
+                android:layout_height="50dp"
+                />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/opp_three_ptr"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
+                android:backgroundTint="@color/add_buttons"
+                android:drawableTop="@android:drawable/ic_input_add"
+                android:drawableTint="@color/classic_white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <View
+                android:layout_width="210dp"
+                android:layout_height="50dp"
+                />
+
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/other_three_ptr"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
+                android:backgroundTint="@color/add_buttons"
+                android:drawableTop="@android:drawable/ic_input_add"
+                android:drawableTint="@color/classic_white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <View
+                android:layout_width="65dp"
+                android:layout_height="50dp"
+                />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/myKid_three_ptr"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
+                android:backgroundTint="@color/add_buttons"
+                android:drawableTop="@android:drawable/ic_input_add"
+                android:drawableTint="@color/classic_white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <View
+                android:layout_width="35dp"
+                android:layout_height="50dp"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/miss"
+            android:layout_below="@id/three_ptr"
+
+            android:layout_toEndOf="@id/periods"
+            android:layout_marginEnd="@dimen/tablerow_margin"
+            android:layout_marginTop="12dp">
+
+            <View
+                android:layout_width="65dp"
+                android:layout_height="50dp"
+                />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/opp_miss"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
+                android:backgroundTint="@color/add_buttons"
+                android:drawableTop="@android:drawable/ic_input_add"
+                android:drawableTint="@color/classic_white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <View
+                android:layout_width="210dp"
+                android:layout_height="50dp"
+                />
+
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/other_miss"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
+                android:backgroundTint="@color/add_buttons"
+                android:drawableTop="@android:drawable/ic_input_add"
+                android:drawableTint="@color/classic_white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <View
+                android:layout_width="65dp"
+                android:layout_height="50dp"
+                />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/myKid_miss"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
+                android:backgroundTint="@color/add_buttons"
+                android:drawableTop="@android:drawable/ic_input_add"
+                android:drawableTint="@color/classic_white"
+                android:gravity="center"
+                android:layout_weight="1" />
+
+            <View
+                android:layout_width="35dp"
+                android:layout_height="50dp"
+                />
+        </TableRow>
 
         <TextView
-            android:id="@+id/last_action"
+            android:id="@+id/free_throw_title"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
+            android:text="Free Throw"
 
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/undo"
-            android:layout_alignBottom="@id/undo"
-            android:layout_toStartOf="@id/undo"
-            android:drawableTop="@color/classic_black"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/score"
+            android:textSize="24dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/classic_black"/>
 
-            android:background="@color/fbutton_color_transparent"
-            android:backgroundTint="@color/fbutton_color_transparent"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center"
-            android:text="Last Activity"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/light_background_gray"/>
+        <TextView
+            android:id="@+id/two_ptr_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 Pts"
+
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/free_throw_title"
+            android:textSize="24dp"
+            android:layout_marginTop="28dp"
+            android:textColor="@color/classic_black"/>
+
+        <TextView
+            android:id="@+id/three_ptr_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3 Pts"
+
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/two_ptr_title"
+            android:textSize="24dp"
+            android:layout_marginTop="28dp"
+            android:textColor="@color/classic_black"/>
+
+        <TextView
+            android:id="@+id/miss_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/three_ptr_title"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="28dp"
+            android:text="Foul"
+            android:textColor="@color/classic_black"
+            android:textSize="24dp" />
+        <RelativeLayout
+            android:id="@+id/bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/miss"
+            android:layout_toEndOf="@id/periods"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp">
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:layout_alignParentTop="true"-->
+                <!--android:background="@color/classic_black"-->
+                <!--android:layout_marginStart="4dp"-->
+                <!--android:translationZ="100dp"-->
+                <!--/>-->
+
+            <Button
+                android:id="@+id/undo"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+
+                android:layout_alignParentBottom="true"
+                android:background="@android:drawable/ic_menu_close_clear_cancel"
+                android:backgroundTint="@android:color/holo_red_dark" />
+
+            <!--<TextView-->
+                <!--android:id="@+id/last_action"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="40dp"-->
+
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_alignTop="@+id/undo"-->
+                <!--android:layout_alignBottom="@id/undo"-->
+                <!--android:layout_toStartOf="@id/undo"-->
+                <!--android:drawableTop="@color/classic_black"-->
+
+                <!--android:background="@color/fbutton_color_transparent"-->
+                <!--android:backgroundTint="@color/fbutton_color_transparent"-->
+                <!--android:fontFamily="sans-serif-light"-->
+                <!--android:gravity="center"-->
+                <!--android:text="Last Activity"-->
+                <!--android:textAppearance="@style/TextAppearance.AppCompat"-->
+                <!--android:textSize="18sp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textColor="@color/light_background_gray"/>-->
+        </RelativeLayout>
+
+
     </RelativeLayout>
-</RelativeLayout>
+    <include layout="@layout/period_sheet" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

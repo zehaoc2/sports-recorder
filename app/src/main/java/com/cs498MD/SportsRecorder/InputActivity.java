@@ -9,10 +9,17 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
 
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Stack;
 
 public class InputActivity extends Activity implements View.OnClickListener {
@@ -48,6 +55,15 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
     private Stack<Action> history;
 
+    //bottom sheet
+    private BottomSheetBehavior bottomSheetBehavior;
+    private LinearLayout linearLayoutBSheet;
+    private ToggleButton tbUpDown;
+
+    private ArrayList<String> actions = new ArrayList<>();
+    private ArrayList<String> actionID = new ArrayList<>();
+    private ActionListAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +71,48 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
         initViews();
         initMatchInfo();
+
+        init_bottomsheet();
+
+
+        tbUpDown.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                }else{
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                }
+            }
+        });
+
+        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(View view, int newState) {
+                if(newState == BottomSheetBehavior.STATE_EXPANDED){
+                    tbUpDown.setChecked(true);
+                    lastAction.setText("Action Histories");
+                }else if(newState == BottomSheetBehavior.STATE_COLLAPSED){
+                    tbUpDown.setChecked(false);
+                    if(!period.getHistory().empty()){
+                        lastAction.setText(period.getHistory().peek().message);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onSlide(View view, float v) {
+
+            }
+        });
+
+        adapter = new ActionListAdapter(actions,this, InputActivity.this);
+
+        ListView listView = (ListView) findViewById(R.id.matchList);
+        listView.setEmptyView(findViewById(R.id.noActions));
+        listView.setAdapter(adapter);
+
     }
 
     /* ================================================================================================================================================= */
@@ -63,7 +121,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
     private void initViews() {
         // Game Util Views
-        lastAction = findViewById(R.id.last_action);
+        lastAction = findViewById(R.id.txtCantante);
         findViewById(R.id.undo).setOnClickListener(this);
         findViewById(R.id.end_game).setOnClickListener(this);
         findViewById(R.id.view_game_stats).setOnClickListener(this);
@@ -259,6 +317,13 @@ public class InputActivity extends Activity implements View.OnClickListener {
             myScoreView.setText(String.valueOf(kidScore + othersScore));
             opponentScoreView.setText(String.valueOf(oppScore));
         }
+
+        actions.clear();
+        for(Action action : period.getHistory())
+        {
+            actions.add(action.message);
+        }
+        adapter.notifyDataSetChanged();
     }
 
     /* ================================================================================================================================================= */
@@ -291,6 +356,9 @@ public class InputActivity extends Activity implements View.OnClickListener {
         }
         lastAction.setText(history.isEmpty() ? "Tap a button to create a new action" : history.peek().getMessage());
     }
+
+
+
 
     private void setLastAction(Action action) {
         history.push(action);
@@ -374,5 +442,13 @@ public class InputActivity extends Activity implements View.OnClickListener {
     @Override
     public void onBackPressed() {
         IsFinish("Are you sure you want to end this match? \nYour game will not be saved.");
+    }
+    private void init_bottomsheet() {
+        this.linearLayoutBSheet = findViewById(R.id.periodSheet);
+        this.bottomSheetBehavior = BottomSheetBehavior.from(linearLayoutBSheet);
+        this.tbUpDown = findViewById(R.id.toggleButton_black);
+
+
+
     }
 }

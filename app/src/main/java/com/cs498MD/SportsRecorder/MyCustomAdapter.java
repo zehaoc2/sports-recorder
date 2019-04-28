@@ -37,6 +37,13 @@ public class MyCustomAdapter extends BaseAdapter {
         this.matchIdList = matchIdList;
     }
 
+    public MyCustomAdapter(ArrayList<String> list,  Context context, Activity activity) {
+        this.list = list;
+        this.context = context;
+        this.activity = activity;
+
+    }
+
     @Override
     public int getCount() {
         return list.size();
@@ -115,4 +122,6 @@ public class MyCustomAdapter extends BaseAdapter {
 
         return view;
     }
+
+
 }
