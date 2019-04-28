@@ -98,6 +98,9 @@ public class InputActivity extends Activity implements View.OnClickListener {
                     if(!period.getHistory().empty()){
                         lastAction.setText(period.getHistory().peek().message);
                     }
+                    else{
+                        lastAction.setText("Slide to view game history");
+                    }
 
                 }
             }
