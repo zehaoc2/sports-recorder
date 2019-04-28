@@ -87,21 +87,8 @@ public class ActionListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //do something
-                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which) {
-                            case DialogInterface.BUTTON_POSITIVE:
-
-                                list.remove(position); //delete action
-                                notifyDataSetChanged();
-
-                            case DialogInterface.BUTTON_NEGATIVE:
-                                break;
-                        }
-                    }
-                };
-
+                list.remove(position); //delete action
+                notifyDataSetChanged();
             }
         });
         return view;

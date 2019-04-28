@@ -43,10 +43,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
     <!--android:background="@color/fbutton_color_pomegranate"-->
     <!--android:background="@color/fbutton_color_pomegranate"-->
     <!--android:backgroundTint="@drawable/ic_icons8_trash_can"-->
