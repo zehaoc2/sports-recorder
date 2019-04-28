@@ -91,7 +91,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
             public void onStateChanged(View view, int newState) {
                 if(newState == BottomSheetBehavior.STATE_EXPANDED){
                     tbUpDown.setChecked(true);
-                    lastAction.setText("Action Histories");
+                    lastAction.setText("Game History");
                 }else if(newState == BottomSheetBehavior.STATE_COLLAPSED){
                     tbUpDown.setChecked(false);
                     if(!period.getHistory().empty()){

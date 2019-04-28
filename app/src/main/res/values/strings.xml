@@ -25,5 +25,5 @@
     <string name="three_ptr">3-Ptr</string>
 
     <string name="no_matches">Tap the New Match button to start a game</string>
-    <string name="action_description">Tap to create a new action</string>
+    <string name="action_description">Slide to view game history</string>
 </resources>

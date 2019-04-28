@@ -22,7 +22,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Menu"
         android:textColor="@color/classic_black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="parent"
+
         app:layout_constraintHorizontal_bias="0.085"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
