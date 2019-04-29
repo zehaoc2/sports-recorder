@@ -1,103 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/periodSheet"
-    android:layout_width="400dp"
-    android:layout_height="350dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/coordinatorLayout"
+    android:layout_height="match_parent"
+    tools:context=".InputActivity">
 
-    android:background="@drawable/histories_bg"
+    <LinearLayout
+        android:id="@+id/periodSheet"
+        android:layout_width="400dp"
+        android:layout_height="350dp"
 
-    android:orientation="vertical"
-    android:layout_gravity="top|center"
-
-    app:behavior_peekHeight="?actionBarSize"
-    app:layout_behavior="@string/bottom_sheet_behavior">
-
-    <!--expand to top android:layout_height="match_parent"-->
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
         android:background="@drawable/histories_bg"
-        android:paddingEnd="8dp"
-        android:paddingStart="8dp"
-        >
 
+        android:orientation="vertical"
+        android:layout_gravity="top|center"
 
+        app:behavior_peekHeight="?actionBarSize"
+        app:layout_behavior="@string/bottom_sheet_behavior">
 
-        <ToggleButton
-            android:id="@+id/toggleButton_black"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/tp_up_down_black"
-
-            android:text=""
-            android:textOff=""
-            android:textOn="" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@id/linearButtons"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/txtCantante"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Histories"
-
-                android:textColor="@color/fbutton_color_midnight_blue"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:textAllCaps="true"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/linearButtons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-
-        </LinearLayout>
-
-
-    </RelativeLayout>
-
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:fillViewport="true" >
+        <!--expand to top android:layout_height="match_parent"-->
 
         <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@drawable/histories_bg"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            >
 
 
-            <ListView
-                android:id="@+id/matchList"
+
+            <ToggleButton
+                android:id="@+id/toggleButton_black"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/tp_up_down_black"
+
+                android:text=""
+                android:textOff=""
+                android:textOn="" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/linearButtons"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtCantante"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Histories"
+
+                    android:textColor="@color/fbutton_color_midnight_blue"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:textAllCaps="true"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linearButtons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+            </LinearLayout>
 
 
         </RelativeLayout>
 
-    </ScrollView>
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fillViewport="true" >
+
+
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
+
+
+            </RelativeLayout>
+
+        </ScrollView>
 
 
 
 
 
-</LinearLayout>
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+<!--<RelativeLayout-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent">-->
+
+<!--<androidx.recyclerview.widget.RecyclerView-->
+    <!--android:id="@+id/recyclerView"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical"-->
+    <!--app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />-->
+
+
+<!--</RelativeLayout>-->

@@ -6,9 +6,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
+import android.view.animation.AccelerateInterpolator;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -16,12 +19,18 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Stack;
+
+import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class InputActivity extends Activity implements View.OnClickListener {
 
@@ -64,6 +73,13 @@ public class InputActivity extends Activity implements View.OnClickListener {
     public ArrayList<String> actions = new ArrayList<>();
     private ArrayList<String> actionID = new ArrayList<>();
     private ActionListAdapter adapter;
+
+
+    RecyclerView recyclerView;
+    RecyclerViewAdapter mAdapter;
+    ArrayList<String> stringArrayList = new ArrayList<>();
+    CoordinatorLayout coordinatorLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,11 +127,17 @@ public class InputActivity extends Activity implements View.OnClickListener {
             }
         });
 
-        adapter = new ActionListAdapter(actions,this, InputActivity.this);
+//        adapter = new ActionListAdapter(actions,this, InputActivity.this);
 
-        ListView listView = (ListView) findViewById(R.id.matchList);
-        listView.setEmptyView(findViewById(R.id.noActions));
-        listView.setAdapter(adapter);
+//        ListView listView = (ListView) findViewById(R.id.matchList);
+//        listView.setEmptyView(findViewById(R.id.noActions));
+//        listView.setAdapter(adapter);
+
+        recyclerView = findViewById(R.id.recyclerView);
+        coordinatorLayout = findViewById(R.id.coordinatorLayout);
+
+//        populateRecyclerView();
+        enableSwipeToDeleteAndUndo();
 
     }
 
@@ -330,8 +352,10 @@ public class InputActivity extends Activity implements View.OnClickListener {
         {
             actions.add(action.message);
         }
+
         Collections.reverse(actions);
-        adapter.notifyDataSetChanged();
+        populateRecyclerView();
+//        adapter.notifyDataSetChanged();
     }
 
     /* ================================================================================================================================================= */
@@ -365,6 +389,34 @@ public class InputActivity extends Activity implements View.OnClickListener {
         lastAction.setText(history.isEmpty() ? getString(R.string.action_description) : history.peek().getMessage());
     }
 
+
+    private void undoSpecificAction(Action action) {
+        history.remove(action);
+        if (action.getType() == Type.Score) {
+            if (action.getTeamName().equals(period.getOthers().getName())) {
+                othersScore -= action.getPoint();
+                myScoreView.setText(String.valueOf(othersScore + kidScore));
+            } else if (action.getTeamName().equals(period.getOpponent().getName())) {
+                oppScore -= action.getPoint();
+                opponentScoreView.setText(String.valueOf(oppScore));
+            } else {
+                kidScore -= action.getPoint();
+                myScoreView.setText(String.valueOf(othersScore + kidScore));
+
+                switch (action.getPoint()) {
+                    case 1:
+                        kidOne--;
+                    case 2:
+                        kidTwo--;
+                    case 3:
+                        kidThree--;
+                }
+            }
+        } else if (action.getType() == Type.Attempt && action.getTeamName().equals(period.getKid().getName())) {
+            kidMiss--;
+        }
+        lastAction.setText(history.isEmpty() ? getString(R.string.action_description) : history.peek().getMessage());
+    }
 
 
 
@@ -458,5 +510,70 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
 
 
+    }
+
+
+    private void populateRecyclerView() {
+        stringArrayList.clear();
+        for (int i = 0; i < actions.size(); i++){
+            stringArrayList.add(actions.get(i));
+
+        }
+
+        mAdapter = new RecyclerViewAdapter(stringArrayList);
+        recyclerView.setAdapter(mAdapter);
+
+    }
+
+    private void enableSwipeToDeleteAndUndo() {
+        SwipeToDeleteCallback swipeToDeleteCallback = new SwipeToDeleteCallback(this) {
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+
+
+                final int position = viewHolder.getAdapterPosition();
+                final String item = mAdapter.getData().get(position);
+
+                mAdapter.removeItem(position);
+                final Action temp_action = history.get(position);
+                undoSpecificAction(history.get(position));
+
+
+
+
+
+                Snackbar snackbar = Snackbar
+                        .make(coordinatorLayout, "Action was deleted.", Snackbar.LENGTH_LONG);
+                snackbar.setAction("UNDO", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        mAdapter.restoreItem(item, position);
+                        recyclerView.scrollToPosition(position);
+                        setLastAction(temp_action);
+                        if(temp_action.getTeamName().equals(period.getOthers().getName())){
+                            //opponent
+
+                            oppScore+= temp_action.point;
+                            opponentScoreView.setText(String.valueOf(oppScore));
+                        }
+                        else{
+
+                            kidScore += temp_action.point;
+
+                            myScoreView.setText(String.valueOf(kidScore + othersScore));
+                        }
+
+                    }
+                });
+
+                snackbar.setActionTextColor(Color.YELLOW);
+                snackbar.show();
+
+            }
+        };
+
+        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeToDeleteCallback);
+        itemTouchhelper.attachToRecyclerView(recyclerView);
     }
 }
