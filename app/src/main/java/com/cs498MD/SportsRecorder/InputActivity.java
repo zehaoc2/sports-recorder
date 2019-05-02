@@ -102,6 +102,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
                 }else{
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    reflectScoreBoard();
                 }
             }
         });
@@ -143,6 +144,24 @@ public class InputActivity extends Activity implements View.OnClickListener {
         enableSwipeToDeleteAndUndo();
 
     }
+
+    public void reflectScoreBoard(){
+        int opponent = 0;
+        int kid = 0;
+        for(String string : stringArrayList){
+            if(string.contains("Kid") && string.contains("point")){
+                kid ++;
+
+            }
+            else if (string.contains("Opponent") && string.contains("point")){
+                opponent++;
+
+            }
+        }
+        opponentScoreView.setText(String.valueOf(opponent));
+        myScoreView.setText(String.valueOf(kid));
+    }
+
 
     /* ================================================================================================================================================= */
     /* ================================================================ Initialization ================================================================= */
