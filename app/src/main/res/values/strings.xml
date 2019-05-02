@@ -23,4 +23,7 @@
     <string name="free_throw">Free Throw</string>
     <string name="two_ptr">2-Ptr</string>
     <string name="three_ptr">3-Ptr</string>
+
+    <string name="no_matches">Tap the New Match button to start a game</string>
+    <string name="action_description">Slide to view game history</string>
 </resources>

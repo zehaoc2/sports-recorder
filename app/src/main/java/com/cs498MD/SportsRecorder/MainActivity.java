@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_match_list);
 
         init_bottomsheet();
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
 
         tbUpDown.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

@@ -15,9 +15,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@color/fbutton_color_midnight_blue"
+        android:background="@drawable/layout_bg"
         android:paddingEnd="8dp"
         android:paddingStart="8dp">
+
+        <!--android:background="@color/fbutton_color_midnight_blue"-->
 
         <ToggleButton
             android:id="@+id/toggleButton"
@@ -77,9 +79,6 @@
             android:layout_height="wrap_content" >
 
 
-
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -98,6 +97,7 @@
 
                 <EditText
                     android:id="@+id/matchNameText"
+                    android:text="New Match"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dip"
@@ -115,6 +115,7 @@
 
                 <EditText
                     android:id="@+id/kidNameText"
+                    android:text="My Kid"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dip"

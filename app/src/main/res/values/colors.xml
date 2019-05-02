@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="periods">#0D1B2A</color>
+    <color name="periods">#596475</color>
     <color name="end_game">#2A4E54</color>
     <color name="add_buttons">#4EA5D9</color>
-    <color name="undo">#596475</color>
+    <color name="undo">#FFFFFF</color>
     <color name="view_stats">#596475</color>
-    <color name="selected_period">#F2C100</color>
+    <color name="selected_period">#0D1B2A</color>
 
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#007E67</color>

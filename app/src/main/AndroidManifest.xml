@@ -11,6 +11,7 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".GameStats"
                   android:theme="@style/AppTheme"/>
+
         <activity android:name=".MatchList" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -20,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".InputActivity" android:screenOrientation="landscape"/>
+        <activity android:name=".test_activity"/>
     </application>
 
 </manifest>

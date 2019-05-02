@@ -117,7 +117,7 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_stats);
 
-        findViewById(R.id.send).setOnClickListener(this);
+//        findViewById(R.id.send).setOnClickListener(this);
 
         scores = findViewById(R.id.score);
         scores.setBackgroundResource(R.drawable.border_bottom);
@@ -203,16 +203,16 @@ public class GameStats extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.send) {
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, matchJson);
-            sendIntent.setType("text/plain");
-
-            if (sendIntent.resolveActivity(getPackageManager()) != null) {
-                startActivity(sendIntent);
-            }
-        }
+//        if (v.getId() == R.id.send) {
+//            Intent sendIntent = new Intent();
+//            sendIntent.setAction(Intent.ACTION_SEND);
+//            sendIntent.putExtra(Intent.EXTRA_TEXT, matchJson);
+//            sendIntent.setType("text/plain");
+//
+//            if (sendIntent.resolveActivity(getPackageManager()) != null) {
+//                startActivity(sendIntent);
+//            }
+//        }
     }
 
     private void populateScoreTable() {
