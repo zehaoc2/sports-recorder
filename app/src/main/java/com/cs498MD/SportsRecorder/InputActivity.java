@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Stack;
 
 import androidx.annotation.NonNull;
@@ -40,6 +41,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private Period period;
     private final String MATCH = "match";
     private TextView lastAction;
+    private TextView tutorial;
     private TextView matchName;
     private TextView myKid;
 
@@ -83,6 +85,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
     CoordinatorLayout coordinatorLayout;
 
 
+    List<Button> actionButtons = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,7 +106,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
                 }else{
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                    reflectScoreBoard();
+
                 }
             }
         });
@@ -113,13 +117,17 @@ public class InputActivity extends Activity implements View.OnClickListener {
                 if(newState == BottomSheetBehavior.STATE_EXPANDED){
                     tbUpDown.setChecked(true);
                     lastAction.setText("Game History");
+                    tutorial.setText("(Swipe To Delete)");
+
                 }else if(newState == BottomSheetBehavior.STATE_COLLAPSED){
                     tbUpDown.setChecked(false);
                     if(!period.getHistory().empty()){
                         lastAction.setText(period.getHistory().peek().message);
+                        tutorial.setText("");
                     }
                     else{
                         lastAction.setText("Slide to view game history");
+                        tutorial.setText("");
                     }
 
                 }
@@ -145,22 +153,6 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
     }
 
-    public void reflectScoreBoard(){
-        int opponent = 0;
-        int kid = 0;
-        for(String string : stringArrayList){
-            if(string.contains("Kid") && string.contains("point")){
-                kid ++;
-
-            }
-            else if (string.contains("Opponent") && string.contains("point")){
-                opponent++;
-
-            }
-        }
-        opponentScoreView.setText(String.valueOf(opponent));
-        myScoreView.setText(String.valueOf(kid));
-    }
 
 
     /* ================================================================================================================================================= */
@@ -170,6 +162,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
     private void initViews() {
         // Game Util Views
         lastAction = findViewById(R.id.txtCantante);
+        tutorial = findViewById(R.id.tutorial);
 //        findViewById(R.id.undo).setOnClickListener(this);
         findViewById(R.id.end_game).setOnClickListener(this);
         findViewById(R.id.view_game_stats).setOnClickListener(this);
@@ -377,6 +370,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
         Collections.reverse(actions);
         populateRecyclerView();
+
+
 
         //delete button on click
 //        Button deleteActionHistoryBtn = findViewById(R.id.action_delete_btn);

@@ -26,8 +26,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         private TextView mTitle;
         RelativeLayout relativeLayout;
-        Button button;
-        private ArrayList<String> list;
+
 
 
         public MyViewHolder(View itemView) {
@@ -35,7 +34,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
             mTitle = itemView.findViewById(R.id.txtTitle);
-            button = itemView.findViewById(R.id.action_delete_btn);
+
         }
 
 //        @Override
@@ -61,15 +60,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         holder.mTitle.setText(data.get(position));
 
-        holder.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                data.remove(holder.getAdapterPosition());
-                notifyDataSetChanged();
-
-            }
-        });
     }
 
     @Override

@@ -59,7 +59,18 @@
                     android:text="Histories"
 
                     android:textColor="@color/fbutton_color_midnight_blue"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:textAllCaps="true"/>
+                <TextView
+                    android:id="@+id/tutorial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+
+                    android:textColor="@color/fbutton_color_midnight_blue"
+                    android:textSize="10sp"
                     android:textStyle="bold"
                     android:layout_gravity="center"
                     android:textAllCaps="true"/>
