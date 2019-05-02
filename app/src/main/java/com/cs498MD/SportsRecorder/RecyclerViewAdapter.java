@@ -2,11 +2,16 @@ package com.cs498MD.SportsRecorder;
 
 
 
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +26,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         private TextView mTitle;
         RelativeLayout relativeLayout;
+        Button button;
+        private ArrayList<String> list;
+
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
+
             mTitle = itemView.findViewById(R.id.txtTitle);
+            button = itemView.findViewById(R.id.action_delete_btn);
         }
+
+//        @Override
+//        public void onClick(View v) {
+//            if (v.getId() == R.id.action_delete_btn){
+//                Log.e("TEST", "Action deleted");
+//            }
+//
+//        }
     }
 
     public RecyclerViewAdapter(ArrayList<String> data) {
@@ -40,8 +58,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
         holder.mTitle.setText(data.get(position));
+
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                data.remove(holder.getAdapterPosition());
+                notifyDataSetChanged();
+
+            }
+        });
     }
 
     @Override
@@ -63,6 +91,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public ArrayList<String> getData() {
         return data;
     }
+
+
 }
 
 

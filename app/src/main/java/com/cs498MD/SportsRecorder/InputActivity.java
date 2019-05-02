@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 
 import android.view.animation.AccelerateInterpolator;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -77,6 +78,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
     RecyclerView recyclerView;
     RecyclerViewAdapter mAdapter;
+
     ArrayList<String> stringArrayList = new ArrayList<>();
     CoordinatorLayout coordinatorLayout;
 
@@ -97,6 +99,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
                 }else{
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 }
@@ -355,6 +358,57 @@ public class InputActivity extends Activity implements View.OnClickListener {
 
         Collections.reverse(actions);
         populateRecyclerView();
+
+        //delete button on click
+//        Button deleteActionHistoryBtn = findViewById(R.id.action_delete_btn);
+//        deleteActionHistoryBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                RecyclerView.ViewHolder viewHolder = mAdapter.onCreateViewHolder(recyclerView, 0);
+//                final int position = viewHolder.getAdapterPosition();
+//                final String item = mAdapter.getData().get(position);
+//
+//                mAdapter.removeItem(position);
+//                final Action temp_action = history.get(position);
+//                undoSpecificAction(history.get(position));
+//
+//
+//
+//
+//
+//                Snackbar snackbar = Snackbar
+//                        .make(coordinatorLayout, "Action was deleted.", Snackbar.LENGTH_LONG);
+//                snackbar.setAction("UNDO", new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//
+//                        mAdapter.restoreItem(item, position);
+//                        recyclerView.scrollToPosition(position);
+//                        setLastAction(temp_action);
+//                        if(temp_action.getTeamName().equals(period.getOthers().getName())){
+//                            //opponent
+//
+//                            oppScore+= temp_action.point;
+//                            opponentScoreView.setText(String.valueOf(oppScore));
+//                        }
+//                        else{
+//
+//                            kidScore += temp_action.point;
+//
+//                            myScoreView.setText(String.valueOf(kidScore + othersScore));
+//                        }
+//
+//                    }
+//                });
+//
+//                snackbar.setActionTextColor(Color.YELLOW);
+//                snackbar.show();
+//
+//            }
+//
+//
+//        });
+
 //        adapter.notifyDataSetChanged();
     }
 
@@ -526,19 +580,19 @@ public class InputActivity extends Activity implements View.OnClickListener {
     }
 
     private void enableSwipeToDeleteAndUndo() {
+
         SwipeToDeleteCallback swipeToDeleteCallback = new SwipeToDeleteCallback(this) {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
 
+
                 final int position = viewHolder.getAdapterPosition();
                 final String item = mAdapter.getData().get(position);
-
                 mAdapter.removeItem(position);
+
                 final Action temp_action = history.get(position);
                 undoSpecificAction(history.get(position));
-
-
 
 
 
@@ -576,4 +630,6 @@ public class InputActivity extends Activity implements View.OnClickListener {
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeToDeleteCallback);
         itemTouchhelper.attachToRecyclerView(recyclerView);
     }
+
+
 }
