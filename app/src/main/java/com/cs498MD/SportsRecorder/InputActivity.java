@@ -117,7 +117,7 @@ public class InputActivity extends Activity implements View.OnClickListener {
                 if(newState == BottomSheetBehavior.STATE_EXPANDED){
                     tbUpDown.setChecked(true);
                     lastAction.setText("Game History");
-                    tutorial.setText("(Swipe To Delete)");
+                    tutorial.setText("(Swipe Left To Delete)");
 
                 }else if(newState == BottomSheetBehavior.STATE_COLLAPSED){
                     tbUpDown.setChecked(false);
@@ -458,8 +458,9 @@ public class InputActivity extends Activity implements View.OnClickListener {
     }
 
 
-    private void undoSpecificAction(Action action) {
-        history.remove(action);
+    private void undoSpecificAction(Action action, int position) {
+        Collections.reverse(history);
+        history.remove(position);
         if (action.getType() == Type.Score) {
             if (action.getTeamName().equals(period.getOthers().getName())) {
                 othersScore -= action.getPoint();
@@ -606,7 +607,8 @@ public class InputActivity extends Activity implements View.OnClickListener {
                 mAdapter.removeItem(position);
 
                 final Action temp_action = history.get(position);
-                undoSpecificAction(history.get(position));
+                Log.e("TEST", "" + position);
+                undoSpecificAction(history.get(position), position);
 
 
 
@@ -619,12 +621,15 @@ public class InputActivity extends Activity implements View.OnClickListener {
                         mAdapter.restoreItem(item, position);
                         recyclerView.scrollToPosition(position);
                         setLastAction(temp_action);
-                        if(temp_action.getTeamName().equals(period.getOthers().getName())){
+                        if(temp_action.getTeamName().equals(period.getOpponent().getName())){
                             //opponent
 
                             oppScore+= temp_action.point;
+                            Log.e("TEST", "" + temp_action.point);
+                            history.insertElementAt(temp_action, position);
                             opponentScoreView.setText(String.valueOf(oppScore));
                         }
+
                         else{
 
                             kidScore += temp_action.point;
